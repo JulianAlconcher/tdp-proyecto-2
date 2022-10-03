@@ -4,9 +4,9 @@ public class main {
 	
 	public static void main (String[] args) {
 		
-		SplashScreen miSplashScreen =new SplashScreen(3000);
+		//SplashScreen miSplashScreen =new SplashScreen(3000);
 		
-		miSplashScreen.initialize();
+		//miSplashScreen.initialize();
 		
 		GUI miGUI= new GUI();
 		

@@ -132,13 +132,6 @@ public class Grilla {
 						c.setEntidadGrafica(new CeldaGrafica(c.getEntidad()));
 						nuevoTablero.setCelda(i, j, c);
 				}
-				/*
-				else if( ch == ' ') {
-					c.setEntidad(new Fondo());
-					c.setEntidadGrafica(new EntidadGrafica(c.getEntidad()));
-					nuevoTablero.setCelda(i, j, c);
-			}
-			*/
 			}
 			
 		}
