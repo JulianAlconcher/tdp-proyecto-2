@@ -119,17 +119,17 @@ public class Grilla {
 				int entidad = ch - 'A';
 				if ( ch == '#' ) {
 						c.setEntidad(new Pared());
-						c.setEntidadGrafica(new CeldaGrafica(c.getEntidad()));
+						c.setCeldaGrafica(new CeldaGrafica());
 						nuevoTablero.setCelda(i, j, c);
 				
 				} else if( ch == 'P') {
 						c.setEntidad(new PowerUp());
-						c.setEntidadGrafica(new CeldaGrafica(c.getEntidad()));
+						c.setCeldaGrafica(new CeldaGrafica());
 						nuevoTablero.setCelda(i, j, c);
 				}
 				else if( ch == 'A') {
 						c.setEntidad(new Alimento());
-						c.setEntidadGrafica(new CeldaGrafica(c.getEntidad()));
+						c.setCeldaGrafica(new CeldaGrafica());
 						nuevoTablero.setCelda(i, j, c);
 				}
 			}

@@ -1,14 +1,19 @@
 package Logica;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
-public class CeldaGrafica {
+public class CeldaGrafica extends JLabel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ImageIcon grafico;
 	private String[] images;
 
-	public CeldaGrafica(Entidad e) {
-		this.images = new String[] {"/imagenes/#.png", "/imagenes/A.jpg", "/imagenes/P.jpg"} ;;
-		this.grafico = new ImageIcon(images[e.getPosicion()]);
+	public CeldaGrafica() {
+		this.images = new String[] {"MARIO.png", "/imagenes/A.jpg", "/imagenes/P.jpg"} ;;
+		this.grafico = new ImageIcon(images[0]);
 	}
 
 	public ImageIcon getGrafico() {
