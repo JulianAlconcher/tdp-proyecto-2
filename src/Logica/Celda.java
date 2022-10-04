@@ -11,7 +11,7 @@ public class Celda {
 		this.coordFila = fila;
 		this.coordColu = columna;
 		this.entidad = e;
-		this.celdaGrafica = new CeldaGrafica(e);
+		this.celdaGrafica = new CeldaGrafica();
 		this.estado = null;
 	}
 

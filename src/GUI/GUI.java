@@ -84,14 +84,12 @@ public class GUI extends JFrame implements Runnable{
 	 * 
 	 */
 	public void pintarMatrizG() {
-		for(int i = 0; i < miJuego.getCantFilas(); i++) {
-			for(int j = 0; j < miJuego.getCantColu(); j++) {
-				matrizGrafica[i][j].setIcon(new ImageIcon("imagenes/MARIO.png"));
-//				matrizGrafica[i][j].setIcon(null);
-				matrizGrafica[i][j].setBounds(i*100, j*100, 20, 20);
-				matrizGrafica[i][j].setVisible(true);
-				panelJuego.add(matrizGrafica[i][j]);
-			}
+		int col = 0;
+		int fila = 0;
+		int x = 0;
+		int y = 0;
+		while( col < miJuego.getCantColu() && fila < miJuego.getCantFilas()) {
+			int numeroCelda = miJuego.getGrilla().getNumeroMapa(fila, col);
 		}
 	}
  

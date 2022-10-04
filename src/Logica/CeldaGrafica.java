@@ -11,9 +11,8 @@ public class CeldaGrafica extends JLabel{
 	private ImageIcon grafico;
 	private String imagen;
 	private Entidad entidad;
-	private Pared pared;
 
-	public CeldaGrafica(Entidad e) {
+	public CeldaGrafica() {
 		
 		this.imagen = "/imagenes/F.jpg";
 		this.grafico = new ImageIcon(this.getClass().getResource(imagen));
