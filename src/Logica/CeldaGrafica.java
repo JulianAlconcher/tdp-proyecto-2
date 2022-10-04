@@ -9,11 +9,14 @@ public class CeldaGrafica extends JLabel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private ImageIcon grafico;
-	private String[] images;
+	private String imagen;
+	private Entidad entidad;
+	private Pared pared;
 
-	public CeldaGrafica() {
-		this.images = new String[] {"MARIO.png", "/imagenes/A.jpg", "/imagenes/P.jpg"} ;;
-		this.grafico = new ImageIcon(images[0]);
+	public CeldaGrafica(Entidad e) {
+		
+		this.imagen = "/imagenes/F.jpg";
+		this.grafico = new ImageIcon(this.getClass().getResource(imagen));
 	}
 
 	public ImageIcon getGrafico() {
@@ -24,11 +27,15 @@ public class CeldaGrafica extends JLabel{
 		this.grafico = grafico;
 	}
 	
-	public String[] getImagenes() {
-		return images;
+	public String getNombreImagen() {
+		return imagen;
 	}
 	
-	public void setImagenes(String[] imagenes) {
-		this.images = imagenes;
+	public void setNombreImagen(String nombreImagen) {
+		this.imagen = nombreImagen;
+	}
+	
+	public void setEntidad(Entidad e) {
+		this.entidad = e;
 	}
 }

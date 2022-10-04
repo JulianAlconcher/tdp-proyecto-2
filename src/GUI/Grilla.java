@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import Logica.Alimento;
 import Logica.Celda;
 import Logica.CeldaGrafica;
+import Logica.Entidad;
 import Logica.Pared;
 import Logica.PowerUp;
 
@@ -31,9 +32,11 @@ public class Grilla {
 
 		for (int i = 0; i < cantFilas; i++) {
 			for(int j = 0; j < cantColumnas; j++) {
-				tablero[i][j] = new Celda(i,j);
+				tablero[i][j] = new Celda(i,j,new Entidad());
+				
 			}
 		}  
+	
 	}
 
 	
@@ -119,18 +122,19 @@ public class Grilla {
 				int entidad = ch - 'A';
 				if ( ch == '#' ) {
 						c.setEntidad(new Pared());
-						c.setCeldaGrafica(new CeldaGrafica());
 						nuevoTablero.setCelda(i, j, c);
 				
 				} else if( ch == 'P') {
 						c.setEntidad(new PowerUp());
-						c.setCeldaGrafica(new CeldaGrafica());
 						nuevoTablero.setCelda(i, j, c);
 				}
 				else if( ch == 'A') {
 						c.setEntidad(new Alimento());
-						c.setCeldaGrafica(new CeldaGrafica());
 						nuevoTablero.setCelda(i, j, c);
+				}
+				else if( ch == ' ') {
+					c.setEntidad(null);
+					nuevoTablero.setCelda(i, j, c);
 				}
 			}
 			

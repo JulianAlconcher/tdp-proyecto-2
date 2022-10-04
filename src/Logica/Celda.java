@@ -7,11 +7,11 @@ public class Celda {
 	private CeldaGrafica celdaGrafica;
 	private Integer estado;
 
-	public Celda(int fila, int columna) {
+	public Celda(int fila, int columna, Entidad e) {
 		this.coordFila = fila;
 		this.coordColu = columna;
-		this.entidad = new Entidad();
-		this.celdaGrafica = new CeldaGrafica();
+		this.entidad = e;
+		this.celdaGrafica = new CeldaGrafica(e);
 		this.estado = null;
 	}
 

@@ -16,10 +16,11 @@ public class Juego {
 		this.cantFilas = 20;
 		this.miGrilla = new Grilla(cantFilas, cantColumnas);
 		try {
-			miGrilla.cargarTablero("Datos/Nivel1.txt");
-		} catch (IOException e) {e.printStackTrace();
+			miGrilla.cargarTablero("C:\\Users\\FRAVEGA\\Downloads\\Documents\\TDP\\tdp-proyecto-2\\src\\Nivel1.txt");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
 	}
 	
 	
