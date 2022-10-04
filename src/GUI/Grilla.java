@@ -27,12 +27,16 @@ public class Grilla {
 		this.cantColumnas = 20;
 		this.cantFilas = 20;
 		tablero = new Celda [filas][columnas];
-
+		mapaCeldasNumeros = new int[filas][columnas];
+		celdasGraficas = new CeldaGrafica[5];
+		
 		for (int i = 0; i < cantFilas; i++) {
 			for(int j = 0; j < cantColumnas; j++) {
 				tablero[i][j] = new Celda(i,j,new Entidad());
 
 			}
+			cargarMapa();
+			getImagenCelda();
 		}  
 
 	}
@@ -52,12 +56,14 @@ public class Grilla {
 		celdasGraficas[2].setGrafico(graficoPowerUp);
 
 		celdasGraficas[3] = new CeldaGrafica();
-		ImageIcon graficoFondo = new ImageIcon(this.getClass().getResource("/imagenes/F.png"));
+		ImageIcon graficoFondo = new ImageIcon(this.getClass().getResource("/imagenes/F.jpg"));
 		celdasGraficas[3].setGrafico(graficoFondo);
 
 	}
 
-
+	public CeldaGrafica[] getCeldasGraficas() {
+		return celdasGraficas;
+	}
 
 	/**
 	 * Retorna la celda en la fila i, columna j
@@ -165,7 +171,7 @@ public class Grilla {
 
 		try {
 
-			InputStream is = getClass().getResourceAsStream("Nivel1.txt");
+			InputStream is = Grilla.class.getClassLoader().getResourceAsStream("Nivel1.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
 			int columna = 0;
@@ -176,8 +182,8 @@ public class Grilla {
 				
 				while(columna < cantColumnas) {
 					String numeros[] = line.split(" ");
-					int caracter = Integer.parseInt(numeros[columna]);
-					mapaCeldasNumeros[fila][columna] = caracter;
+					int n = Integer.parseInt(numeros[columna]);
+					mapaCeldasNumeros[fila][columna] = n;
 					columna++;
 				}
 				if(columna == cantColumnas) {
