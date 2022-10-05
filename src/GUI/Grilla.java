@@ -76,6 +76,44 @@ public class Grilla {
 
 
 	}
+	public void cargarMapa() {
+
+        try {
+
+            InputStream is = Grilla.class.getClassLoader().getResourceAsStream("Nivel1.txt");
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+            int columna = 0;
+            int fila = 0;
+
+            while(columna < cantColumnas && fila < cantFilas) {
+                String line = br.readLine();
+
+                while(columna < cantColumnas) {
+                    String numeros[] = line.split(" ");
+                    int n = Integer.parseInt(numeros[columna]);
+                    mapaCeldasNumeros[fila][columna] = n;
+                    switch(n) {
+                        case 1 : tablero[fila][columna].setEntidad(new Pared());
+                            break;
+                        case 2 : tablero[fila][columna].setEntidad(new Alimento());
+                            break;
+                        case 3 : tablero[fila][columna].setEntidad(new PowerUp());
+                    }
+                    columna++;
+                }
+                if(columna == cantColumnas) {
+                    columna = 0;
+                    fila++;
+                }
+            }
+            br.close();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
 	public CeldaGrafica[] getCeldasGraficas() {
 		return celdasGraficas;
@@ -109,68 +147,7 @@ public class Grilla {
 	/**
 	 * Carga el mapa pasado por archivo de texto
 	 */
-	public void cargarMapa() {
-
-        try {
-
-            InputStream is = Grilla.class.getClassLoader().getResourceAsStream("Nivel1.txt");
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-            int columna = 0;
-            int fila = 0;
-
-            while(columna < cantColumnas && fila < cantFilas) {
-                String line = br.readLine();
-
-<<<<<<< Updated upstream
-                while(columna < cantColumnas) {
-                    String numeros[] = line.split(" ");
-                    int n = Integer.parseInt(numeros[columna]);
-                    mapaCeldasNumeros[fila][columna] = n;
-                    switch(n) {
-                        case 1 : tablero[fila][columna].setEntidad(new Pared());
-                            break;
-                        case 2 : tablero[fila][columna].setEntidad(new Alimento());
-                            break;
-                        case 3 : tablero[fila][columna].setEntidad(new PowerUp());
-                    }
-                    
-                    columna++;
-                }
-                if(columna == cantColumnas) {
-                    columna = 0;
-                    fila++;
-                }
-            }
-            br.close();
-=======
-				while(columna < cantColumnas) {
-					String numeros[] = line.split(" ");
-					int n = Integer.parseInt(numeros[columna]);
-					mapaCeldasNumeros[fila][columna] = n;
-					switch(n) {
-		                case 1 : tablero[fila][columna].setEntidad(new Pared());
-		                    break;
-		                case 2 : tablero[fila][columna].setEntidad(new Alimento());
-		                    break;
-		                case 3 : tablero[fila][columna].setEntidad(new PowerUp());
-					}
-					columna++;
-				}
-				if(columna == cantColumnas) {
-					columna = 0;
-					fila++;
-				}
-			}
-			br.close();
->>>>>>> Stashed changes
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
+	
 	/**
 	 * @return Cantidad de filas de la Grilla
 	 */

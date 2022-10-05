@@ -93,12 +93,7 @@ public class GUI extends JFrame implements Runnable{
 	}
 	
 	public void pintarSnake() {
-<<<<<<< Updated upstream
-		int fila = miJuego.getGrilla().getCriatura().getCabeza().getCoordFila();
-		int colu = miJuego.getGrilla().getCriatura().getCabeza().getCoordColu();
-		CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
-		matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());
-=======
+
 		for(int i=0; i<miJuego.getGrilla().getCriatura().getTamanio(); i++) {
 			Celda[] celdasSnake = miJuego.getGrilla().getCriatura().getCeldas();
 			int fila = celdasSnake[i].getCoordFila();
@@ -106,8 +101,7 @@ public class GUI extends JFrame implements Runnable{
 			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
 			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());	
 		}
-		
->>>>>>> Stashed changes
+	
 	}
 //	matrizGrafica[celdasSnake[i]][coordColaColu].setIcon(celdasG[0].getGrafico());	
 //	
