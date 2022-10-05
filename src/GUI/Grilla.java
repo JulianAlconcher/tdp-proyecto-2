@@ -135,6 +135,7 @@ public class Grilla {
                             break;
                         case 3 : tablero[fila][columna].setEntidad(new PowerUp());
                     }
+                    
                     columna++;
                 }
                 if(columna == cantColumnas) {
