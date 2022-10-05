@@ -1,7 +1,5 @@
 package Logica;
 
-import java.io.IOException;
-
 import GUI.Grilla;
 
 public class Juego {

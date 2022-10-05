@@ -1,15 +1,11 @@
 package GUI;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import Logica.Celda;
@@ -17,11 +13,11 @@ import Logica.CeldaGrafica;
 import Logica.Juego;
 import javax.swing.JLabel;
 import java.awt.Color;
-import java.awt.Container;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 
 public class GUI extends JFrame implements Runnable{
@@ -33,6 +29,7 @@ public class GUI extends JFrame implements Runnable{
 	Thread hiloJuego;
 	private CeldaGrafica matrizGrafica[][]; 
 	private KeyHandler keyH;
+	private JButton btnNewButton_1;
 
 
 	/**
@@ -42,7 +39,7 @@ public class GUI extends JFrame implements Runnable{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 844, 611);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.RED);
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		setResizable(false);
@@ -62,8 +59,28 @@ public class GUI extends JFrame implements Runnable{
 		panelJuego = new JPanel();
 		panelJuego.setBounds(8, 10, 551, 551);
 		contentPane.add(panelJuego);
-		panelJuego.setBackground(Color.BLACK);
+		panelJuego.setBackground(Color.GRAY);
 		panelJuego.setLayout(new GridLayout(miJuego.getCantFilas(), miJuego.getCantColu(), 0, 0));
+		
+		JButton btnNewButton = new JButton("SALIR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnNewButton.setBounds(569, 492, 251, 69);
+		contentPane.add(btnNewButton);
+		
+		btnNewButton_1 = new JButton("TOP JUGADORES");
+		btnNewButton_1.setBounds(569, 461, 251, 21);
+		contentPane.add(btnNewButton_1);
+		
+		JLabel lblNewLabel = new JLabel("SNAKE");
+		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 20));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(653, 10, 109, 51);
+		contentPane.add(lblNewLabel);
 		
 		
 		pintarMatrizG();
@@ -124,7 +141,7 @@ public class GUI extends JFrame implements Runnable{
 			System.out.println("El loop del juego inicio");
 			update();
 			pintarSnake();
-				try {hiloJuego.sleep(300);} catch (InterruptedException e) {e.printStackTrace();
+				try {hiloJuego.sleep(800);} catch (InterruptedException e) {e.printStackTrace();
 				}
 		}
 	}
@@ -132,10 +149,8 @@ public class GUI extends JFrame implements Runnable{
 		System.out.println("Entre al update");
 		if(keyH.upPressed == true) {
 			miJuego.getGrilla().getCriatura().avanzar(1);
-
 		}
 	}
-
 }
 
 
