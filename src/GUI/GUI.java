@@ -42,14 +42,11 @@ public class GUI extends JFrame implements Runnable{
 		contentPane.setBackground(Color.RED);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		//		setResizable(false);
+		setResizable(false);
 
-		setTitle("SNAKE BETA");
-
+		setTitle("SNAKE v1.0");
 
 		this.matrizGrafica = new CeldaGrafica[20][20];
-
-
 
 		miJuego = new Juego();
 
@@ -61,49 +58,26 @@ public class GUI extends JFrame implements Runnable{
 		contentPane.add(panelJuego);
 		panelJuego.setBackground(Color.BLACK);
 		panelJuego.setLayout(new GridLayout(miJuego.getCantFilas(), miJuego.getCantColu(), 0, 0));
-
-			pintarMatrizG();
-	}
-	public void pintarMatrizG() {
-		int fila = 0;
-		int col = 0;
-		int i = 0;
-		int j = 0;
 		
-		while(col < miJuego.getCantColu() && fila < miJuego.getCantFilas()) {
-			int numeroCelda = miJuego.getGrilla().getNumeroMapa(fila, col);
-			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
-			ImageIcon imagen = celdasG[numeroCelda].getGrafico();
-			matrizGrafica[fila][col] = celdasG[numeroCelda];
-			panelJuego.add(matrizGrafica[fila][col]);
-			fila++;
-			col++;
+		
+		pintarMatrizG();
+	}
+	
+	public void pintarMatrizG() {
+		for(int i = 0; i < miJuego.getCantFilas(); i++) {
+			for(int j = 0; j < miJuego.getCantColu(); j++) {
+				
+				matrizGrafica[i][j] = miJuego.getGrilla().getCelda(i, j).getCeldaGrafica();
+				ImageIcon imagen = new ImageIcon();
+				int numeroCelda = miJuego.getGrilla().getNumeroMapa(i, j);
+				CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
+				imagen = celdasG[numeroCelda].getGrafico();
+				matrizGrafica[i][j].setIcon(imagen);
+				matrizGrafica[i][j].setBounds(i, j, 40, 40);
+				panelJuego.add(matrizGrafica[i][j]);
+			}
 		}
 	}
-
-	/**
-	 * 
-	 * 
-	 */
-	//	public void pintarMatrizG() {
-	//		for(int i = 0; i < miJuego.getCantFilas(); i++) {
-	//			for(int j = 0; j < miJuego.getCantColu(); j++) {
-	//				
-	//				int numeroCelda = miJuego.getGrilla().getNumeroMapa(i, j);
-	//				CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
-	//				
-	//				matrizGrafica[i][j] = miJuego.getGrilla().getCelda(i, j).getCeldaGrafica();
-	//				ImageIcon imagen = new ImageIcon();
-	//				imagen = miJuego.getGrilla().getCelda(i, j).getCeldaGrafica().getGrafico();
-	//			
-	//				matrizGrafica[i][j].setIcon(celdasG[numeroCelda].getIcon());
-	//				matrizGrafica[i][j].setBounds(i, j, 40, 40);
-	//				panelJuego.add(matrizGrafica[i][j]);
-	//			}
-	//		}
-	//	}
-
-
 
 	public void iniciarHiloJuego() {
 		hiloJuego = new Thread (this);

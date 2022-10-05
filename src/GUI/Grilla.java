@@ -29,35 +29,37 @@ public class Grilla {
 		tablero = new Celda [filas][columnas];
 		mapaCeldasNumeros = new int[filas][columnas];
 		celdasGraficas = new CeldaGrafica[5];
-		
+
 		for (int i = 0; i < cantFilas; i++) {
 			for(int j = 0; j < cantColumnas; j++) {
 				tablero[i][j] = new Celda(i,j,new Entidad());
-
 			}
-			cargarMapa();
-			getImagenCelda();
 		}  
-
+		getImagenCelda();
+		cargarMapa();
+		
 	}
 
 	public void getImagenCelda() {
 
+
 		celdasGraficas[0] = new CeldaGrafica();
-		ImageIcon graficoPared = new ImageIcon(this.getClass().getResource("/imagenes/#.png"));
-		celdasGraficas[0].setGrafico(graficoPared);
+		ImageIcon graficoFondo = new ImageIcon(this.getClass().getResource("/imagenes/F.jpg"));
+		celdasGraficas[0].setGrafico(graficoFondo);
 
 		celdasGraficas[1] = new CeldaGrafica();
-		ImageIcon graficoAlimento = new ImageIcon(this.getClass().getResource("/imagenes/A.jpg"));
-		celdasGraficas[1].setGrafico(graficoAlimento);
+		ImageIcon graficoPared = new ImageIcon(this.getClass().getResource("/imagenes/#.png"));
+		celdasGraficas[1].setGrafico(graficoPared);
 
 		celdasGraficas[2] = new CeldaGrafica();
-		ImageIcon graficoPowerUp = new ImageIcon(this.getClass().getResource("/imagenes/P.jpg"));
-		celdasGraficas[2].setGrafico(graficoPowerUp);
+		ImageIcon graficoAlimento = new ImageIcon(this.getClass().getResource("/imagenes/A.jpg"));
+		celdasGraficas[2].setGrafico(graficoAlimento);
 
 		celdasGraficas[3] = new CeldaGrafica();
-		ImageIcon graficoFondo = new ImageIcon(this.getClass().getResource("/imagenes/F.jpg"));
-		celdasGraficas[3].setGrafico(graficoFondo);
+		ImageIcon graficoPowerUp = new ImageIcon(this.getClass().getResource("/imagenes/P.jpg"));
+		celdasGraficas[3].setGrafico(graficoPowerUp);
+
+
 
 	}
 
@@ -179,7 +181,7 @@ public class Grilla {
 
 			while(columna < cantColumnas && fila < cantFilas) {
 				String line = br.readLine();
-				
+
 				while(columna < cantColumnas) {
 					String numeros[] = line.split(" ");
 					int n = Integer.parseInt(numeros[columna]);
@@ -212,7 +214,7 @@ public class Grilla {
 	public int getCantColu() {
 		return this.cantColumnas;
 	}
-	
+
 	public int getNumeroMapa(int i,int j){
 		return mapaCeldasNumeros[i][j];
 	}

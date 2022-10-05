@@ -10,11 +10,11 @@ public class CeldaGrafica extends JLabel{
 	private static final long serialVersionUID = 1L;
 	private ImageIcon grafico;
 	private String imagen;
-	private Entidad entidad;
+
 
 	public CeldaGrafica() {
 		
-		this.imagen = "/imagenes/F.jpg";
+		this.imagen = "";
 		this.grafico = new ImageIcon(this.getClass().getResource(imagen));
 	}
 
@@ -34,7 +34,4 @@ public class CeldaGrafica extends JLabel{
 		this.imagen = nombreImagen;
 	}
 	
-	public void setEntidad(Entidad e) {
-		this.entidad = e;
-	}
 }
