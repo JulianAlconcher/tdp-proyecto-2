@@ -3,6 +3,7 @@ package GUI;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -43,7 +44,7 @@ public class GUI extends JFrame implements Runnable{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		setResizable(false);
-
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/imagenes/Logo.png")));
 		setTitle("SNAKE v1.0");
 
 		this.matrizGrafica = new CeldaGrafica[20][20];
