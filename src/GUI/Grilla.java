@@ -35,8 +35,6 @@ public class Grilla {
 		mapaCeldasNumeros = new int[filas][columnas];
 		celdasGraficas = new CeldaGrafica[5];
 		miCriatura = new Criatura();
-		
-
 		for (int i = 0; i < cantFilas; i++) {
 			for(int j = 0; j < cantColumnas; j++) {
 				tablero[i][j] = new Celda(i,j);
@@ -124,6 +122,7 @@ public class Grilla {
             while(columna < cantColumnas && fila < cantFilas) {
                 String line = br.readLine();
 
+<<<<<<< Updated upstream
                 while(columna < cantColumnas) {
                     String numeros[] = line.split(" ");
                     int n = Integer.parseInt(numeros[columna]);
@@ -144,6 +143,27 @@ public class Grilla {
                 }
             }
             br.close();
+=======
+				while(columna < cantColumnas) {
+					String numeros[] = line.split(" ");
+					int n = Integer.parseInt(numeros[columna]);
+					mapaCeldasNumeros[fila][columna] = n;
+					switch(n) {
+		                case 1 : tablero[fila][columna].setEntidad(new Pared());
+		                    break;
+		                case 2 : tablero[fila][columna].setEntidad(new Alimento());
+		                    break;
+		                case 3 : tablero[fila][columna].setEntidad(new PowerUp());
+					}
+					columna++;
+				}
+				if(columna == cantColumnas) {
+					columna = 0;
+					fila++;
+				}
+			}
+			br.close();
+>>>>>>> Stashed changes
 
         } catch(Exception e) {
             e.printStackTrace();

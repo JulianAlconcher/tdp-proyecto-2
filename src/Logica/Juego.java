@@ -8,8 +8,8 @@ public class Juego {
 	private Grilla miGrilla;
 	private int cantFilas;
 	private int cantColumnas;
-	@SuppressWarnings("unused")
 	private Jugador miJugador;
+	
 
 	
 	public Juego() {

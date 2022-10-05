@@ -28,11 +28,11 @@ public class Celda {
 		this.coordColu = j;
 	}
 	
-	public Integer getCoordFila() {
+	public int getCoordFila() {
 		return this.coordFila;
 	}
 	
-	public Integer getCoordColu() {
+	public int getCoordColu() {
 		return this.coordColu;
 	}
 	

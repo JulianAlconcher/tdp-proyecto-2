@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import Logica.Celda;
 import Logica.CeldaGrafica;
 import Logica.Juego;
 import javax.swing.JLabel;
@@ -31,6 +32,7 @@ public class GUI extends JFrame implements Runnable{
 	private JLabel lblCasilla;
 	Thread hiloJuego;
 	private CeldaGrafica matrizGrafica[][]; 
+	private KeyHandler keyH;
 
 
 	/**
@@ -50,6 +52,9 @@ public class GUI extends JFrame implements Runnable{
 		this.matrizGrafica = new CeldaGrafica[20][20];
 
 		miJuego = new Juego();
+		keyH = new KeyHandler();
+		this.addKeyListener(keyH);
+		this.setFocusable(true);
 
 
 		contentPane.setLayout(null);
@@ -63,8 +68,12 @@ public class GUI extends JFrame implements Runnable{
 		
 		pintarMatrizG();
 		pintarSnake();
+		iniciarHiloJuego();
+
 	}
-	
+	/**
+	 * Inicializa el mapa
+	 */
 	public void pintarMatrizG() {
 		for(int i = 0; i < miJuego.getCantFilas(); i++) {
 			for(int j = 0; j < miJuego.getCantColu(); j++) {
@@ -84,11 +93,30 @@ public class GUI extends JFrame implements Runnable{
 	}
 	
 	public void pintarSnake() {
+<<<<<<< Updated upstream
 		int fila = miJuego.getGrilla().getCriatura().getCabeza().getCoordFila();
 		int colu = miJuego.getGrilla().getCriatura().getCabeza().getCoordColu();
 		CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
 		matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());
+=======
+		for(int i=0; i<miJuego.getGrilla().getCriatura().getTamanio(); i++) {
+			Celda[] celdasSnake = miJuego.getGrilla().getCriatura().getCeldas();
+			int fila = celdasSnake[i].getCoordFila();
+			int colu = celdasSnake[i].getCoordColu();
+			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
+			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());	
+		}
+		
+>>>>>>> Stashed changes
 	}
+//	matrizGrafica[celdasSnake[i]][coordColaColu].setIcon(celdasG[0].getGrafico());	
+//	
+//		int coordColaFila = miJuego.getGrilla().getCriatura().getCola().getCoordFila();
+//		int coordColaColu = miJuego.getGrilla().getCriatura().getCola().getCoordColu();
+//		CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
+//		matrizGrafica[coordColaFila][coordColaColu].setIcon(celdasG[0].getGrafico());
+		
+
 
 	public void iniciarHiloJuego() {
 		hiloJuego = new Thread (this);
@@ -96,24 +124,22 @@ public class GUI extends JFrame implements Runnable{
 	}
 
 
+	@SuppressWarnings("static-access")
 	public void run() {
 		while(hiloJuego != null) {
-
 			System.out.println("El loop del juego inicio");
 			update();
-			repaint();
-
+			pintarSnake();
+				try {hiloJuego.sleep(300);} catch (InterruptedException e) {e.printStackTrace();
+				}
 		}
 	}
 	public void update() {
+		System.out.println("Entre al update");
+		if(keyH.upPressed == true) {
+			miJuego.getGrilla().getCriatura().avanzar(1);
 
-	}
-	public void paintComponent(Graphics g) {
-		super.paintComponents(g);
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setColor(Color.white);
-		g2.fillRect(100, 100, 200, 200);
-		g2.dispose();
+		}
 	}
 
 }
