@@ -5,12 +5,12 @@ public class Celda {
 	private Integer coordColu;
 	private Entidad entidad;
 	private CeldaGrafica celdaGrafica;
-	private Integer estado;
+	private Integer estado; //0 comible //1 no comible
 
-	public Celda(int fila, int columna, Entidad e) {
+	public Celda(int fila, int columna) {
 		this.coordFila = fila;
 		this.coordColu = columna;
-		this.entidad = e;
+		this.entidad = new Entidad();
 		this.celdaGrafica = new CeldaGrafica();
 		this.estado = null;
 	}
@@ -21,6 +21,11 @@ public class Celda {
 	
 	public void setCoordColu(Integer v) {
 		this.coordColu = v;
+	}
+	
+	public void setCoords(int i, int j) {
+		this.coordFila = i;
+		this.coordColu = j;
 	}
 	
 	public Integer getCoordFila() {

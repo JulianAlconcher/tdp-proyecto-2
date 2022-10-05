@@ -10,6 +10,7 @@ public class Juego {
 	private int cantColumnas;
 	@SuppressWarnings("unused")
 	private Jugador miJugador;
+
 	
 	public Juego() {
 		this.cantColumnas = 20;
@@ -30,4 +31,5 @@ public class Juego {
 	public Grilla getGrilla(){
 		return miGrilla;
 	}
+	
 }

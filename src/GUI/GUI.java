@@ -61,6 +61,7 @@ public class GUI extends JFrame implements Runnable{
 		
 		
 		pintarMatrizG();
+		pintarSnake();
 	}
 	
 	public void pintarMatrizG() {
@@ -77,6 +78,17 @@ public class GUI extends JFrame implements Runnable{
 				panelJuego.add(matrizGrafica[i][j]);
 			}
 		}
+		
+		
+	}
+	
+	public void pintarSnake() {
+		int fila = miJuego.getGrilla().getCriatura().getCabeza().getCoordFila();
+		int colu = miJuego.getGrilla().getCriatura().getCabeza().getCoordColu();
+		CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
+		ImageIcon imagen = celdasG[4].getGrafico();
+		matrizGrafica[fila][colu].setIcon(imagen);
+		panelJuego.add(matrizGrafica[fila][colu]);
 	}
 
 	public void iniciarHiloJuego() {
