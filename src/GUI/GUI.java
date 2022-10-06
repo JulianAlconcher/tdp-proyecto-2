@@ -30,6 +30,7 @@ public class GUI extends JFrame implements Runnable{
 	private CeldaGrafica matrizGrafica[][]; 
 	private KeyHandler keyH;
 	private JButton btnNewButton_1;
+	private Perdiste gameOV;
 
 
 	/**
@@ -47,6 +48,8 @@ public class GUI extends JFrame implements Runnable{
 		setTitle("SNAKE v1.0");
 
 		this.matrizGrafica = new CeldaGrafica[20][20];
+		
+		gameOV = new Perdiste();
 
 		miJuego = new Juego();
 		keyH = new KeyHandler();
@@ -111,14 +114,25 @@ public class GUI extends JFrame implements Runnable{
 	
 	public void pintarSnake() {
 
-		for(int i=0; i<miJuego.getGrilla().getCriatura().getTamanio(); i++) {
+		for(int j=0; j<miJuego.getGrilla().getCriatura().getTamanio(); j++) {
 			Celda[] celdasSnake = miJuego.getGrilla().getCriatura().getCeldas();
-			int fila = celdasSnake[i].getCoordFila();
-			int colu = celdasSnake[i].getCoordColu();
+			int fila = celdasSnake[j].getCoordFila();
+			int colu = celdasSnake[j].getCoordColu();
 			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
+			despintarBloque(miJuego.getGrilla().getCriatura().getCola().getCoordFila(),miJuego.getGrilla().getCriatura().getCola().getCoordColu());
 			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());	
+			
 		}
+		
+
+
 	
+	}
+	
+	public void despintarBloque(int f, int c) {
+			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
+			matrizGrafica[f][c].setIcon(celdasG[0].getGrafico());
+		
 	}
 //	matrizGrafica[celdasSnake[i]][coordColaColu].setIcon(celdasG[0].getGrafico());	
 //	
@@ -138,18 +152,24 @@ public class GUI extends JFrame implements Runnable{
 	@SuppressWarnings("static-access")
 	public void run() {
 		while(hiloJuego != null) {
-			System.out.println("El loop del juego inicio");
 			update();
 			pintarSnake();
-				try {hiloJuego.sleep(800);} catch (InterruptedException e) {e.printStackTrace();
-				}
+			try {hiloJuego.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}
+			
+//			if(miJuego.gameOver())
+//				gameOV.mostrar();
 		}
 	}
 	public void update() {
 		System.out.println("Entre al update");
-		if(keyH.upPressed == true) {
-			miJuego.getGrilla().getCriatura().avanzar(1);
-		}
+		if(keyH.upPressed == true)
+			miJuego.mover(1);
+		else if(keyH.downPressed == true) 
+			miJuego.mover(-1);
+		else if(keyH.rightPressed == true)
+			miJuego.mover(2);
+		else if(keyH.leftPressed == true)
+			miJuego.mover(-2);
 	}
 }
 

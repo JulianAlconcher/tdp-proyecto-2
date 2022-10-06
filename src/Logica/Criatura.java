@@ -11,8 +11,6 @@ public class Criatura{
 		celdas[0] = cabeza;
 		celdas[1] = new Celda(cabeza.getCoordFila()+1,cabeza.getCoordColu());
 		celdas[2] = new Celda(cabeza.getCoordFila()+2,cabeza.getCoordColu());
-
-		
 	}
 
 	public Celda[] getCeldas() {
@@ -25,6 +23,10 @@ public class Criatura{
 	public void setCeldas(Celda[] celdas) {
 		this.celdas = celdas;
 	}
+	
+	public Celda getCeldaParticular(int p) {
+		return celdas[p];
+	}
 
 	public Celda getCabeza() {
 		return cabeza;
@@ -35,6 +37,9 @@ public class Criatura{
 		celdas[0] = cabeza;
 	}
 
+	public Celda getCola() {
+		return celdas[celdas.length-1];
+	}
 	public int getDireccion() {
 		return direccion;
 	}
@@ -43,7 +48,7 @@ public class Criatura{
 		this.direccion = direccion;
 	}
 
-	// 1 arriba, 2 derecha, 3 abajo, 4 izquierda
+	// 1 arriba, 2 derecha, -1 abajo, 4 izquierda
 	public void avanzar(int d) {
 		direccion = d;
 		if ( d == 1 ) {
@@ -51,36 +56,32 @@ public class Criatura{
 			cabeza.setCoordFila(cabeza.getCoordFila()-1);
 				for (int i = 1; i < celdas.length; i++) {
 					celdas[i].setCoords(coorCabezaVieja-i+1,cabeza.getCoordColu());
+					
 			}
 		}
-		else if ( d == 2 ) {
-			int coorCabezaVieja = cabeza.getCoordColu();
-			cabeza.setCoordColu(cabeza.getCoordColu()+1);
-				for (int i = 1; i < celdas.length; i++) {
-					celdas[i].setCoords(coorCabezaVieja+i-1, cabeza.getCoordFila());
-			}
-		}
-		else if ( d == 3 ) {
+		else if ( d == -1 ) {
 			int coorCabezaVieja = cabeza.getCoordFila();
-			cabeza.setCoordFila(cabeza.getCoordFila()-1);
+			cabeza.setCoordFila(cabeza.getCoordFila()+1);
 				for (int i = 1; i < celdas.length; i++) {
-					celdas[i].setCoords(celdas[coorCabezaVieja+i-1].getCoordFila(), celdas[cabeza.getCoordColu()].getCoordColu());
+					celdas[i].setCoords(coorCabezaVieja+i-1,cabeza.getCoordColu());
+					celdas[i] = celdas[i-1];
 			}
 		}
-		else if ( d == 4 ) {
-			int coorCabezaVieja = cabeza.getCoordColu();
-			cabeza.setCoordColu(cabeza.getCoordColu()-1);
-				for (int i = 1; i < celdas.length; i++) {
-					celdas[i].setCoords(celdas[coorCabezaVieja+i-1].getCoordFila(), celdas[cabeza.getCoordFila()].getCoordColu());
-			}
+	}
+
+	public void moverDerecha() {
+		int coorCabezaVieja = cabeza.getCoordColu();
+		cabeza.setCoordColu(cabeza.getCoordColu()+1);
+			for (int i = 1; i < celdas.length; i++) {
+				celdas[i].setCoords(cabeza.getCoordFila(),coorCabezaVieja+i-1);
 		}
 	}
 
 	public void moverIzquierda() {
-
-	}
-
-	public void moverDerecha() {
-
+		int coorCabezaVieja = cabeza.getCoordColu();
+		cabeza.setCoordColu(cabeza.getCoordColu()-1);
+			for (int i = 1; i < celdas.length; i++) {
+				celdas[i].setCoords(cabeza.getCoordFila(),coorCabezaVieja-i+1);
+		}
 	}
 }

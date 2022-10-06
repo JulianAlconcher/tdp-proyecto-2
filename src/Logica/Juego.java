@@ -30,4 +30,37 @@ public class Juego {
 		return miGrilla;
 	}
 	
+	public void mover(int d) {
+		int filaCabeza = miGrilla.getCriatura().getCabeza().getCoordFila();
+		int coluCabeza = miGrilla.getCriatura().getCabeza().getCoordColu();
+			if(d == 1) {
+				if(miGrilla.getCelda(filaCabeza-1, coluCabeza).getComestible())
+					miGrilla.getCriatura().avanzar(1);
+				else
+					gameOver();
+			}
+			else if(d==-1) {
+				if(miGrilla.getCelda(filaCabeza+1, coluCabeza).getComestible())
+					miGrilla.getCriatura().avanzar(-1);
+				else
+					gameOver();}
+			else if(d==2) {
+				if(miGrilla.getCelda(filaCabeza, coluCabeza+1).getComestible())
+					miGrilla.getCriatura().moverDerecha();
+				else 
+					gameOver();
+			}
+			else if(d==-2) {
+				if(miGrilla.getCelda(filaCabeza, coluCabeza-1).getComestible())
+					miGrilla.getCriatura().moverIzquierda();
+				else 
+					gameOver();
+			}
+				
+		}
+	
+	public boolean gameOver() {
+		System.out.println("PERDISTEEEEEEEEEEEEEEEEEE");
+		return true;
+	}
 }

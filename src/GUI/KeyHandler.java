@@ -20,15 +20,30 @@ public class KeyHandler implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int code = e.getExtendedKeyCode();
 		
-		if(code == KeyEvent.VK_UP)
+		if(code == KeyEvent.VK_UP) {
 			upPressed = true;
-		else if ( code == KeyEvent.VK_DOWN)
+			downPressed = false;
+			rightPressed = false;
+			leftPressed = false;
+		}
+		else if ( code == KeyEvent.VK_DOWN) {
 			downPressed = true;
-		else if ( code == KeyEvent.VK_RIGHT)
+			upPressed = false;
+			rightPressed = false;
+			leftPressed = false;
+		}
+		else if ( code == KeyEvent.VK_RIGHT) {
+			downPressed = false;
+			upPressed = false;
 			rightPressed = true;
-		else if ( code == KeyEvent.VK_LEFT)
+			leftPressed = false;
+		}
+		else if ( code == KeyEvent.VK_LEFT) {
+			downPressed = false;
+			upPressed = false;
+			rightPressed = false;
 			leftPressed = true;
-		
+		}
 	}
 
 	@Override

@@ -5,14 +5,14 @@ public class Celda {
 	private Integer coordColu;
 	private Entidad entidad;
 	private CeldaGrafica celdaGrafica;
-	private Integer estado; //0 comible //1 no comible
+	private boolean comestible; 
 
 	public Celda(int fila, int columna) {
 		this.coordFila = fila;
 		this.coordColu = columna;
 		this.entidad = new Entidad();
 		this.celdaGrafica = new CeldaGrafica();
-		this.estado = null;
+		this.comestible = true;
 	}
 
 	public void setCoordFila(Integer v) {
@@ -36,12 +36,12 @@ public class Celda {
 		return this.coordColu;
 	}
 	
-	public Integer getEstado() {
-		return this.estado;
+	public boolean getComestible() {
+		return this.comestible;
 	}
 	
-	public void setEstado(Integer v) {
-		this.estado  = v;
+	public void setComestible(boolean c) {
+		this.comestible  = c;
 	}
 
 	public Entidad getEntidad() {
