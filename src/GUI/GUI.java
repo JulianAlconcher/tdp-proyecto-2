@@ -35,8 +35,9 @@ public class GUI extends JFrame implements Runnable{
 	private CeldaGrafica matrizGrafica[][]; 
 	private KeyHandler keyH;
 	private JButton btnNewButton_1;
-	private Perdiste gameOV;
 	private boolean corriendo=false;
+	private JLabel lblPerdiste;
+	private Reloj miReloj;
 
 
 	/**
@@ -54,8 +55,7 @@ public class GUI extends JFrame implements Runnable{
 		setTitle("SNAKE v1.0");
 
 		this.matrizGrafica = new CeldaGrafica[20][20];
-		
-		gameOV = new Perdiste();
+	
 
 		miJuego = new Juego();
 		keyH = new KeyHandler();
@@ -132,6 +132,13 @@ public class GUI extends JFrame implements Runnable{
 		btnDetener.setBounds(689, 273, 85, 21);
 		contentPane.add(btnDetener);
 		
+		lblPerdiste = new JLabel("PERDISTE!");
+		lblPerdiste.setForeground(Color.WHITE);
+		lblPerdiste.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblPerdiste.setBounds(634, 326, 140, 32);
+		contentPane.add(lblPerdiste);
+		lblPerdiste.setVisible(false);
+		
 		
 		pintarMatrizG();
 		pintarSnake();
@@ -193,8 +200,7 @@ public class GUI extends JFrame implements Runnable{
 	public void iniciarHiloJuego() {
 		hiloJuego = new Thread (this);
 		hiloJuego.start();
-		Reloj miReloj= new Reloj(label);
-		miReloj.start();
+
 	}
 	
 	/**
@@ -212,10 +218,14 @@ public class GUI extends JFrame implements Runnable{
 		while(hiloJuego != null) {
 			update();
 			pintarSnake();
+			
 			try {hiloJuego.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}
 			
-//			if(miJuego.gameOver())
-//				gameOV.mostrar();
+//			if(miJuego.getGameStatus()) {
+//				hiloJuego = null;
+//				lblPerdiste.setVisible(true);
+//				miReloj.pararReloj();
+//			}
 		}
 	}
 	public void update() {

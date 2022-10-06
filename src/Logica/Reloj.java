@@ -26,6 +26,9 @@ public class Reloj extends Thread {
 		}
 	}
 
+	public void pararReloj() {
+		System.exit(0);
+	}
 	private void ejecutarHiloCronometro(int x) {
 		System.out.println(x+"  -  " +Thread.currentThread().getName());
 		GUI.segundos++;
