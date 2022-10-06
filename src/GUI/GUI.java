@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 import Logica.Celda;
 import Logica.CeldaGrafica;
 import Logica.Juego;
+import Logica.Reloj;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -26,11 +28,15 @@ public class GUI extends JFrame implements Runnable{
 	private JPanel panelJuego;
 	private Juego miJuego;
 	private JLabel lblCasilla;
+	public static JLabel label;
+	public static int segundos=0,minutos=0;
 	Thread hiloJuego;
+	public static boolean iniciaHilo=true;
 	private CeldaGrafica matrizGrafica[][]; 
 	private KeyHandler keyH;
 	private JButton btnNewButton_1;
 	private Perdiste gameOV;
+	private boolean corriendo=false;
 
 
 	/**
@@ -84,6 +90,47 @@ public class GUI extends JFrame implements Runnable{
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(653, 10, 109, 51);
 		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("TIEMPO:");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD, 20));
+		lblNewLabel_1.setBounds(569, 216, 121, 32);
+		contentPane.add(lblNewLabel_1);
+		
+		label = new JLabel("00:00");
+	    label.setFont(new Font("Verdana", Font.BOLD, 20));
+		label.setForeground(Color.WHITE);
+		label.setBounds(700, 219, 109, 27);
+		contentPane.add(label);
+		
+		JButton btnIniciar = new JButton("INICIAR");
+		btnIniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource()==btnIniciar) {
+					if (corriendo==false) {
+						iniciaHilo=true;
+						corriendo=true;
+						iniciarHiloJuego();
+					}
+						
+			}
+			}
+		}
+		);
+		btnIniciar.setBounds(581, 273, 85, 21);
+		contentPane.add(btnIniciar);
+		
+		JButton btnDetener = new JButton("DETENER");
+		btnDetener.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource()==btnDetener) {
+					corriendo=false;
+					iniciaHilo=false;
+				}
+			}
+		});
+		btnDetener.setBounds(689, 273, 85, 21);
+		contentPane.add(btnDetener);
 		
 		
 		pintarMatrizG();
@@ -146,7 +193,18 @@ public class GUI extends JFrame implements Runnable{
 	public void iniciarHiloJuego() {
 		hiloJuego = new Thread (this);
 		hiloJuego.start();
+		Reloj miReloj= new Reloj(label);
+		miReloj.start();
 	}
+	
+	/**
+	private void inciarHiloTimer() {
+		if (iniciaHilo==true) {
+		System.out.println("Hola");
+		Reloj miReloj= new Reloj(label);
+		miReloj.start();
+		}
+} */
 
 
 	@SuppressWarnings("static-access")
