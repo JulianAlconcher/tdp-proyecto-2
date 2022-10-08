@@ -1,9 +1,7 @@
 package Logica;
 
-public  class Entidad{
+public  interface Entidad{
 
-	public Entidad() {
-		
-	}
+	public void visit (MyVisitor visitor);
 
 }

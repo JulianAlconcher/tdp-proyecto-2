@@ -1,5 +1,11 @@
 package Logica;
 
-public class Alimento extends Entidad {
+public class Alimento implements Entidad {
+
+	@Override
+	public void visit(MyVisitor visitor) {
+		visitor.visit(this);
+		
+	}
 
 }
