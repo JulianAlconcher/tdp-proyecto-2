@@ -36,49 +36,52 @@ public class Juego {
 		int filaCabeza = miGrilla.getCriatura().getCabeza().getCoordFila();
 		int coluCabeza = miGrilla.getCriatura().getCabeza().getCoordColu();
 		VisitorHandler vis = new VisitorHandler();
-		if(d == 1) { 
+
+		if(d == 1 ) { 
 			Entidad e = miGrilla.getCelda(filaCabeza-1, coluCabeza).getEntidad(); 
 
 
 			e.accept(vis);
-			miGrilla.getCriatura().avanzar(d);
+			if(!vis.getGameStatus())
+				miGrilla.getCriatura().avanzar(d);
 
+
+			else 
+				gameOver();
+
+				
+			}
 		}
-		else {
-			System.out.println("Entre al GAME OVER");
-			gameOver();
+			//			else if(d==-1) {
+			//				if(miGrilla.getCelda(filaCabeza+1, coluCabeza).getComestible()) {
+			//					miGrilla.getCriatura().avanzar(d);
+			//					}
+			//				else {
+			//					System.out.println("Entre al GAME OVER");
+			//					gameOver();}}
+			//			else if(d==2) {
+			//				if(miGrilla.getCelda(filaCabeza, coluCabeza+1).getComestible()) {
+			//					miGrilla.getCriatura().moverDerecha();
+			//					}
+			//				else {
+			//					System.out.println("Entre al GAME OVER");
+			//					gameOver();}}
+			//			else if(d==-2) {
+			//				if(miGrilla.getCelda(filaCabeza, coluCabeza-1).getComestible()) {
+			//					miGrilla.getCriatura().moverIzquierda();
+			//					}
+			//				else {
+			//					System.out.println("Entre al GAME OVER");
+			//					gameOver();}}
+			//			
+			//				
+			//		}
+
+			public void gameOver() {
+				gameOver = true;
+			}
+
+			public boolean getGameStatus() {
+				return gameOver;
+			}
 		}
-	}
-	//			else if(d==-1) {
-	//				if(miGrilla.getCelda(filaCabeza+1, coluCabeza).getComestible()) {
-	//					miGrilla.getCriatura().avanzar(d);
-	//					}
-	//				else {
-	//					System.out.println("Entre al GAME OVER");
-	//					gameOver();}}
-	//			else if(d==2) {
-	//				if(miGrilla.getCelda(filaCabeza, coluCabeza+1).getComestible()) {
-	//					miGrilla.getCriatura().moverDerecha();
-	//					}
-	//				else {
-	//					System.out.println("Entre al GAME OVER");
-	//					gameOver();}}
-	//			else if(d==-2) {
-	//				if(miGrilla.getCelda(filaCabeza, coluCabeza-1).getComestible()) {
-	//					miGrilla.getCriatura().moverIzquierda();
-	//					}
-	//				else {
-	//					System.out.println("Entre al GAME OVER");
-	//					gameOver();}}
-	//			
-	//				
-	//		}
-
-	public void gameOver() {
-		gameOver = true;
-	}
-
-	public boolean getGameStatus() {
-		return gameOver;
-	}
-}

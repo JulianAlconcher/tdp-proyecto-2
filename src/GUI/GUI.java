@@ -222,6 +222,7 @@ public class GUI extends JFrame implements Runnable{
 			if(miJuego.getGameStatus()) {
 				corriendo=false;
 				iniciaHilo=false;
+				System.exit(0);
 				
 			}
 		}
