@@ -10,12 +10,12 @@ public class Juego {
 	private boolean gameOver=false;
 	
 
-	
-	public Juego() {
+	public Juego(String nombreJugador) {
 		this.cantColumnas = 20;
 		this.cantFilas = 20;
 		this.miGrilla = new Grilla(cantFilas, cantColumnas);
 		miGrilla.cargarMapa();
+		miJugador = new Jugador(nombreJugador);
 	}
 	
 	

@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
 
 import Logica.Celda;
 import Logica.CeldaGrafica;
@@ -23,24 +22,21 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 
+@SuppressWarnings("serial")
 public class GUI extends JFrame implements Runnable{
 
 	private JPanel contentPane;
 	private JPanel panelJuego;
 	private Juego miJuego;
-	private JLabel lblCasilla;
 	public static JLabel label;
 	public static int segundos=0,minutos=0;
 	Thread hiloJuego;
 	public static boolean iniciaHilo=true;
 	private CeldaGrafica matrizGrafica[][]; 
 	private KeyHandler keyH;
-	private JButton btnNewButton_1;
+	private JButton btnTopJugadores;
 	private boolean corriendo=false;
 	private JLabel lblPerdiste;
-	private Reloj miReloj;
-
-
 	/**
 	 * Create the frame.
 	 */
@@ -58,7 +54,7 @@ public class GUI extends JFrame implements Runnable{
 		this.matrizGrafica = new CeldaGrafica[20][20];
 	
 
-		miJuego = new Juego();
+		miJuego = new Juego("Alberto");
 		keyH = new KeyHandler();
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
@@ -81,9 +77,9 @@ public class GUI extends JFrame implements Runnable{
 		btnNewButton.setBounds(569, 492, 251, 69);
 		contentPane.add(btnNewButton);
 		
-		btnNewButton_1 = new JButton("TOP JUGADORES");
-		btnNewButton_1.setBounds(569, 461, 251, 21);
-		contentPane.add(btnNewButton_1);
+		btnTopJugadores = new JButton("TOP JUGADORES");
+		btnTopJugadores.setBounds(569, 461, 251, 21);
+		contentPane.add(btnTopJugadores);
 		
 		JLabel lblNewLabel = new JLabel("SNAKE");
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);

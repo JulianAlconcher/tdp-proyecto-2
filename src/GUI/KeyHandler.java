@@ -7,7 +7,6 @@ import Logica.Juego;
 
 public class KeyHandler implements KeyListener {
 
-	private Juego miJuego;
 	public boolean upPressed,downPressed,leftPressed,rightPressed;
 	
 	@Override
