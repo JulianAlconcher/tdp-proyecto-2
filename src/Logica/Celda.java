@@ -63,6 +63,10 @@ public class Celda {
 	public void setCeldaGrafica(CeldaGrafica entidadGrafica) {
 		this.celdaGrafica = entidadGrafica;
 	}
+	
+	public String toString() {
+		return "(" + coordFila + "," + coordColu + "";
+	}
 
 	
 

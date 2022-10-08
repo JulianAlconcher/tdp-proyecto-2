@@ -35,7 +35,7 @@ public class Grilla {
 		tablero = new Celda [filas][columnas];
 		mapaCeldasNumeros = new int[filas][columnas];
 		celdasGraficas = new CeldaGrafica[5];
-		miCriatura = new Criatura();
+		miCriatura = new Criatura(8,8);
 		for (int i = 0; i < cantFilas; i++) {
 			for(int j = 0; j < cantColumnas; j++) {
 				tablero[i][j] = new Celda(i,j);

@@ -43,7 +43,7 @@ public class Juego {
 
 			e.accept(vis);
 			if(!vis.getGameStatus())
-				miGrilla.getCriatura().avanzar(d);
+				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila()-1, miGrilla.getCriatura().getCabeza().getCoordColu()));
 
 
 			else 

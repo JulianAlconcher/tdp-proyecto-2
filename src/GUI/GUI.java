@@ -165,14 +165,21 @@ public class GUI extends JFrame implements Runnable{
 	
 	public void pintarSnake() {
 
-		for(int j=0; j<miJuego.getGrilla().getCriatura().getTamanio(); j++) {
-			Celda[] celdasSnake = miJuego.getGrilla().getCriatura().getCeldas();
-			int fila = celdasSnake[j].getCoordFila();
-			int colu = celdasSnake[j].getCoordColu();
+//		for(int j=0; j<miJuego.getGrilla().getCriatura().getTamanio(); j++) {
+//			Celda[] celdasSnake = miJuego.getGrilla().getCriatura().getCeldas();
+//			int fila = celdasSnake[j].getCoordFila();
+//			int colu = celdasSnake[j].getCoordColu();
+//			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
+//			despintarBloque(miJuego.getGrilla().getCriatura().getCola().getCoordFila(),miJuego.getGrilla().getCriatura().getCola().getCoordColu());
+//			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());	
+		
+		for( Celda c : miJuego.getGrilla().getCriatura().getLista()) {
+			int fila = c.getCoordFila();
+			int colu = c.getCoordColu();
+			System.out.println(c.toString());
 			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
-			despintarBloque(miJuego.getGrilla().getCriatura().getCola().getCoordFila(),miJuego.getGrilla().getCriatura().getCola().getCoordColu());
-			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());	
-			
+			//despintarBloque(miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila(),miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu());
+			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());
 		}
 		
 
