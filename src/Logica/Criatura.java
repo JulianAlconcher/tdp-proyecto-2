@@ -114,4 +114,10 @@ public class Criatura extends Entidad{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void visit(Fondo fondo) {
+		// TODO Auto-generated method stub
+		
+	}
 }

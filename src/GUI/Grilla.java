@@ -11,6 +11,7 @@ import Logica.Celda;
 import Logica.CeldaGrafica;
 import Logica.Criatura;
 import Logica.Entidad;
+import Logica.Fondo;
 import Logica.Pared;
 import Logica.PowerUp;
 
@@ -95,11 +96,11 @@ public class Grilla {
 					mapaCeldasNumeros[fila][columna] = n;
 					switch(n) {
 					case 0 :
-						tablero[fila][columna].setEntidad(new Alimento());
+						tablero[fila][columna].setEntidad(new Fondo());
 						break;
 					
 						case 1 : {
-							tablero[fila][columna].setEntidad(new Alimento());
+							tablero[fila][columna].setEntidad(new Pared());
 						
 						}
 						break;

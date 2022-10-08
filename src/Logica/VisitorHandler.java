@@ -45,6 +45,12 @@ public class VisitorHandler implements Visitor{
 		
 	}
 
+	@Override
+	public void visit(Fondo fondo) {
+		// TODO Auto-generated method stub
+		System.out.println("visist fondo");
+	}
+
 
 
 

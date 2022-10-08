@@ -10,6 +10,8 @@ public interface Visitor {
 	
 	public void visit(Criatura criatura);
 	
+	public void visit(Fondo fondo);
+	
 	public void accept(Visitor v);
 	
 
