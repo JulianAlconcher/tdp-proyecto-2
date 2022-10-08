@@ -197,7 +197,8 @@ public class GUI extends JFrame implements Runnable{
 	public void iniciarHiloJuego() {
 		hiloJuego = new Thread (this);
 		hiloJuego.start();
-
+		Reloj miReloj= new Reloj(label);
+		miReloj.start();
 	}
 	
 	/**
@@ -218,11 +219,11 @@ public class GUI extends JFrame implements Runnable{
 			
 			try {hiloJuego.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}
 			
-//			if(miJuego.getGameStatus()) {
-//				hiloJuego = null;
-//				lblPerdiste.setVisible(true);
-//				miReloj.pararReloj();
-//			}
+			if(miJuego.getGameStatus()) {
+				corriendo=false;
+				iniciaHilo=false;
+				
+			}
 		}
 	}
 	public void update() {

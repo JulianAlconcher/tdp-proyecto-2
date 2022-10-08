@@ -1,7 +1,10 @@
 package Logica;
 
-public interface Entidad{
+public abstract class Entidad implements MyVisitor{
 
-	public void visit (MyVisitor visitor);
+	public MyVisitor myVisitor;
+	
+	public void visit (MyVisitor visitor) {
+	}
 
 }
