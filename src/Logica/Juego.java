@@ -8,7 +8,8 @@ public class Juego {
 	private int cantColumnas;
 	private Jugador miJugador;
 	private boolean gameOver=false;
-	
+	private VisitorHandler myVisitorHandler;
+
 
 	public Juego(String nombreJugador) {
 		this.cantColumnas = 20;
@@ -17,12 +18,12 @@ public class Juego {
 		miGrilla.cargarMapa();
 		miJugador = new Jugador(nombreJugador);
 	}
-	
-	
+
+
 	public int getCantFilas() {
 		return this.cantFilas;
 	}
-	
+
 	public int getCantColu() {
 		return this.cantColumnas;
 	}
@@ -30,47 +31,53 @@ public class Juego {
 	public Grilla getGrilla(){
 		return miGrilla;
 	}
-	
+
 	public void mover(int d) {
 		int filaCabeza = miGrilla.getCriatura().getCabeza().getCoordFila();
 		int coluCabeza = miGrilla.getCriatura().getCabeza().getCoordColu();
-			if(d == 1) { 
-				if(miGrilla.getCelda(filaCabeza-1, coluCabeza).getComestible()) {
-					miGrilla.getCriatura().avanzar(1);
-				}
-				else {
-					System.out.println("Entre al GAME OVER");
-					gameOver();}
-			}
-			else if(d==-1) {
-				if(miGrilla.getCelda(filaCabeza+1, coluCabeza).getComestible()) {
-					miGrilla.getCriatura().avanzar(-1);
-					}
-				else {
-					System.out.println("Entre al GAME OVER");
-					gameOver();}}
-			else if(d==2) {
-				if(miGrilla.getCelda(filaCabeza, coluCabeza+1).getComestible()) {
-					miGrilla.getCriatura().moverDerecha();
-					}
-				else {
-					System.out.println("Entre al GAME OVER");
-					gameOver();}}
-			else if(d==-2) {
-				if(miGrilla.getCelda(filaCabeza, coluCabeza-1).getComestible()) {
-					miGrilla.getCriatura().moverIzquierda();
-					}
-				else {
-					System.out.println("Entre al GAME OVER");
-					gameOver();}}
-			
-				
+		VisitorHandler vis = new VisitorHandler();
+		if(d == 1) { 
+			Entidad e = miGrilla.getCelda(filaCabeza-1, coluCabeza).getEntidad(); 
+
+
+			e.accept(vis);
+			miGrilla.getCriatura().avanzar(d);
+
 		}
-	
+		else {
+			System.out.println("Entre al GAME OVER");
+			gameOver();
+		}
+	}
+	//			else if(d==-1) {
+	//				if(miGrilla.getCelda(filaCabeza+1, coluCabeza).getComestible()) {
+	//					miGrilla.getCriatura().avanzar(d);
+	//					}
+	//				else {
+	//					System.out.println("Entre al GAME OVER");
+	//					gameOver();}}
+	//			else if(d==2) {
+	//				if(miGrilla.getCelda(filaCabeza, coluCabeza+1).getComestible()) {
+	//					miGrilla.getCriatura().moverDerecha();
+	//					}
+	//				else {
+	//					System.out.println("Entre al GAME OVER");
+	//					gameOver();}}
+	//			else if(d==-2) {
+	//				if(miGrilla.getCelda(filaCabeza, coluCabeza-1).getComestible()) {
+	//					miGrilla.getCriatura().moverIzquierda();
+	//					}
+	//				else {
+	//					System.out.println("Entre al GAME OVER");
+	//					gameOver();}}
+	//			
+	//				
+	//		}
+
 	public void gameOver() {
 		gameOver = true;
 	}
-	
+
 	public boolean getGameStatus() {
 		return gameOver;
 	}

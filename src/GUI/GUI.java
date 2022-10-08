@@ -227,7 +227,7 @@ public class GUI extends JFrame implements Runnable{
 		}
 	}
 	public void update() {
-		System.out.println("Entre al update");
+//		System.out.println("Entre al update");
 		if(keyH.upPressed == true)
 			miJuego.mover(1);
 		else if(keyH.downPressed == true) 

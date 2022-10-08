@@ -10,7 +10,7 @@ public class Celda {
 	public Celda(int fila, int columna) {
 		this.coordFila = fila;
 		this.coordColu = columna;
-//		this.entidad = new Entidad();
+		this.entidad = null;
 		this.celdaGrafica = new CeldaGrafica();
 		this.comestible = true;
 	}

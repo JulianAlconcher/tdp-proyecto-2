@@ -94,19 +94,23 @@ public class Grilla {
 					int n = Integer.parseInt(numeros[columna]);
 					mapaCeldasNumeros[fila][columna] = n;
 					switch(n) {
+					case 0 :
+						tablero[fila][columna].setEntidad(new Alimento());
+						break;
+					
 						case 1 : {
-							tablero[fila][columna].setEntidad(new Pared());
-							tablero[fila][columna].setComestible(false);
+							tablero[fila][columna].setEntidad(new Alimento());
+						
 						}
 						break;
 						case 2 : {
 							tablero[fila][columna].setEntidad(new Alimento());
-							tablero[fila][columna].setComestible(true);
+						
 						}
 						break;
 						case 3 : {
 							tablero[fila][columna].setEntidad(new PowerUp());
-							tablero[fila][columna].setComestible(true);
+			
 						}
 						break;
 						}

@@ -1,9 +1,9 @@
 package Logica;
 
-public class Criatura{
+public class Criatura extends Entidad{
 	private Celda[] celdas;
 	private Celda cabeza;
-	private int direccion; // 1 arriba, 2 derecha, 3 abajo, 4 izquierda
+	private int direccion;
 
 	public Criatura() {
 		cabeza = new Celda(8,8);
@@ -83,5 +83,35 @@ public class Criatura{
 			for (int i = 1; i < celdas.length; i++) {
 				celdas[i].setCoords(cabeza.getCoordFila(),coorCabezaVieja-i+1);
 		}
+	}
+
+	@Override
+	public void accept(Visitor v) {
+		v.visit(this);
+		
+	}
+
+	@Override
+	public void visit(PowerUp powerUp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(Alimento alimento) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(Pared pared) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(Criatura criatura) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -2,9 +2,17 @@ package Logica;
 
 public class PowerUp extends Entidad{
 
+
+	
 	@Override
-	public void visit(MyVisitor visitor) {
-		visitor.visit(this);
+	public void visit(Criatura criatura) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void accept(Visitor v) {
+		v.visit(this);
 		
 	}
 
@@ -25,6 +33,10 @@ public class PowerUp extends Entidad{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
+
 
 	
 }
