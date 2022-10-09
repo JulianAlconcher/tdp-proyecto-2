@@ -24,6 +24,12 @@ public class Criatura extends Entidad{
 		return cola;
 	}
 	
+	public void aumentarCola(int i, int j,int cant) {
+		Celda aumenta=new Celda(i,j);
+		celdas.add(aumenta);
+		cola=aumenta;
+	}
+	
 	public int getTamanio() {
 		return celdas.size();
 	}

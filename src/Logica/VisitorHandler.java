@@ -4,9 +4,11 @@ public class VisitorHandler implements Visitor{
 
 	private boolean gameOver=false;
 	private int puntaje = 0;
+	private boolean visitoComida=false;
 	
 	@Override
 	public void visit(Alimento alimento) {
+		visitoComida=true;
 		puntaje += alimento.getPuntaje();
 		System.out.println("visit alimentoooooooooooooo");
 		
@@ -21,9 +23,8 @@ public class VisitorHandler implements Visitor{
 	
 	@Override
 	public void visit(PowerUp powerUp) {
+		visitoComida=true;
 		System.out.println("visitr de power UUUUUUUUUUPPPPP");
-		
-		
 	}
 	
 	@Override
@@ -46,6 +47,14 @@ public class VisitorHandler implements Visitor{
 		this.gameOver = gameStatus;
 	}
 
+	public boolean getVisitoComida() {
+		return visitoComida;
+	}
+	
+	public void setVisitoComida(boolean visito) {
+		this.visitoComida=visito;
+	}
+	
 	@Override
 	public void accept(Visitor v) {
 		System.out.println("accept visitorHandler");

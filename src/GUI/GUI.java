@@ -49,7 +49,7 @@ public class GUI extends JFrame implements Runnable{
 		setContentPane(contentPane);
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/imagenes/Logo.png")));
-		setTitle("SNAKE v1.0");
+		setTitle("SNAKE v1.1");
 
 		this.matrizGrafica = new CeldaGrafica[20][20];
 	
