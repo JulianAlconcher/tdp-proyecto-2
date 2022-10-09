@@ -81,18 +81,18 @@ public class GUI extends JFrame implements Runnable{
 		btnTopJugadores.setBounds(569, 461, 251, 21);
 		contentPane.add(btnTopJugadores);
 		
-		JLabel lblNewLabel = new JLabel("SNAKE");
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 20));
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(653, 10, 109, 51);
-		contentPane.add(lblNewLabel);
+		JLabel lblTitulo = new JLabel("SNAKE");
+		lblTitulo.setVerticalAlignment(SwingConstants.TOP);
+		lblTitulo.setFont(new Font("Verdana", Font.BOLD, 20));
+		lblTitulo.setForeground(Color.WHITE);
+		lblTitulo.setBounds(653, 10, 109, 51);
+		contentPane.add(lblTitulo);
 		
-		JLabel lblNewLabel_1 = new JLabel("TIEMPO:");
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD, 20));
-		lblNewLabel_1.setBounds(569, 216, 121, 32);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblTiempo = new JLabel("TIEMPO:");
+		lblTiempo.setForeground(Color.WHITE);
+		lblTiempo.setFont(new Font("Verdana", Font.BOLD, 20));
+		lblTiempo.setBounds(569, 216, 121, 32);
+		contentPane.add(lblTiempo);
 		
 		label = new JLabel("00:00");
 	    label.setFont(new Font("Verdana", Font.BOLD, 20));
@@ -140,7 +140,6 @@ public class GUI extends JFrame implements Runnable{
 		pintarMatrizG();
 		
 		iniciarHiloJuego();
-
 	}
 	/**
 	 * Inicializa el mapa
@@ -173,20 +172,13 @@ public class GUI extends JFrame implements Runnable{
 			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());
 			
 			if(miJuego.isEnMovimiento())
-			despintarBloque(miJuego.getGrilla().getCriatura().getCola().getCoordFila(),miJuego.getGrilla().getCriatura().getCola().getCoordColu());
-			
-//			System.out.println((miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila()) + miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu());
+				despintarBloque(miJuego.getGrilla().getCriatura().getCola().getCoordFila(),miJuego.getGrilla().getCriatura().getCola().getCoordColu());
 		}
 	}
-	
-	public void repintar() {
 		
-	}
-	
 	public void despintarBloque(int f, int c) {
 		CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
-			matrizGrafica[f][c].setIcon(celdasG[0].getGrafico());
-		
+			matrizGrafica[f][c].setIcon(celdasG[0].getGrafico());	
 	}
 
 
@@ -225,15 +217,21 @@ public class GUI extends JFrame implements Runnable{
 		}
 	}
 	public void update() {
-//		System.out.println("Entre al update");
-		if(keyH.upPressed == true)
+		if(!keyH.teclaOn())
+			miJuego.mover(miJuego.getGrilla().getDireccion());
+		
+		if(keyH.upPressed == true) {
 			miJuego.mover(1);
-		else if(keyH.downPressed == true) 
+		}
+		else if(keyH.downPressed == true) {
 			miJuego.mover(-1);
-		else if(keyH.rightPressed == true)
+		}
+		else if(keyH.rightPressed == true) {
 			miJuego.mover(2);
-		else if(keyH.leftPressed == true)
+		}
+		else if(keyH.leftPressed == true) {
 			miJuego.mover(-2);
+		}
 	}
 }
 

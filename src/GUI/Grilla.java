@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.ImageIcon;
@@ -16,6 +17,7 @@ import Logica.Entidad;
 import Logica.Fondo;
 import Logica.Pared;
 import Logica.PowerUp;
+import Logica.VisitorHandler;
 
 public class Grilla {
 
@@ -25,6 +27,7 @@ public class Grilla {
 	private CeldaGrafica[] celdasGraficas;
 	private int mapaCeldasNumeros[][];
 	private Criatura miCriatura;
+	private int direccion;
 
 	/**
 	 * Constructor Grilla, crea una grilla de [filas][columnas] de tamaño
@@ -37,20 +40,58 @@ public class Grilla {
 		tablero = new Celda [filas][columnas];
 		mapaCeldasNumeros = new int[filas][columnas];
 		celdasGraficas = new CeldaGrafica[5];
-		int randomNumF = ThreadLocalRandom.current().nextInt(3, 17);
-		int randomNumC = ThreadLocalRandom.current().nextInt(3, 17);
-		miCriatura = new Criatura(randomNumF,randomNumC);
 		for (int i = 0; i < cantFilas; i++) {
 			for(int j = 0; j < cantColumnas; j++) {
 				tablero[i][j] = new Celda(i,j);
 			}
 		}  
+		
 		getImagenCelda();
 		cargarMapa();
+		setRandomDireccion();
+		colocarCriatura();
 
 	}
 
 
+	/**
+	 * Busca hasta encontrar una posicion valida en la grilla para insertar a la criatura.
+	 */
+	public void colocarCriatura() {
+		VisitorHandler vis = new VisitorHandler();
+		
+		int fila = randomFilaCoord();
+		int col = randomColCoord();
+		Entidad e = getCelda(fila, col).getEntidad();
+		e.accept(vis);
+		while(!vis.getGameStatus() && !vis.getVisitoComida()) {
+			System.out.println("El lugar ( " + randomFilaCoord() + " , " + randomColCoord() + ")" + "es valido para colocarlo: " +  (vis.getGameStatus() && vis.getVisitoComida()));
+			fila = randomFilaCoord();
+			col = randomColCoord();
+			e = getCelda(fila, col).getEntidad();
+			e.accept(vis);
+			
+		}
+		miCriatura = new Criatura(randomFilaCoord(),randomColCoord());
+		System.out.println("Criatura colocada en el lugar ( " + randomFilaCoord() + " , " + randomColCoord() + ")");
+	}
+	/**
+	 * Genera una posicion random para la fila.
+	 * @return
+	 */
+	public int randomFilaCoord() {
+		int randomNumF = ThreadLocalRandom.current().nextInt(6, 15);
+		return randomNumF;
+	}
+	
+	/**
+	 * Genera una posicion random para la columna.
+	 * @return
+	 */
+	public int randomColCoord() {
+		int randomNumC = ThreadLocalRandom.current().nextInt(6, 15);
+		return randomNumC;
+	}
 	public Criatura getCriatura() {
 		return miCriatura;
 	}
@@ -153,12 +194,21 @@ public class Grilla {
 			return tablero[i][j];
 		}
 	}
+	public int getDireccion() {
+		return direccion;
+	}
+	/**
+	 * Setea una direccion aleatoria por defecto.
+	 */
+	public void setRandomDireccion() {
+		int[] direcciones = new int[]{1,-1,2,-2};
+	    int rnd = new Random().nextInt(direcciones.length);
+	    direccion =  direcciones[rnd];
+	}
+	
+	
 	public boolean equalsCeldas(Celda c1,Celda c2) {
 		boolean retorno = false;
-
-
-
-
 		return retorno;
 	}
 	/**

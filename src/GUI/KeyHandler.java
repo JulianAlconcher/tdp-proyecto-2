@@ -50,5 +50,9 @@ public class KeyHandler implements KeyListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public boolean teclaOn() {
+		return upPressed==true || downPressed==true || rightPressed==true || leftPressed==true;
+	}
 
 }

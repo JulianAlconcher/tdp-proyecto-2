@@ -1,5 +1,7 @@
 package Logica;
 
+import java.util.Random;
+
 import GUI.Grilla;
 
 public class Juego {
@@ -21,7 +23,7 @@ public class Juego {
 		miJugador = new Jugador(nombreJugador);
 	}
 
-
+	
 	public int getCantFilas() {
 		return this.cantFilas;
 	}
@@ -34,13 +36,12 @@ public class Juego {
 		return miGrilla;
 	}
 
-
 	public void mover(int d) {
 		enMovimiento = true;
 		int filaCabeza = miGrilla.getCriatura().getCabeza().getCoordFila();
 		int coluCabeza = miGrilla.getCriatura().getCabeza().getCoordColu();
 		VisitorHandler vis = new VisitorHandler();
-		if(d == 1 ) { 
+		if(d == 1) { 
 			Entidad e = miGrilla.getCelda(filaCabeza-1, coluCabeza).getEntidad(); 
 			e.accept(vis);
 			if(!vis.getGameStatus()) { 
