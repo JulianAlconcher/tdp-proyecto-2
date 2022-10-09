@@ -111,6 +111,8 @@ public class Criatura extends Entidad{
 //				celdas[i].setCoords(cabeza.getCoordFila(),coorCabezaVieja+i-1);
 //		}
 //	}
+	
+	
 //
 //	public void moverIzquierda() {
 //		int coorCabezaVieja = cabeza.getCoordColu();
@@ -146,7 +148,7 @@ public class Criatura extends Entidad{
 
 	@Override
 	public void visit(Criatura criatura) {
-		// TODO Auto-generated method stub
+		System.out.println("visitor criatura");
 		
 	}
 

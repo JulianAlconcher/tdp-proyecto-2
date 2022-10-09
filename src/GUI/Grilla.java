@@ -55,23 +55,23 @@ public class Grilla {
 
 
 		celdasGraficas[0] = new CeldaGrafica();
-		ImageIcon graficoFondo = new ImageIcon(this.getClass().getResource("/imagenes/F.jpg"));
+		ImageIcon graficoFondo = new ImageIcon(this.getClass().getResource("/imagenes/Fondoe.png"));
 		celdasGraficas[0].setGrafico(graficoFondo);
 
 		celdasGraficas[1] = new CeldaGrafica();
-		ImageIcon graficoPared = new ImageIcon(this.getClass().getResource("/imagenes/#.png"));
+		ImageIcon graficoPared = new ImageIcon(this.getClass().getResource("/imagenes/Piedra.png"));
 		celdasGraficas[1].setGrafico(graficoPared);
 
 		celdasGraficas[2] = new CeldaGrafica();
-		ImageIcon graficoAlimento = new ImageIcon(this.getClass().getResource("/imagenes/A.jpg"));
+		ImageIcon graficoAlimento = new ImageIcon(this.getClass().getResource("/imagenes/M1.png"));
 		celdasGraficas[2].setGrafico(graficoAlimento);
 
 		celdasGraficas[3] = new CeldaGrafica();
-		ImageIcon graficoPowerUp = new ImageIcon(this.getClass().getResource("/imagenes/P.jpg"));
+		ImageIcon graficoPowerUp = new ImageIcon(this.getClass().getResource("/imagenes/powerUp.png"));
 		celdasGraficas[3].setGrafico(graficoPowerUp);
 
 		celdasGraficas[4] = new CeldaGrafica();
-		ImageIcon graficoSnake = new ImageIcon(this.getClass().getResource("/imagenes/MARIO.png"));
+		ImageIcon graficoSnake = new ImageIcon(this.getClass().getResource("/imagenes/Snake.png"));
 		celdasGraficas[4].setGrafico(graficoSnake);
 
 

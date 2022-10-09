@@ -176,10 +176,12 @@ public class GUI extends JFrame implements Runnable{
 		for( Celda c : miJuego.getGrilla().getCriatura().getLista()) {
 			int fila = c.getCoordFila();
 			int colu = c.getCoordColu();
-			System.out.println(c.toString());
 			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
-			//despintarBloque(miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila(),miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu());
+//			despintarBloque(miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila(),miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu());
+			matrizGrafica[miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila()][miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu()].setIcon(celdasG[0].getGrafico());
 			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());
+
+			System.out.println(miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila() + miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu());
 		}
 		
 
@@ -188,7 +190,7 @@ public class GUI extends JFrame implements Runnable{
 	}
 	
 	public void despintarBloque(int f, int c) {
-			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
+		CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
 			matrizGrafica[f][c].setIcon(celdasG[0].getGrafico());
 		
 	}
