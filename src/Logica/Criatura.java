@@ -8,6 +8,7 @@ public class Criatura extends Entidad{
 	private int direccion;
 	private Celda cola;
 	
+	
 
 	public Criatura(int i, int j) {
 		celdas = new LinkedList<Celda>();
@@ -15,9 +16,13 @@ public class Criatura extends Entidad{
 		celdas.addFirst(cabeza);
 		celdas.add(new Celda(i+1,j));
 		celdas.add(new Celda(i+2,j));
+		
 		cola = celdas.getLast();
 	}
 
+	public Celda getCola() {
+		return cola;
+	}
 	
 	public int getTamanio() {
 		return celdas.size();
@@ -41,7 +46,7 @@ public class Criatura extends Entidad{
 		this.direccion = direccion;
 	}
 
-	//Para mover criatura cola pasa a ser cabeza.
+	//Para mover criatura cola pasa a ser cabeza. Devuelve ultima Celda de la Snake
 	
 	public void avanzar(Celda proxCel) {
 		cola = celdas.removeLast();
@@ -49,6 +54,7 @@ public class Criatura extends Entidad{
 		cabeza = proxCel;
 //		proxCel.setEntidad(new Criatura());
 		celdas.addFirst(proxCel);
+	
 	}
 //	 public void move(Cell nextCell) {
 //	        Cell tail = snake.removeLast();

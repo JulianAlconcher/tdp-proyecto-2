@@ -138,7 +138,7 @@ public class GUI extends JFrame implements Runnable{
 		
 		
 		pintarMatrizG();
-		pintarSnake();
+		
 		iniciarHiloJuego();
 
 	}
@@ -171,8 +171,16 @@ public class GUI extends JFrame implements Runnable{
 			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
 			matrizGrafica[miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila()][miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu()].setIcon(celdasG[0].getGrafico());
 			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());
+			
+			if(miJuego.isEnMovimiento())
+			despintarBloque(miJuego.getGrilla().getCriatura().getCola().getCoordFila(),miJuego.getGrilla().getCriatura().getCola().getCoordColu());
+			
 //			System.out.println((miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila()) + miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu());
 		}
+	}
+	
+	public void repintar() {
+		
 	}
 	
 	public void despintarBloque(int f, int c) {
@@ -183,6 +191,7 @@ public class GUI extends JFrame implements Runnable{
 
 
 	public void iniciarHiloJuego() {
+		pintarSnake();
 		hiloJuego = new Thread (this);
 		hiloJuego.start();
 		Reloj miReloj= new Reloj(label);
