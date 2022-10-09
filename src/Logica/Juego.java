@@ -9,9 +9,6 @@ public class Juego {
 	private int cantColumnas;
 	private Jugador miJugador;
 	private boolean gameOver=false;
-	private VisitorHandler myVisitorHandler;
-
-
 	public Juego(String nombreJugador) {
 		this.cantColumnas = 20;
 		this.cantFilas = 20;
@@ -37,12 +34,9 @@ public class Juego {
 		int filaCabeza = miGrilla.getCriatura().getCabeza().getCoordFila();
 		int coluCabeza = miGrilla.getCriatura().getCabeza().getCoordColu();
 		VisitorHandler vis = new VisitorHandler();
-
 		if(d == 1 ) { 
 			Entidad e = miGrilla.getCelda(filaCabeza-1, coluCabeza).getEntidad(); 
-//			Entidad c = miGrilla.getCriatura().getCabeza().getEntidad();
 			e.accept(vis);
-//			c.visit(vis);
 			if(!vis.getGameStatus()) 
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila()-1, miGrilla.getCriatura().getCabeza().getCoordColu()));
 			else 
@@ -69,8 +63,6 @@ public class Juego {
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila(), miGrilla.getCriatura().getCabeza().getCoordColu()-1));
 			else 
 			gameOver();}
-		
-			
 		}
 
 			public void gameOver() {

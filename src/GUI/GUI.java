@@ -164,29 +164,15 @@ public class GUI extends JFrame implements Runnable{
 	}
 	
 	public void pintarSnake() {
-
-//		for(int j=0; j<miJuego.getGrilla().getCriatura().getTamanio(); j++) {
-//			Celda[] celdasSnake = miJuego.getGrilla().getCriatura().getCeldas();
-//			int fila = celdasSnake[j].getCoordFila();
-//			int colu = celdasSnake[j].getCoordColu();
-//			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
-//			despintarBloque(miJuego.getGrilla().getCriatura().getCola().getCoordFila(),miJuego.getGrilla().getCriatura().getCola().getCoordColu());
-//			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());	
 		
 		for( Celda c : miJuego.getGrilla().getCriatura().getLista()) {
 			int fila = c.getCoordFila();
 			int colu = c.getCoordColu();
 			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
-//			despintarBloque(miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila(),miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu());
 			matrizGrafica[miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila()][miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu()].setIcon(celdasG[0].getGrafico());
 			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());
-
-			System.out.println(miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila() + miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu());
+//			System.out.println((miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila()) + miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu());
 		}
-		
-
-
-	
 	}
 	
 	public void despintarBloque(int f, int c) {
@@ -194,13 +180,6 @@ public class GUI extends JFrame implements Runnable{
 			matrizGrafica[f][c].setIcon(celdasG[0].getGrafico());
 		
 	}
-//	matrizGrafica[celdasSnake[i]][coordColaColu].setIcon(celdasG[0].getGrafico());	
-//	
-//		int coordColaFila = miJuego.getGrilla().getCriatura().getCola().getCoordFila();
-//		int coordColaColu = miJuego.getGrilla().getCriatura().getCola().getCoordColu();
-//		CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
-//		matrizGrafica[coordColaFila][coordColaColu].setIcon(celdasG[0].getGrafico());
-		
 
 
 	public void iniciarHiloJuego() {

@@ -6,6 +6,7 @@ public class Criatura extends Entidad{
 	private LinkedList<Celda>celdas;
 	private Celda cabeza;
 	private int direccion;
+	private Celda cola;
 	
 
 	public Criatura(int i, int j) {
@@ -14,20 +15,13 @@ public class Criatura extends Entidad{
 		celdas.addFirst(cabeza);
 		celdas.add(new Celda(i+1,j));
 		celdas.add(new Celda(i+2,j));
+		cola = celdas.getLast();
 	}
 
 	
 	public int getTamanio() {
 		return celdas.size();
 	}
-
-//	public void setCeldas(Celda[] celdas) {
-//		this.celdas = celdas;
-//	}
-	
-//	public Celda getCeldaParticular(int p) {
-//		return celdas[p];
-//	}
 
 	public Celda getCabeza() {
 		return cabeza;
@@ -49,21 +43,11 @@ public class Criatura extends Entidad{
 
 	//Para mover criatura cola pasa a ser cabeza.
 	
-//	public void avanzar(int d) {
-//		direccion = d;
-//		int i = 0;
-//		if (d == 1 ) {
-//			for(Celda c : celdas) {
-//				
-//			}
-//		}
-//	}
-	
 	public void avanzar(Celda proxCel) {
-		Celda cola = celdas.removeLast();
+		cola = celdas.removeLast();
 		cola.setEntidad(new Fondo());
 		cabeza = proxCel;
-		//proxCel.setEntidad(new Criatura());
+//		proxCel.setEntidad(new Criatura());
 		celdas.addFirst(proxCel);
 	}
 //	 public void move(Cell nextCell) {
@@ -80,48 +64,6 @@ public class Criatura extends Entidad{
 		return celdas;
 	}
 	
-	
-	
-	
-	// 1 arriba, 2 derecha, -1 abajo, 4 izquierda
-//	public void avanzar(int d) {
-//		direccion = d;
-//		if ( d == 1 ) {
-//			int coorCabezaVieja = cabeza.getCoordFila();
-//			cabeza.setCoordFila(cabeza.getCoordFila()-1);
-//				for (int i = 1; i < celdas.length; i++) {
-//					celdas[i].setCoords(coorCabezaVieja-i+1,cabeza.getCoordColu());
-//					
-//			}
-//		}
-//		else if ( d == -1 ) {
-//			int coorCabezaVieja = cabeza.getCoordFila();
-//			cabeza.setCoordFila(cabeza.getCoordFila()+1);
-//				for (int i = 1; i < celdas.length; i++) {
-//					celdas[i].setCoords(coorCabezaVieja+i-1,cabeza.getCoordColu());
-//					celdas[i] = celdas[i-1];
-//			}
-//		}
-//	}
-//
-//	public void moverDerecha() {
-//		int coorCabezaVieja = cabeza.getCoordColu();
-//		cabeza.setCoordColu(cabeza.getCoordColu()+1);
-//			for (int i = 1; i < celdas.length; i++) {
-//				celdas[i].setCoords(cabeza.getCoordFila(),coorCabezaVieja+i-1);
-//		}
-//	}
-	
-	
-//
-//	public void moverIzquierda() {
-//		int coorCabezaVieja = cabeza.getCoordColu();
-//		cabeza.setCoordColu(cabeza.getCoordColu()-1);
-//			for (int i = 1; i < celdas.length; i++) {
-//				celdas[i].setCoords(cabeza.getCoordFila(),coorCabezaVieja-i+1);
-//		}
-//	}
-
 	@Override
 	public void accept(Visitor v) {
 		v.visit(this);

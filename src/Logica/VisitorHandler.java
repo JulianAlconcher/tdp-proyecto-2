@@ -23,6 +23,7 @@ public class VisitorHandler implements Visitor{
 	public void visit(PowerUp powerUp) {
 		System.out.println("visitr de power UUUUUUUUUUPPPPP");
 		
+		
 	}
 	
 	@Override
@@ -31,6 +32,11 @@ public class VisitorHandler implements Visitor{
 		
 	}
 
+	/**
+	 * Devuelve el estado del juego.
+	 * True si perdio
+	 * @return
+	 */
 	public boolean getGameStatus() {
 		return gameOver;
 	}

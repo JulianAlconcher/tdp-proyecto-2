@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.ThreadLocalRandom;
+
 import javax.swing.ImageIcon;
 
 import Logica.Alimento;
@@ -35,7 +37,9 @@ public class Grilla {
 		tablero = new Celda [filas][columnas];
 		mapaCeldasNumeros = new int[filas][columnas];
 		celdasGraficas = new CeldaGrafica[5];
-		miCriatura = new Criatura(8,8);
+		int randomNumF = ThreadLocalRandom.current().nextInt(3, 17);
+		int randomNumC = ThreadLocalRandom.current().nextInt(3, 17);
+		miCriatura = new Criatura(randomNumF,randomNumC);
 		for (int i = 0; i < cantFilas; i++) {
 			for(int j = 0; j < cantColumnas; j++) {
 				tablero[i][j] = new Celda(i,j);
