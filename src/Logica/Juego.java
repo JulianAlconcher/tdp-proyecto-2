@@ -27,7 +27,11 @@ public class Juego {
 	public int getCantFilas() {
 		return this.cantFilas;
 	}
-
+    
+	public Jugador getJugador() {
+		return this.miJugador;
+	}
+	
 	public int getCantColu() {
 		return this.cantColumnas;
 	}
@@ -47,40 +51,48 @@ public class Juego {
 			if(!vis.getGameStatus()) { 
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila()-1, miGrilla.getCriatura().getCabeza().getCoordColu()));
 			    if (vis.getVisitoComida()) {
+			    	miJugador.aumentarPuntaje(vis.getPuntaje());
+			    	System.out.println("Puntaje Actual: " + miJugador.getPuntaje());
 			    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
 			     }
 			}
 			else 
 				gameOver();
-		}else if(d == -1 ) { 
+		}else if(d == -1) { 
 			Entidad e = miGrilla.getCelda(filaCabeza+1, coluCabeza).getEntidad(); 
 			e.accept(vis);
 			if(!vis.getGameStatus()) {
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila()+1, miGrilla.getCriatura().getCabeza().getCoordColu()));
 				 if (vis.getVisitoComida()) {
+					 miJugador.aumentarPuntaje(vis.getPuntaje());
+					 System.out.println("Puntaje Actual: " + miJugador.getPuntaje());
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
 				     }	
 			}
 			else 
 				gameOver();
 
-		}else if(d == 2 ) { 
+		}else if(d == 2) { 
 			Entidad e = miGrilla.getCelda(filaCabeza, coluCabeza+1).getEntidad(); 
 			e.accept(vis);
 			if(!vis.getGameStatus()) {
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila(), miGrilla.getCriatura().getCabeza().getCoordColu()+1));
 				 if (vis.getVisitoComida()) {
+					 miJugador.aumentarPuntaje(vis.getPuntaje());
+					 System.out.println("Puntaje Actual: " + miJugador.getPuntaje());
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
 				     }
 			}
 			else 
 				gameOver();
-		} else if(d == -2 ) { 
+		} else if(d == -2) { 
 			Entidad e = miGrilla.getCelda(filaCabeza, coluCabeza-1).getEntidad(); 
 			e.accept(vis);
 			if(!vis.getGameStatus()) {
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila(), miGrilla.getCriatura().getCabeza().getCoordColu()-1));
 				 if (vis.getVisitoComida()) {
+					 miJugador.aumentarPuntaje(vis.getPuntaje());
+					 System.out.println("Puntaje Actual: " + miJugador.getPuntaje());
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
 				     }
 			}

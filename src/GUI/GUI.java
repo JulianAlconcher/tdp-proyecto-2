@@ -37,6 +37,7 @@ public class GUI extends JFrame implements Runnable{
 	private JButton btnTopJugadores;
 	private boolean corriendo=false;
 	private JLabel lblPerdiste;
+	private int puntajeActual;
 	/**
 	 * Create the frame.
 	 */
@@ -134,6 +135,12 @@ public class GUI extends JFrame implements Runnable{
 		lblPerdiste.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblPerdiste.setBounds(634, 326, 140, 32);
 		contentPane.add(lblPerdiste);
+		
+		JLabel lblNewLabel = new JLabel("PUNTAJE= "+ puntajeActual);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 20));
+		lblNewLabel.setBounds(569, 58, 205, 21);
+		contentPane.add(lblNewLabel);
 		lblPerdiste.setVisible(false);
 		
 		
@@ -205,7 +212,7 @@ public class GUI extends JFrame implements Runnable{
 		while(hiloJuego != null) {
 			update();
 			pintarSnake();
-			
+			puntajeActual=miJuego.getJugador().getPuntaje();
 			try {hiloJuego.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}
 			
 			if(miJuego.getGameStatus()) {
@@ -217,19 +224,22 @@ public class GUI extends JFrame implements Runnable{
 		}
 	}
 	public void update() {
-		if(!keyH.teclaOn())
+	
+		
+		if(!keyH.teclaOn()) {
 			miJuego.mover(miJuego.getGrilla().getDireccion());
+		}
 		
 		if(keyH.upPressed == true) {
 			miJuego.mover(1);
 		}
-		else if(keyH.downPressed == true) {
+	    if(keyH.downPressed == true){
 			miJuego.mover(-1);
 		}
-		else if(keyH.rightPressed == true) {
+		if(keyH.rightPressed == true ) {
 			miJuego.mover(2);
 		}
-		else if(keyH.leftPressed == true) {
+		 if(keyH.leftPressed == true) {
 			miJuego.mover(-2);
 		}
 	}
