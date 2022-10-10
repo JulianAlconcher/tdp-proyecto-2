@@ -143,13 +143,14 @@ public class GUI extends JFrame implements Runnable{
 		lblPerdiste.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblPerdiste.setBounds(634, 326, 140, 32);
 		contentPane.add(lblPerdiste);
+		lblPerdiste.setVisible(false);
 		
 		lblPuntaje = new JLabel("PUNTAJE= "+ puntajeActual);
 		lblPuntaje.setForeground(Color.WHITE);
 		lblPuntaje.setFont(new Font("Verdana", Font.BOLD, 20));
 		lblPuntaje.setBounds(569, 58, 205, 21);
 		contentPane.add(lblPuntaje);
-		lblPerdiste.setVisible(false);
+
 		
 		
 		pintarMatrizG();
@@ -184,6 +185,7 @@ public class GUI extends JFrame implements Runnable{
 			int colu = c.getCoordColu();
 			CeldaGrafica[] celdasG = miJuego.getGrilla().getCeldasGraficas();
 			matrizGrafica[miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila()][miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu()].setIcon(celdasG[0].getGrafico());
+			matrizGrafica[miJuego.getGrilla().getCriatura().getCabeza().getCoordFila()][miJuego.getGrilla().getCriatura().getCabeza().getCoordColu()].setIcon(new ImageIcon(this.getClass().getResource("/imagenes/SnakeHead1.png")));
 			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());
 			
 			if(miJuego.isEnMovimiento())
@@ -223,11 +225,12 @@ public class GUI extends JFrame implements Runnable{
 			puntajeActual=miJuego.getJugador().getPuntaje();
 			lblPuntaje.setText("PUNTAJE= "+ puntajeActual);
 			try {hiloJuego.sleep(150);} catch (InterruptedException e) {e.printStackTrace();}	
+			
 			if(miJuego.getGameStatus()) {
 				corriendo=false;
 				iniciaHilo=false;
-				System.exit(0);
-				
+				lblPerdiste.setVisible(true);
+				hiloJuego = null;
 			}
 		}
 	}

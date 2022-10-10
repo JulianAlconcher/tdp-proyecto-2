@@ -90,12 +90,12 @@ public class Juego {
 				 if (vis.getVisitoComida()) {
 					 miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+				    	
 				     }
 			}
 			else 
 				gameOver();
 		}
-
 	}
 
 	public void gameOver() {
@@ -114,6 +114,10 @@ public class Juego {
 
 	public void setEnMovimiento(boolean enMovimiento) {
 		this.enMovimiento = enMovimiento;
+	}
+	
+	public void nuevoNivel() {
+		
 	}
 }
 

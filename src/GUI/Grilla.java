@@ -116,7 +116,7 @@ public class Grilla {
 		celdasGraficas[3].setGrafico(graficoPowerUp);
 
 		celdasGraficas[4] = new CeldaGrafica();
-		ImageIcon graficoSnake = new ImageIcon(this.getClass().getResource("/imagenes/Snake.png"));
+		ImageIcon graficoSnake = new ImageIcon(this.getClass().getResource("/imagenes/SnakeColorChange4.png"));
 		celdasGraficas[4].setGrafico(graficoSnake);
 
 
