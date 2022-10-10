@@ -15,6 +15,8 @@ import Logica.Reloj;
 
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -52,6 +54,11 @@ public class GUI extends JFrame implements Runnable{
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/imagenes/logoSnake.png")));
 		setTitle("SNAKE v1.1");
+		//Setea a la GUI en el centro de la pantalla.
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - getHeight()) / 2);
+		setLocation(x, y);
 
 		this.matrizGrafica = new CeldaGrafica[20][20];
 	

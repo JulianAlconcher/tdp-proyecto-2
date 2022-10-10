@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
@@ -30,6 +31,10 @@ public class SplashScreen {
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/imagenes/logoSnake.png")));
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+		frame.setLocation(x, y);
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(0, 0, 844, 611);
 		frame.getContentPane().add(lblNewLabel);

@@ -31,7 +31,7 @@ public class VisitorHandler implements Visitor{
 	@Override
 	public void visit(Criatura criatura) {
 		gameOver = true;
-		System.out.println("visitr de PAREEEED");
+		System.out.println("visite de CRIATURA");
 		
 	}
 

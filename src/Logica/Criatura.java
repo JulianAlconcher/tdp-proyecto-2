@@ -15,8 +15,7 @@ public class Criatura extends Entidad{
 		cabeza = new Celda(i,j);
 		celdas.addFirst(cabeza);
 		celdas.add(new Celda(i+1,j));
-		celdas.add(new Celda(i+2,j));
-		
+		celdas.add(new Celda(i+2,j));	
 		cola = celdas.getLast();
 	}
 
@@ -58,7 +57,7 @@ public class Criatura extends Entidad{
 		cola = celdas.removeLast();
 		cola.setEntidad(new Fondo());
 		cabeza = proxCel;
-//		proxCel.setEntidad(new Criatura());
+		proxCel.setEntidad(new Criatura(proxCel.getCoordFila(),proxCel.getCoordColu()));
 		celdas.addFirst(proxCel);
 	
 	}

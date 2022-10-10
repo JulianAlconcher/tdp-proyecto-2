@@ -108,7 +108,7 @@ public class Grilla {
 		celdasGraficas[1].setGrafico(graficoPared);
 
 		celdasGraficas[2] = new CeldaGrafica();
-		ImageIcon graficoAlimento = new ImageIcon(this.getClass().getResource("/imagenes/M1.png"));
+		ImageIcon graficoAlimento = new ImageIcon(this.getClass().getResource("/imagenes/Pizza.png"));
 		celdasGraficas[2].setGrafico(graficoAlimento);
 
 		celdasGraficas[3] = new CeldaGrafica();
