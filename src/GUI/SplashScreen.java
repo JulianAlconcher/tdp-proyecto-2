@@ -1,5 +1,7 @@
 package GUI;
 
+import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,14 +26,14 @@ public class SplashScreen {
 	public void initialize() {
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 600, 400);
+		frame.setBounds(100, 100, 844, 611);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/imagenes/logoSnake.png")));
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, 0, 600, 400);
+		lblNewLabel.setBounds(0, 0, 844, 611);
 		frame.getContentPane().add(lblNewLabel);
-		ImageIcon icon= new ImageIcon(this.getClass().getResource("/imagenes/SS2.jpg"));
+		ImageIcon icon= new ImageIcon(this.getClass().getResource("/imagenes/SplashScreen.png"));
 		lblNewLabel.setIcon(icon);
 		
 		frame.setVisible(true);

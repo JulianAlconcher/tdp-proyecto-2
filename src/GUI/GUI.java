@@ -48,7 +48,7 @@ public class GUI extends JFrame implements Runnable{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/imagenes/Logo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/imagenes/logoSnake.png")));
 		setTitle("SNAKE v1.1");
 
 		this.matrizGrafica = new CeldaGrafica[20][20];
