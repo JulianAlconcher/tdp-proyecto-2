@@ -72,7 +72,7 @@ public class Grilla {
 			e.accept(vis);
 			
 		}
-		miCriatura = new Criatura(randomFilaCoord(),randomColCoord());
+		miCriatura = new Criatura(fila,col);
 		System.out.println("Criatura colocada en el lugar ( " + randomFilaCoord() + " , " + randomColCoord() + ")");
 	}
 	/**
@@ -197,6 +197,7 @@ public class Grilla {
 	public int getDireccion() {
 		return direccion;
 	}
+	
 	/**
 	 * Setea una direccion aleatoria por defecto.
 	 */

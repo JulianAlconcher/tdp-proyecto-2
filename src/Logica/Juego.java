@@ -10,7 +10,7 @@ public class Juego {
 	private int cantFilas;
 	private int cantColumnas;
 	private Jugador miJugador;
-	private boolean gameOver=false;
+	private boolean gameOver = false;
 	private boolean enMovimiento = false;
 
 
