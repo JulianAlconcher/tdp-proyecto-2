@@ -37,6 +37,7 @@ public class GUI extends JFrame implements Runnable{
 	private JButton btnTopJugadores;
 	private boolean corriendo=false;
 	private JLabel lblPerdiste;
+	private JLabel lblPuntaje;
 	private int puntajeActual;
 	/**
 	 * Create the frame.
@@ -136,11 +137,11 @@ public class GUI extends JFrame implements Runnable{
 		lblPerdiste.setBounds(634, 326, 140, 32);
 		contentPane.add(lblPerdiste);
 		
-		JLabel lblNewLabel = new JLabel("PUNTAJE= "+ puntajeActual);
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 20));
-		lblNewLabel.setBounds(569, 58, 205, 21);
-		contentPane.add(lblNewLabel);
+		lblPuntaje = new JLabel("PUNTAJE= "+ puntajeActual);
+		lblPuntaje.setForeground(Color.WHITE);
+		lblPuntaje.setFont(new Font("Verdana", Font.BOLD, 20));
+		lblPuntaje.setBounds(569, 58, 205, 21);
+		contentPane.add(lblPuntaje);
 		lblPerdiste.setVisible(false);
 		
 		
@@ -213,8 +214,8 @@ public class GUI extends JFrame implements Runnable{
 			update();
 			pintarSnake();
 			puntajeActual=miJuego.getJugador().getPuntaje();
-			try {hiloJuego.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}
-			
+			lblPuntaje.setText("PUNTAJE= "+ puntajeActual);
+			try {hiloJuego.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}	
 			if(miJuego.getGameStatus()) {
 				corriendo=false;
 				iniciaHilo=false;
