@@ -222,7 +222,7 @@ public class GUI extends JFrame implements Runnable{
 			pintarSnake();
 			puntajeActual=miJuego.getJugador().getPuntaje();
 			lblPuntaje.setText("PUNTAJE= "+ puntajeActual);
-			try {hiloJuego.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}	
+			try {hiloJuego.sleep(150);} catch (InterruptedException e) {e.printStackTrace();}	
 			if(miJuego.getGameStatus()) {
 				corriendo=false;
 				iniciaHilo=false;
