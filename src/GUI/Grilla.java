@@ -79,20 +79,22 @@ public class Grilla {
 		int fila = randomFilaCoord();
 		int col = randomColCoord();
 		miCriatura = new Criatura(fila,col);
-		boolean posValida = getCelda(fila,col).getHabitable();
-		if(posValida) System.out.println("Criatura colocada en el lugar ( " + fila + " , " + col + ")");
-		while(posValida == false) { {
-					for(Celda e : miCriatura.getLista()) 
+		boolean posValida = false;
+		while(posValida == false)  {
+					for(Celda e : miCriatura.getLista()) {
 						if(!getCelda(e.getCoordFila(),e.getCoordColu()).getHabitable()) {
+							System.out.println("Intenete colocar en fila: " + fila + "columna: " + col + "con direccion" + miCriatura.getDireccion());
 							fila = randomFilaCoord();
 							col = randomColCoord();
+							posValida = false;
 						}
 						else
 							posValida = true;
-							miCriatura = new Criatura(fila,col);
-							System.out.println("Criatura colocada en el lugar ( " + fila + " , " + col + ")");
 					}
-			}
+						
+		}
+		miCriatura = new Criatura(fila,col);
+		System.out.println("Criatura colocada en el lugar ( " + fila + " , " + col + ")");
 	}
 	
 	/**
