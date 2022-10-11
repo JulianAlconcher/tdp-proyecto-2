@@ -1,7 +1,5 @@
 package Logica;
 
-import java.util.Random;
-
 import GUI.Grilla;
 
 public class Juego {

@@ -57,24 +57,44 @@ public class Grilla {
 	/**
 	 * Busca hasta encontrar una posicion valida en la grilla para insertar a la criatura.
 	 */
+//	public void colocarCriatura() {
+//		VisitorHandler vis = new VisitorHandler();
+//		int fila = randomFilaCoord();
+//		int col = randomColCoord();
+//		Entidad e = getCelda(fila, col).getEntidad();
+//		e.accept(vis);
+//		while(!vis.getGameStatus() && !vis.getVisitoComida()) {
+//			System.out.println("El lugar ( " + randomFilaCoord() + " , " + randomColCoord() + ")" + "es valido para colocarlo: " +  (vis.getGameStatus() && vis.getVisitoComida()));
+//			fila = randomFilaCoord();
+//			col = randomColCoord();
+//			e = getCelda(fila, col).getEntidad();
+//			e.accept(vis);
+//			
+//		}
+//		miCriatura = new Criatura(fila,col);
+//		System.out.println("Criatura colocada en el lugar ( " + randomFilaCoord() + " , " + randomColCoord() + ")");
+//	}
+	
 	public void colocarCriatura() {
-		VisitorHandler vis = new VisitorHandler();
-		
 		int fila = randomFilaCoord();
 		int col = randomColCoord();
-		Entidad e = getCelda(fila, col).getEntidad();
-		e.accept(vis);
-		while(!vis.getGameStatus() && !vis.getVisitoComida()) {
-			System.out.println("El lugar ( " + randomFilaCoord() + " , " + randomColCoord() + ")" + "es valido para colocarlo: " +  (vis.getGameStatus() && vis.getVisitoComida()));
-			fila = randomFilaCoord();
-			col = randomColCoord();
-			e = getCelda(fila, col).getEntidad();
-			e.accept(vis);
-			
-		}
 		miCriatura = new Criatura(fila,col);
-		System.out.println("Criatura colocada en el lugar ( " + randomFilaCoord() + " , " + randomColCoord() + ")");
+		boolean posValida = getCelda(fila,col).getHabitable();
+		if(posValida) System.out.println("Criatura colocada en el lugar ( " + fila + " , " + col + ")");
+		while(posValida == false) { {
+					for(Celda e : miCriatura.getLista()) 
+						if(!getCelda(e.getCoordFila(),e.getCoordColu()).getHabitable()) {
+							fila = randomFilaCoord();
+							col = randomColCoord();
+						}
+						else
+							posValida = true;
+							miCriatura = new Criatura(fila,col);
+							System.out.println("Criatura colocada en el lugar ( " + fila + " , " + col + ")");
+					}
+			}
 	}
+	
 	/**
 	 * Genera una posicion random para la fila.
 	 * @return
@@ -146,16 +166,19 @@ public class Grilla {
 					
 						case 1 : {
 							tablero[fila][columna].setEntidad(new Pared());
+							tablero[fila][columna].setHabitable(false);
 						
 						}
 						break;
 						case 2 : {
 							tablero[fila][columna].setEntidad(new Alimento());
+							tablero[fila][columna].setHabitable(false);
 						
 						}
 						break;
 						case 3 : {
 							tablero[fila][columna].setEntidad(new PowerUp());
+							tablero[fila][columna].setHabitable(false);
 			
 						}
 						break;

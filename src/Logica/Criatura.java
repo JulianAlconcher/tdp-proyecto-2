@@ -70,7 +70,6 @@ public class Criatura extends Entidad{
 //
 //	    }
 	
-	
 	public LinkedList<Celda> getLista(){
 		return celdas;
 	}

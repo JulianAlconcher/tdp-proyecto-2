@@ -3,7 +3,7 @@ package Logica;
 public class Alimento extends Entidad {
 
 
-
+//Cargamos en el constructor su celda involucrada 
 	
 	@Override
 	public void visit(Criatura criatura) {
