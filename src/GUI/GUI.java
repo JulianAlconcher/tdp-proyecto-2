@@ -92,6 +92,13 @@ public class GUI extends JFrame implements Runnable{
 		btnReiniciar.setBounds(569, 421, 251, 21);
 		contentPane.add(btnReiniciar);
 		btnReiniciar.setVisible(false);
+		
+		lblPuntaje = new JLabel("PUNTAJE= "+ puntajeActual);
+		lblPuntaje.setForeground(Color.WHITE);
+		lblPuntaje.setFont(new Font("Verdana", Font.BOLD, 20));
+		lblPuntaje.setBounds(569, 58, 205, 21);
+		contentPane.add(lblPuntaje);
+		
 
 		btnReiniciar.addActionListener(new ActionListener() {
 
@@ -165,23 +172,28 @@ public class GUI extends JFrame implements Runnable{
 		contentPane.add(lblPerdiste);
 		lblPerdiste.setVisible(false);
 
-		lblPuntaje = new JLabel("PUNTAJE= "+ puntajeActual);
-		lblPuntaje.setForeground(Color.WHITE);
-		lblPuntaje.setFont(new Font("Verdana", Font.BOLD, 20));
-		lblPuntaje.setBounds(569, 58, 205, 21);
-		contentPane.add(lblPuntaje);
+
 
 
 		iniciarHiloJuego();
 	}
 	
 	private void reiniciarJuego() {
+		lblPuntaje.setVisible(false);
+		puntajeActual = 0;
 		despintarSnake();
 		panelJuego = new JPanel();
 		panelJuego.setBounds(8, 10, 551, 551);
 		contentPane.add(panelJuego);
 		panelJuego.setBackground(Color.GRAY);
 		panelJuego.setLayout(new GridLayout(miJuego.getCantFilas(), miJuego.getCantColu(), 0, 0));
+		
+		lblPuntaje = new JLabel("PUNTAJE= "+ puntajeActual);
+		lblPuntaje.setForeground(Color.WHITE);
+		lblPuntaje.setFont(new Font("Verdana", Font.BOLD, 20));
+		lblPuntaje.setBounds(569, 58, 205, 21);
+		contentPane.add(lblPuntaje);
+		
 		miJuego = new Juego("Alberto");
 		matrizGrafica = new CeldaGrafica[20][20];
 		pintarMatrizG();
@@ -254,6 +266,7 @@ public class GUI extends JFrame implements Runnable{
 
 
 	public void iniciarHiloJuego() {
+		
 		contentPane.add(panelJuego);
 		panelJuego.setBackground(Color.GRAY);
 		panelJuego.setLayout(new GridLayout(miJuego.getCantFilas(), miJuego.getCantColu(), 0, 0));
