@@ -4,8 +4,7 @@ public class AlimentoPizza extends Alimento {
 
 	
 	
-	public AlimentoPizza(int f, int c) {
-		super(f, c);
+	public AlimentoPizza() {
 	   this.puntaje=60;
 	   grafico=2;
 		// TODO Auto-generated constructor stub

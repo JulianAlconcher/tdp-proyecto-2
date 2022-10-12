@@ -16,7 +16,9 @@ public class Juego {
 		this.cantFilas = 20;
 		this.miGrilla = new Grilla(cantFilas, cantColumnas);
 		miGrilla.cargarMapa();
+		miGrilla.setProximoComestible();
 		miJugador = new Jugador(nombreJugador);
+
 	}
 
 	
@@ -49,6 +51,7 @@ public class Juego {
 			    if (vis.getVisitoComida()) {
 			    	miJugador.aumentarPuntaje(vis.getPuntaje());
 			    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+			    	miGrilla.setProximoComestible();
 			     }
 			}
 			else 
@@ -61,6 +64,7 @@ public class Juego {
 				 if (vis.getVisitoComida()) {
 					 miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+				    	miGrilla.setProximoComestible();
 				     }	
 			}
 			else 
@@ -74,6 +78,7 @@ public class Juego {
 				 if (vis.getVisitoComida()) {
 					 miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+				    	miGrilla.setProximoComestible();
 				     }
 			}
 			else 
@@ -86,6 +91,7 @@ public class Juego {
 				 if (vis.getVisitoComida()) {
 					 miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+				    	miGrilla.setProximoComestible();
 				    	
 				     }
 			}

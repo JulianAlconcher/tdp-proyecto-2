@@ -7,9 +7,9 @@ public abstract class Alimento extends Entidad {
 	protected int col;
 	protected int puntaje;
 	
-		public Alimento(int f, int c) {
-		fila=f;
-		col=c;
+		public Alimento() {
+//		fila=f;
+//		col=c;
 	}
 
 		public abstract void visit(Criatura criatura);

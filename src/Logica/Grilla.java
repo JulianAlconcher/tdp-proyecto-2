@@ -19,7 +19,7 @@ public class Grilla {
 	private int mapaCeldasNumeros[][];
 	private Criatura miCriatura;
 	private int direccion;
-	private LinkedList<Entidad> entidadesComestibles;
+	private LinkedList<Celda> entidadesComestibles;
 
 	/**
 	 * Constructor Grilla, crea una grilla de [filas][columnas] de tamaño
@@ -29,7 +29,8 @@ public class Grilla {
 	public Grilla (int filas,int columnas) {
 		this.cantColumnas = 20;
 		this.cantFilas = 20;
-		entidadesComestibles= new LinkedList<Entidad>();
+		entidadesComestibles= new LinkedList<Celda>();
+		System.out.println(entidadesComestibles.size());
 		tablero = new Celda [filas][columnas];
 		mapaCeldasNumeros = new int[filas][columnas];
 		celdasGraficas = new CeldaGrafica[5];
@@ -115,8 +116,12 @@ public class Grilla {
 
 	}
 	
-	private void setProximoComestible() {
-		
+	public void setProximoComestible() {
+		Celda prox = null;
+		int randomComestible = ThreadLocalRandom.current().nextInt(1, entidadesComestibles.size());
+		System.out.println(entidadesComestibles.size());
+		prox = entidadesComestibles.remove(randomComestible);
+		tablero[prox.getCoordFila()][prox.getCoordColu()] = prox;
 		
 	}
 
@@ -150,7 +155,10 @@ public class Grilla {
 						break;
 						case 2 : {
 							//tablero[fila][columna].setEntidad(new AlimentoPizza(fila,columna));
-							entidadesComestibles.add(new AlimentoPizza(fila,columna));
+							Celda nueva = new Celda(fila,columna);
+							Entidad nuevaEn = new AlimentoPizza();
+							nueva.setEntidad(nuevaEn);
+							entidadesComestibles.add(nueva);
 							tablero[fila][columna].setEntidad(new Fondo());
 						
 						}

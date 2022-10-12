@@ -2,6 +2,7 @@ package Logica;
 
 public abstract class Entidad implements Visitor{
 	
+	
     int grafico;
     
 	public  void visit (Visitor visitor) {
