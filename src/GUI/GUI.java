@@ -222,7 +222,7 @@ public class GUI extends JFrame implements Runnable{
 				ImageIcon imagen = new ImageIcon();
 				int numeroCelda = miJuego.getGrilla().getNumeroMapa(i, j);
 				celdasG = miJuego.getGrilla().getCeldasGraficas();
-				imagen = celdasG[numeroCelda].getGrafico();
+				imagen = celdasG[miJuego.getGrilla().getCelda(i,j).getEntidad().getGrafico()].getGrafico();
 				matrizGrafica[i][j].setIcon(imagen);
 				matrizGrafica[i][j].setBounds(i, j, 40, 40);
 				panelJuego.add(matrizGrafica[i][j]);

@@ -2,6 +2,10 @@ package Logica;
 
 public class Fondo extends Entidad{
 
+    public Fondo(){
+    	this.grafico=0;
+    }
+
 	@Override
 	public void visit(PowerUp powerUp) {
 		// TODO Auto-generated method stub

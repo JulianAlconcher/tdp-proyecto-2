@@ -9,7 +9,7 @@ public class VisitorHandler implements Visitor{
 	@Override
 	public void visit(Alimento alimento) {
 		visitoComida=true;
-		puntaje += 50;
+		puntaje += alimento.getPuntaje();
 		System.out.println("visit alimentoooooooooooooo");
 		
 	}

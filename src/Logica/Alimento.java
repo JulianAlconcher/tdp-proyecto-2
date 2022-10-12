@@ -1,49 +1,32 @@
 package Logica;
 
-public class Alimento extends Entidad {
+public abstract class Alimento extends Entidad {
 
-
-//Cargamos en el constructor su celda involucrada 
+	//Cargamos en el constructor su celda involucrada 
+	protected int fila;
+	protected int col;
+	protected int puntaje;
 	
-	@Override
-	public void visit(Criatura criatura) {
-		// TODO Auto-generated method stub
+		public Alimento(int f, int c) {
+		fila=f;
+		col=c;
+	}
+
+		public abstract void visit(Criatura criatura);
+
+		public void accept(Visitor v) {
+			v.visit(this);
+		}
 		
-	}
+		public abstract int getPuntaje() ;
 
-	@Override
-	public void accept(Visitor v) {
-		v.visit(this);
+		public abstract void visit(PowerUp powerUp) ;
+
+		public abstract void visit(Alimento alimento);
 		
-	}
-
-	public int getPuntaje() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void visit(PowerUp powerUp) {
-		// TODO Auto-generated method stub
+		public abstract void visit(Pared pared) ;
 		
-	}
-
-	@Override
-	public void visit(Alimento alimento) {
-		System.out.println("visist alimento");
-	}
-
-	@Override
-	public void visit(Pared pared) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visit(Fondo fondo) {
-		// TODO Auto-generated method stub
-		
-	}
+		public abstract void visit(Fondo fondo); 
 
 
 

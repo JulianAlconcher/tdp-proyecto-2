@@ -1,7 +1,5 @@
 package Logica;
 
-import GUI.Grilla;
-
 public class Juego {
 
 	private Grilla miGrilla;

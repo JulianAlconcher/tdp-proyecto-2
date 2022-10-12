@@ -4,7 +4,7 @@ public class main {
 	
 	public static void main (String[] args) {
 		
-		SplashScreen miSplashScreen =new SplashScreen(2700);
+		SplashScreen miSplashScreen =new SplashScreen(100);
 		
 		miSplashScreen.initialize();
 		

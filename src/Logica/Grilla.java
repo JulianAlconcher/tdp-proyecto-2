@@ -1,23 +1,14 @@
-package GUI;
+package Logica;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.ImageIcon;
-
-import Logica.Alimento;
-import Logica.Celda;
-import Logica.CeldaGrafica;
-import Logica.Criatura;
-import Logica.Entidad;
-import Logica.Fondo;
-import Logica.Pared;
-import Logica.PowerUp;
-import Logica.VisitorHandler;
 
 public class Grilla {
 
@@ -28,6 +19,7 @@ public class Grilla {
 	private int mapaCeldasNumeros[][];
 	private Criatura miCriatura;
 	private int direccion;
+	private LinkedList<Entidad> entidadesComestibles;
 
 	/**
 	 * Constructor Grilla, crea una grilla de [filas][columnas] de tamaño
@@ -37,6 +29,7 @@ public class Grilla {
 	public Grilla (int filas,int columnas) {
 		this.cantColumnas = 20;
 		this.cantFilas = 20;
+		entidadesComestibles= new LinkedList<Entidad>();
 		tablero = new Celda [filas][columnas];
 		mapaCeldasNumeros = new int[filas][columnas];
 		celdasGraficas = new CeldaGrafica[5];
@@ -52,41 +45,18 @@ public class Grilla {
 		colocarCriatura();
 
 	}
-
-
-	/**
-	 * Busca hasta encontrar una posicion valida en la grilla para insertar a la criatura.
-	 */
-//	public void colocarCriatura() {
-//		VisitorHandler vis = new VisitorHandler();
-//		int fila = randomFilaCoord();
-//		int col = randomColCoord();
-//		Entidad e = getCelda(fila, col).getEntidad();
-//		e.accept(vis);
-//		while(!vis.getGameStatus() && !vis.getVisitoComida()) {
-//			System.out.println("El lugar ( " + randomFilaCoord() + " , " + randomColCoord() + ")" + "es valido para colocarlo: " +  (vis.getGameStatus() && vis.getVisitoComida()));
-//			fila = randomFilaCoord();
-//			col = randomColCoord();
-//			e = getCelda(fila, col).getEntidad();
-//			e.accept(vis);
-//			
-//		}
-//		miCriatura = new Criatura(fila,col);
-//		System.out.println("Criatura colocada en el lugar ( " + randomFilaCoord() + " , " + randomColCoord() + ")");
-//	}
 	
 	public void colocarCriatura() {
 		int fila = randomFilaCoord();
 		int col = randomColCoord();
 		miCriatura = new Criatura(fila,col);
 		boolean posValida = false;
-		while(posValida == false)  {
+		while(!posValida)  {
 					for(Celda e : miCriatura.getLista()) {
 						if(!getCelda(e.getCoordFila(),e.getCoordColu()).getHabitable()) {
 							System.out.println("Intenete colocar en fila: " + fila + "columna: " + col + "con direccion" + miCriatura.getDireccion());
 							fila = randomFilaCoord();
 							col = randomColCoord();
-							posValida = false;
 						}
 						else
 							posValida = true;
@@ -120,7 +90,7 @@ public class Grilla {
 
 	public void getImagenCelda() {
 
-
+      
 		celdasGraficas[0] = new CeldaGrafica();
 		ImageIcon graficoFondo = new ImageIcon(this.getClass().getResource("/imagenes/Fondoe.png"));
 		celdasGraficas[0].setGrafico(graficoFondo);
@@ -144,6 +114,12 @@ public class Grilla {
 
 
 	}
+	
+	private void setProximoComestible() {
+		
+		
+	}
+
 	public void cargarMapa() {
 
 		try {
@@ -173,13 +149,14 @@ public class Grilla {
 						}
 						break;
 						case 2 : {
-							tablero[fila][columna].setEntidad(new Alimento());
-							tablero[fila][columna].setHabitable(false);
+							//tablero[fila][columna].setEntidad(new AlimentoPizza(fila,columna));
+							entidadesComestibles.add(new AlimentoPizza(fila,columna));
+							tablero[fila][columna].setEntidad(new Fondo());
 						
 						}
 						break;
 						case 3 : {
-							tablero[fila][columna].setEntidad(new PowerUp());
+							tablero[fila][columna].setEntidad(new PowerUp(fila,columna));
 							tablero[fila][columna].setHabitable(false);
 			
 						}

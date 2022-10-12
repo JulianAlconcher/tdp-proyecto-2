@@ -2,6 +2,10 @@ package Logica;
 
 public class Pared extends Entidad{
 
+   public Pared() {
+	   this.grafico=1;
+   }
+
 	@Override
 	public void visit(PowerUp powerUp) {
 		// TODO Auto-generated method stub

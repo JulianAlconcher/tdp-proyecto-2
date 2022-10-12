@@ -1,14 +1,13 @@
 package Logica;
 
-public class PowerUp extends Entidad{
+public class AlimentoPizza extends Alimento {
 
-     int fila;
-     int col;
 	
-	public PowerUp(int f, int c) {
-		fila=f;
-		col=c;
-		grafico=3;
+	
+	public AlimentoPizza(int f, int c) {
+		super(f, c);
+	   this.puntaje=60;
+	   grafico=2;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -19,9 +18,8 @@ public class PowerUp extends Entidad{
 	}
 
 	@Override
-	public void accept(Visitor v) {
-		v.visit(this);
-		
+	public int getPuntaje() {
+		return puntaje;
 	}
 
 	@Override
@@ -47,10 +45,6 @@ public class PowerUp extends Entidad{
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
 
 	
 }
