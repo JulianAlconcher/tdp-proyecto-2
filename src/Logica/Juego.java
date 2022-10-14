@@ -163,9 +163,10 @@ public class Juego implements Serializable{
 	}
 
 	public void aumentarNivel() {
-		int nivel = nivelActual+1;
-		this.miGrilla = new Grilla(cantFilas, cantColumnas,"Nivel" + nivel + ".txt");
+		nivelActual++;
+		this.miGrilla = new Grilla(cantFilas, cantColumnas,"Nivel" + nivelActual + ".txt");
 		proximaCeldaEntidad = miGrilla.setProximoComestible();
+		System.out.println("Nivel" + nivelActual + ".txt");
 		
 	}
 	public boolean getGameStatus() {
