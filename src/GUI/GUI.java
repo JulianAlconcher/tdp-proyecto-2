@@ -40,10 +40,11 @@ public class GUI extends JFrame implements Runnable{
 	private CeldaGrafica matrizGrafica[][]; 
 	private KeyHandler keyH;
 	private JButton btnTopJugadores;
-	private boolean corriendo,ready=false;
-	private JLabel lblPerdiste;
+	private boolean ready=false;
+	private JLabel lblPerdiste,lblNivel;
 	private JLabel lblPuntaje;
 	private int puntajeActual;
+	private Reloj miReloj;
 
 	protected CeldaGrafica[] celdasG;
 	/**
@@ -100,7 +101,9 @@ public class GUI extends JFrame implements Runnable{
 					System.out.println(miJuego.leer().size());
 					JOptionPane.showMessageDialog(null, message);
 					System.out.println("TOP JUGADORES: " + message);
-				} catch (Exception e1) {e1.printStackTrace();
+				} catch (Exception e1) {
+					String message = "Nadie ha jugado aun.";
+					JOptionPane.showMessageDialog(null, message);
 				}
 				
 				btnTopJugadores.setFocusable(false);
@@ -114,9 +117,6 @@ public class GUI extends JFrame implements Runnable{
 		lblPuntaje.setBounds(569, 168, 205, 21);
 		contentPane.add(lblPuntaje);
 		
-
-
-
 		keyH = new KeyHandler();
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
@@ -211,6 +211,13 @@ public class GUI extends JFrame implements Runnable{
 		ImageIcon icon= new ImageIcon(this.getClass().getResource("/imagenes/titulo.png"));
 		lblImagenTitulo.setIcon(icon);
 		
+		lblNivel = new JLabel("Nivel: 1");
+		lblNivel.setFont(new Font("Tahoma", Font.BOLD, 32));
+		lblNivel.setForeground(Color.WHITE);
+		lblNivel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNivel.setBounds(569, 272, 251, 58);
+		contentPane.add(lblNivel);
+		
 	
 	}
 
@@ -241,14 +248,12 @@ public class GUI extends JFrame implements Runnable{
 				aparicionEntidad(f, c,miJuego.getProximaEntidad().getEntidad().getGrafico());
 				if(miJuego.getGrilla().getCantidadComidasRestantes()==0) {
 					pintarNuevoNivel();
-					
+					lblNivel.setText("Nivel: " + miJuego.getNivelActual());
 				}
 			}
 			if(miJuego.getNivelActual() == 5 && miJuego.getGrilla().getCantidadComidasRestantes() == 0) {
 					panelJuego.setVisible(false);
-					corriendo = false;
-					iniciaHilo = false;
-					hiloJuego = null;
+					iniciaHilo=false;
 					String message = "¡Felicitaciones! Has ganado.";
 					JOptionPane.showMessageDialog(null, message);
 					System.exit(0);
@@ -288,12 +293,11 @@ public class GUI extends JFrame implements Runnable{
 		miJuego.getJugador().setNombre(name);
 		miJuego.addJugador(miJuego.getJugador());
 		ready = true;
-		Reloj miReloj= new Reloj(label);
+		miReloj= new Reloj(label);
 		miReloj.start();
-		}
+	}
 	
 	public void GameOverVisual() {
-		corriendo=false;
 		iniciaHilo=false;
 		lblPerdiste.setVisible(true);
 		hiloJuego = null;
