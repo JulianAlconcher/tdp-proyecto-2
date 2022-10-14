@@ -1,5 +1,6 @@
 package Logica;
 
+
 public class Juego {
 
 	private Grilla miGrilla;
@@ -8,17 +9,19 @@ public class Juego {
 	private Jugador miJugador;
 	private boolean gameOver = false;
 	private boolean enMovimiento = false;
+	private TopJugadores miTop;
 
 
-	public Juego(String nombreJugador) {
+	public Juego() {
 
 		this.cantColumnas = 20;
 		this.cantFilas = 20;
 		this.miGrilla = new Grilla(cantFilas, cantColumnas);
 		miGrilla.cargarMapa();
 		miGrilla.setProximoComestible();
-		miJugador = new Jugador(nombreJugador);
-
+		miTop = new TopJugadores();
+		miJugador = new Jugador(" ");
+		
 	}
 
 	
@@ -51,6 +54,7 @@ public class Juego {
 			    if (vis.getVisitoComida()) {
 			    	miJugador.aumentarPuntaje(vis.getPuntaje());
 			    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+			    	miJugador.aumentarPuntaje(vis.getPuntaje());
 			    	miGrilla.setProximoComestible();
 			     }
 			}
@@ -64,6 +68,7 @@ public class Juego {
 				 if (vis.getVisitoComida()) {
 					 miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+				    	miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.setProximoComestible();
 				     }	
 			}
@@ -78,6 +83,7 @@ public class Juego {
 				 if (vis.getVisitoComida()) {
 					 miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+				    	miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.setProximoComestible();
 				     }
 			}
@@ -91,6 +97,7 @@ public class Juego {
 				 if (vis.getVisitoComida()) {
 					 miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+				    	miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.setProximoComestible();
 				    	
 				     }
@@ -102,6 +109,12 @@ public class Juego {
 
 	public void gameOver() {
 		gameOver = true;
+		try {
+			miTop.guardar();
+		} catch (Exception e) {e.printStackTrace();
+		}
+		System.out.println("GUARDANDO...");
+
 	}
 
 	public boolean getGameStatus() {
@@ -117,10 +130,12 @@ public class Juego {
 	public void setEnMovimiento(boolean enMovimiento) {
 		this.enMovimiento = enMovimiento;
 	}
-	
-	public void nuevoNivel() {
-		
+
+	public TopJugadores getTop() {
+		return miTop;
 	}
+	
+
 }
 
 

@@ -11,11 +11,20 @@ import java.util.PriorityQueue;
 public class TopJugadores implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Nombre del archivo que va a guardar el top de jugadores
 	private static String file = "configuration.tdp";
 	
 	//Creo un comparador para ordenar a la cola de mejor jugador a peor jugador
 	class playerComparator implements Comparator<Jugador>,Serializable{
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 
 		@Override
 		public int compare(Jugador j1, Jugador j2) {
@@ -60,5 +69,22 @@ public class TopJugadores implements Serializable {
 	    in.close();
 	    file.close();
 	    return top;
+	}
+	
+	public String stringTopJugadores(PriorityQueue<Jugador> c){
+		int i = 0;
+		String retorno = "";
+		if(c.size()==1) {
+			retorno = c.remove().getNombre();
+			System.out.println("Hola:" + retorno);
+		}else {
+			while(!c.isEmpty() && i<5) {
+				Jugador j1 = c.remove();
+				retorno = retorno + j1.getNombre();
+				System.out.println("Hola:" + j1.getNombre());
+				i++;
+			}
+		}
+		return retorno;
 	}
 }
