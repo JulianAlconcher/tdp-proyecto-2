@@ -3,9 +3,7 @@ package Logica;
 public class AlimentoCerveza extends Alimento {
 
 	
-	public AlimentoCerveza(int f,int c) {
-		this.col=c;
-		this.fila=f;
+	public AlimentoCerveza() {
 		this.puntaje=25;
 		this.grafico=6;
 		tamanio = 2;

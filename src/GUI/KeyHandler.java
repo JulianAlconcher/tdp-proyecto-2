@@ -3,7 +3,6 @@ package GUI;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import Logica.Juego;
 
 public class KeyHandler implements KeyListener {
 

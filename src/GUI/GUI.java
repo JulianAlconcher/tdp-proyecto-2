@@ -35,7 +35,7 @@ public class GUI extends JFrame implements Runnable{
 	private final int velocidad = 150;
 	public static JLabel label;
 	public static int segundos=0,minutos=0;
-	Thread hiloJuego;
+	public Thread hiloJuego;
 	public static boolean iniciaHilo=true;
 	private CeldaGrafica matrizGrafica[][]; 
 	private KeyHandler keyH;
@@ -45,11 +45,11 @@ public class GUI extends JFrame implements Runnable{
 	private JLabel lblPuntaje;
 	private int puntajeActual;
 	private Reloj miReloj;
-
 	protected CeldaGrafica[] celdasG;
-	/**
-	 * Create the frame.
-	 */
+	private JButton btnJugar;
+
+
+
 	public GUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 844, 611);
@@ -59,37 +59,31 @@ public class GUI extends JFrame implements Runnable{
 		setContentPane(contentPane);
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/imagenes/logoSnake.png")));
-		setTitle("SNAKE v1.1");
-		//Setea a la GUI en el centro de la pantalla.
+		setTitle("SNAKE");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - getHeight()) / 2);
 		setLocation(x, y);
 
-		this.matrizGrafica = new CeldaGrafica[20][20];
 
 
 		miJuego = new Juego();
-		
 
-
+		this.matrizGrafica = new CeldaGrafica[miJuego.getCantFilas()][miJuego.getCantColu()];
 		contentPane.setLayout(null);
 
 		panelJuego = new JPanel();
 		panelJuego.setBounds(8, 10, 551, 551);
-	
-		
 
-
-		JButton btnNewButton = new JButton("JUGAR");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnJugar = new JButton("JUGAR");
+		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				iniciarJuego();
-				btnNewButton.setFocusable(false);
+				btnJugar.setFocusable(false);
 			}
 		});
-		btnNewButton.setBounds(569, 492, 251, 69);
-		contentPane.add(btnNewButton);
+		btnJugar.setBounds(569, 492, 251, 69);
+		contentPane.add(btnJugar);
 
 		btnTopJugadores = new JButton("TOP JUGADORES");
 		btnTopJugadores.setBounds(569, 461, 251, 21);
@@ -98,30 +92,28 @@ public class GUI extends JFrame implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String message = miJuego.stringTopJugadores(miJuego.leer());
-					System.out.println(miJuego.leer().size());
 					JOptionPane.showMessageDialog(null, message);
-					System.out.println("TOP JUGADORES: " + message);
 				} catch (Exception e1) {
-					String message = "Nadie ha jugado aun.";
+					String message = "No hay ningun jugador registrado.";
 					JOptionPane.showMessageDialog(null, message);
 				}
-				
+
 				btnTopJugadores.setFocusable(false);
 			}
 		});
-		
-		
+
+
 		lblPuntaje = new JLabel("PUNTAJE: null");
 		lblPuntaje.setForeground(Color.WHITE);
 		lblPuntaje.setFont(new Font("Verdana", Font.BOLD, 20));
 		lblPuntaje.setBounds(569, 168, 205, 21);
 		contentPane.add(lblPuntaje);
-		
+
 		keyH = new KeyHandler();
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
 
-		
+
 		JLabel lblTiempo = new JLabel("TIEMPO:");
 		lblTiempo.setForeground(Color.WHITE);
 		lblTiempo.setFont(new Font("Verdana", Font.BOLD, 20));
@@ -134,7 +126,7 @@ public class GUI extends JFrame implements Runnable{
 		label.setBounds(700, 219, 109, 27);
 		contentPane.add(label);
 
-		lblPerdiste = new JLabel("Â¡PERDISTE!");
+		lblPerdiste = new JLabel("¡PERDISTE!");
 		lblPerdiste.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPerdiste.setForeground(Color.WHITE);
 		lblPerdiste.setFont(new Font("Tahoma", Font.BOLD, 19));
@@ -144,10 +136,9 @@ public class GUI extends JFrame implements Runnable{
 
 		iniciarHiloJuego();
 	}
-		
-	/**
-	 * Inicializa el mapa
-	 */
+
+
+
 	public void pintarMatrizG() {
 		for(int i = 0; i < miJuego.getCantFilas(); i++) {
 			for(int j = 0; j < miJuego.getCantColu(); j++) {
@@ -164,9 +155,9 @@ public class GUI extends JFrame implements Runnable{
 
 
 	}
-	
 
-	
+
+
 	public void pintarSnake() {
 
 		for( Celda c : miJuego.getGrilla().getCriatura().getLista()) {
@@ -193,9 +184,9 @@ public class GUI extends JFrame implements Runnable{
 
 		matrizGrafica[f][c].setIcon(celdasG[imagen].getGrafico());
 	}
-	
+
 	public void iniciarHiloJuego() {
-		
+
 		contentPane.add(panelJuego);
 		panelJuego.setBackground(Color.GRAY);
 		panelJuego.setLayout(new GridLayout(miJuego.getCantFilas(), miJuego.getCantColu(), 0, 0));
@@ -204,21 +195,21 @@ public class GUI extends JFrame implements Runnable{
 		hiloJuego = new Thread (this);
 		hiloJuego.start();
 
-		
+
 		JLabel lblImagenTitulo = new JLabel("");
 		lblImagenTitulo.setBounds(569, 10, 251, 113);
 		contentPane.add(lblImagenTitulo);
 		ImageIcon icon= new ImageIcon(this.getClass().getResource("/imagenes/titulo.png"));
 		lblImagenTitulo.setIcon(icon);
-		
+
 		lblNivel = new JLabel("Nivel: 1");
 		lblNivel.setFont(new Font("Tahoma", Font.BOLD, 32));
 		lblNivel.setForeground(Color.WHITE);
 		lblNivel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNivel.setBounds(569, 272, 251, 58);
 		contentPane.add(lblNivel);
-		
-	
+
+
 	}
 
 	public void pintarNuevoNivel() {
@@ -234,14 +225,14 @@ public class GUI extends JFrame implements Runnable{
 
 	@SuppressWarnings("static-access")
 	public void run() {
-		
+
 		while(hiloJuego != null) {
 
 			if(ready)
 				update();
-			
+
 			pintarSnake();
-			
+
 			if(miJuego.getGrilla().getComio()) {
 				int f = miJuego.getProximaEntidad().getCoordFila();
 				int c = miJuego.getProximaEntidad().getCoordColu();
@@ -252,19 +243,22 @@ public class GUI extends JFrame implements Runnable{
 				}
 			}
 			if(miJuego.getNivelActual() == 5 && miJuego.getGrilla().getCantidadComidasRestantes() == 0) {
-					panelJuego.setVisible(false);
-					iniciaHilo=false;
-					String message = "Â¡Felicitaciones! Has ganado.";
-					JOptionPane.showMessageDialog(null, message);
-					System.exit(0);
+				panelJuego.setVisible(false);
+				iniciaHilo=false;
+				String message = "¡Felicitaciones! Has ganado.";
+				JOptionPane.showMessageDialog(null, message);
+				System.exit(0);
 			}
-			
+
 			puntajeActual=miJuego.getJugador().getPuntaje();
-			lblPuntaje.setText("PUNTAJE= "+ puntajeActual);
+			lblPuntaje.setText("PUNTAJE: "+ puntajeActual);
 			try {hiloJuego.sleep(velocidad);} catch (InterruptedException e) {e.printStackTrace();}	
 
-			if(miJuego.getGameStatus()) 
-				GameOverVisual();			
+			if(miJuego.getGameStatus()) {
+				GameOverVisual();
+				btnJugar.setEnabled(false);
+
+			}
 		}
 	}
 	public void update() {
@@ -286,7 +280,7 @@ public class GUI extends JFrame implements Runnable{
 			miJuego.mover(-2);
 		}
 	}
-	
+
 	public void iniciarJuego() {
 		String name = JOptionPane.showInputDialog("Ingrese su nombre por favor");
 		JOptionPane.showMessageDialog(null, "Hola " + name);
@@ -296,7 +290,7 @@ public class GUI extends JFrame implements Runnable{
 		miReloj= new Reloj(label);
 		miReloj.start();
 	}
-	
+
 	public void GameOverVisual() {
 		iniciaHilo=false;
 		lblPerdiste.setVisible(true);

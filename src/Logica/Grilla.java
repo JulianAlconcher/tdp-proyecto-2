@@ -1,10 +1,8 @@
 package Logica;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -24,11 +22,7 @@ public class Grilla{
 	protected boolean comio;
 	protected String nivelActual;
 	
-	/**
-	 * Constructor Grilla, crea una grilla de [filas][columnas] de tamaño
-	 * @param filas: cantidad de filas
-	 * @param columnas: cantidad de columnas
-	 */
+
 	public Grilla (int filas,int columnas,String nivel) {
 		this.comio = false;
 		this.cantColumnas = 20;
@@ -60,7 +54,6 @@ public class Grilla{
 		while(!posValida)  {
 			for(Celda e : miCriatura.getLista()) {
 				if(!getCelda(e.getCoordFila(),e.getCoordColu()).getHabitable()) {
-					System.out.println("Intenete colocar en fila: " + fila + "columna: " + col + "con direccion" + miCriatura.getDireccion());
 					fila = randomFilaCoord();
 					col = randomColCoord();
 				}
@@ -70,22 +63,15 @@ public class Grilla{
 
 		}
 		miCriatura = new Criatura(fila,col);
-		System.out.println("Criatura colocada en el lugar ( " + fila + " , " + col + ")");
 	}
 
-	/**
-	 * Genera una posicion random para la fila.
-	 * @return
-	 */
+	
 	public int randomFilaCoord() {
 		int randomNumF = ThreadLocalRandom.current().nextInt(6, 15);
 		return randomNumF;
 	}
 
-	/**
-	 * Genera una posicion random para la columna.
-	 * @return
-	 */
+
 	public int randomColCoord() {
 		int randomNumC = ThreadLocalRandom.current().nextInt(6, 15);
 		return randomNumC;
@@ -176,15 +162,11 @@ public class Grilla{
 		comio = true;
 		Celda prox = null;
 		int randomComestible;
-		
 		if( entidadesComestibles.size() > 0 ) {
 			if(entidadesComestibles.size() == 1)
 				randomComestible = 0;
 			else
 				randomComestible = ThreadLocalRandom.current().nextInt(1, entidadesComestibles.size());
-
-		
-
 
 			prox = entidadesComestibles.remove(randomComestible);
 			tablero[prox.getCoordFila()][prox.getCoordColu()] = prox;
@@ -193,7 +175,6 @@ public class Grilla{
 	}
 
 	public int getCantidadComidasRestantes() {
-		System.out.println(entidadesComestibles.size());
 		return entidadesComestibles.size();
 	}
 
@@ -201,13 +182,10 @@ public class Grilla{
 	public void cargarMapa() {
 
 		try {
-
 			InputStream is = Grilla.class.getClassLoader().getResourceAsStream(nivelActual);
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
 			int columna = 0;
 			int fila = 0;
-
 			while(columna < cantColumnas && fila < cantFilas) {
 				String line = br.readLine();
 
@@ -228,7 +206,7 @@ public class Grilla{
 					break;
 					case 2 : {
 						Celda c = new Celda(fila,columna);
-						c.setEntidad(new AlimentoPizza(fila,columna));
+						c.setEntidad(new AlimentoPizza());
 						entidadesComestibles.add(c);
 						tablero[fila][columna].setEntidad(new Fondo());
 
@@ -237,7 +215,7 @@ public class Grilla{
 					break;
 					case 3 : {
 						Celda c = new Celda(fila,columna);
-						c.setEntidad(new AlimentoHamburguesa(fila,columna));
+						c.setEntidad(new AlimentoHamburguesa());
 						entidadesComestibles.add(c);
 						tablero[fila][columna].setEntidad(new Fondo());
 
@@ -246,14 +224,14 @@ public class Grilla{
 					break;
 					case 4 : {
 						Celda c = new Celda(fila,columna);
-						c.setEntidad(new AlimentoPapas(fila,columna));
+						c.setEntidad(new AlimentoPapas());
 						entidadesComestibles.add(c);
 						tablero[fila][columna].setEntidad(new Fondo());
 					}
 					break;
 					case 5 : {
 						Celda c = new Celda(fila,columna);
-						c.setEntidad(new AlimentoCoca(fila,columna));
+						c.setEntidad(new AlimentoCoca());
 						entidadesComestibles.add(c);
 						tablero[fila][columna].setEntidad(new Fondo());
 
@@ -262,7 +240,7 @@ public class Grilla{
 					break;
 					case 6 : {
 						Celda c = new Celda(fila,columna);
-						c.setEntidad(new AlimentoCerveza(fila,columna));
+						c.setEntidad(new AlimentoCerveza());
 						entidadesComestibles.add(c);
 						tablero[fila][columna].setEntidad(new Fondo());
 
@@ -271,7 +249,7 @@ public class Grilla{
 					break;
 					case 7 : {
 						Celda c = new Celda(fila,columna);
-						c.setEntidad(new PowerUpVerde(fila,columna));
+						c.setEntidad(new PowerUpVerde());
 						entidadesComestibles.add(c);
 						tablero[fila][columna].setEntidad(new Fondo());
 
@@ -279,7 +257,7 @@ public class Grilla{
 					break;
 					case 8 : {
 						Celda c = new Celda(fila,columna);
-						c.setEntidad(new PowerUpRojo(fila,columna));
+						c.setEntidad(new PowerUpRojo());
 						entidadesComestibles.add(c);
 						tablero[fila][columna].setEntidad(new Fondo());
 
@@ -288,7 +266,7 @@ public class Grilla{
 					break;
 					case 9:{
 						Celda c = new Celda(fila,columna);
-						c.setEntidad(new PowerUpOro(fila,columna));
+						c.setEntidad(new PowerUpOro());
 						entidadesComestibles.add(c);
 						tablero[fila][columna].setEntidad(new Fondo());
 

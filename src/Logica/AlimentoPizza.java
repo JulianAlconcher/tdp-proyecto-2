@@ -4,9 +4,7 @@ public class AlimentoPizza extends Alimento {
 
 	
 	
-	public AlimentoPizza(int f,int c) {
-		this.col=c;
-		this.fila=f;
+	public AlimentoPizza() {
 		this.puntaje=100;
 		this.grafico = 2;
 		tamanio = 6;

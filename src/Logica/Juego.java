@@ -14,8 +14,8 @@ public class Juego implements Serializable{
 	private int cantFilas;
 	private int cantColumnas;
 	private Jugador miJugador;
-	private boolean gameOver = false;
-	private boolean enMovimiento = false;
+	private boolean gameOver;
+	private boolean enMovimiento;
 	private PriorityQueue<Jugador> rankingOrdenado;
 	private static String archivoRanking = "ranking.tdp";
 	protected Celda proximaCeldaEntidad;
@@ -26,7 +26,8 @@ public class Juego implements Serializable{
 
 
 	public Juego() {
-
+        this.gameOver=false;
+        this.enMovimiento=false;
 		this.cantColumnas = 20;
 		this.cantFilas = 20;
 		this.miGrilla = new Grilla(cantFilas, cantColumnas,"Nivel1.txt");
@@ -160,7 +161,6 @@ public class Juego implements Serializable{
 	public void gameOver() {
 		try {
 			this.guardar();
-			System.out.println("Guardando...");
 		} catch (Exception e) {e.printStackTrace();
 		}
 		gameOver = true;
@@ -174,7 +174,6 @@ public class Juego implements Serializable{
 
 			this.miGrilla = new Grilla(cantFilas, cantColumnas,"Nivel" + nivelActual + ".txt");
 			proximaCeldaEntidad = miGrilla.setProximoComestible();
-			System.out.println("Nivel" + nivelActual + ".txt");
 		}
 
 	}

@@ -22,7 +22,7 @@ public class Reloj extends Thread {
 			}
 			
 		} catch(Exception e) {
-			System.out.println("Exception en el hilo: "+ e.getMessage());
+			e.printStackTrace();
 		}
 	}
 

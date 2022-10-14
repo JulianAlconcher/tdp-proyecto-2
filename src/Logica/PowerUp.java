@@ -2,8 +2,7 @@ package Logica;
 
 public abstract class PowerUp extends Entidad{
 
-     protected int fila;
-     protected int col;
+
      protected int power;
      protected int puntaje;
      protected final int tamanio=3;

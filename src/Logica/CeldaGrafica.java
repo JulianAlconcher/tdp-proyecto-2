@@ -4,9 +4,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class CeldaGrafica extends JLabel{
-	/**
-	 * 
-	 */
+	
+	
 	private static final long serialVersionUID = 1L;
 	private ImageIcon grafico;
 	private String imagen;

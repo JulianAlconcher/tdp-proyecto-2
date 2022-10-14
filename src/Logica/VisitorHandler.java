@@ -15,14 +15,12 @@ public class VisitorHandler implements Visitor{
 		visitoComestible=true;
 		puntaje += alimento.getPuntaje();
 		setTamanio(alimento.getTamanio());
-		System.out.println("visit alimentoooooooooooooo");
 		
 	}
 
 	@Override
 	public void visit(Pared pared) {
 		gameOver = true;
-		System.out.println("visitr de PAREEEED");
 		
 	}
 	
@@ -33,13 +31,11 @@ public class VisitorHandler implements Visitor{
 		setColor(powerUp.getPower());
 		puntaje+=powerUp.getPuntaje();
 		setTamanio(powerUp.getTamanio());
-		System.out.println("visitr de power UUUUUUUUUUPPPPP");
 	}
 	
 	@Override
 	public void visit(Criatura criatura) {
 		gameOver = true;
-		System.out.println("visite de CRIATURA");
 		
 	}
 
@@ -79,14 +75,12 @@ public class VisitorHandler implements Visitor{
 	
 	@Override
 	public void accept(Visitor v) {
-		System.out.println("accept visitorHandler");
 		
 	}
 
 	@Override
 	public void visit(Fondo fondo) {
 		// TODO Auto-generated method stub
-		System.out.println("visist fondo");
 	}
 
 	public boolean getVisitoPowerUp() {

@@ -39,7 +39,6 @@ public class Fondo extends Entidad{
 	@Override
 	public void visit(Fondo fondo) {
 		// TODO Auto-generated method stub
-		System.out.println("visist fd");
 	}
 	
 }
