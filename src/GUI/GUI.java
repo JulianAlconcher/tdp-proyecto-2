@@ -44,7 +44,7 @@ public class GUI extends JFrame implements Runnable{
 	private JLabel lblPerdiste;
 	private JLabel lblPuntaje;
 	private int puntajeActual;
-	private JButton btnReiniciar;
+
 	protected CeldaGrafica[] celdasG;
 	/**
 	 * Create the frame.
@@ -107,11 +107,6 @@ public class GUI extends JFrame implements Runnable{
 			}
 		});
 		
-
-		btnReiniciar = new JButton("Reiniciar");
-		btnReiniciar.setBounds(569, 421, 251, 21);
-		contentPane.add(btnReiniciar);
-		btnReiniciar.setVisible(false);
 		
 		lblPuntaje = new JLabel("PUNTAJE: null");
 		lblPuntaje.setForeground(Color.WHITE);
@@ -120,12 +115,6 @@ public class GUI extends JFrame implements Runnable{
 		contentPane.add(lblPuntaje);
 		
 
-		btnReiniciar.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-				reiniciarJuego();
-			}
-
-		});
 
 
 		keyH = new KeyHandler();
@@ -218,8 +207,7 @@ public class GUI extends JFrame implements Runnable{
 		keyH = new KeyHandler();
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
-		
-		btnReiniciar.setVisible(false);
+	
 		lblPerdiste.setVisible(false);
 		iniciarHiloJuego();
 		
@@ -333,6 +321,13 @@ public class GUI extends JFrame implements Runnable{
 				aparicionEntidad(f, c,miJuego.getProximaEntidad().getEntidad().getGrafico());
 				if(miJuego.getGrilla().getCantidadComidasRestantes()==0)
 					pintarNuevoNivel();
+				else
+					if(miJuego.getNivelActual() > 5 && miJuego.getGrilla().getCantidadComidasRestantes() == 0) {
+						String message = "¡Felicitaciones! Has ganado.";
+					
+						JOptionPane.showMessageDialog(null, message);
+					
+					}
 			}
 			
 			puntajeActual=miJuego.getJugador().getPuntaje();
@@ -341,7 +336,7 @@ public class GUI extends JFrame implements Runnable{
 
 			if(miJuego.getGameStatus()) {
 				miJuego.gameOver();
-				btnReiniciar.setVisible(true);
+		
 				corriendo=false;
 				iniciaHilo=false;
 				lblPerdiste.setVisible(true);

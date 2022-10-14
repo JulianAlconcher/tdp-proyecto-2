@@ -20,6 +20,8 @@ public class Juego implements Serializable{
 	private static String archivoRanking = "ranking.tdp";
 	protected Celda proximaCeldaEntidad;
 	protected int nivelActual;
+
+
 	protected int comestiblesConsumidos;
 
 
@@ -33,32 +35,36 @@ public class Juego implements Serializable{
 		comestiblesConsumidos = 0;
 		miJugador = new Jugador(" ");
 		nuevoRanking();
-		
+
 	}
 
 	public void nuevoRanking(){
-		
+
 		try {
 			rankingOrdenado=this.leer();
 		} catch (Exception e) {
 			rankingOrdenado= new PriorityQueue<Jugador>();
 		}
 	}
-	
+
 	public int getCantFilas() {
 		return this.cantFilas;
 	}
-    
+
 	public Jugador getJugador() {
 		return this.miJugador;
 	}
-	
+
 	public int getCantColu() {
 		return this.cantColumnas;
 	}
 
 	public Grilla getGrilla(){
 		return miGrilla;
+	}
+
+	public int getNivelActual() {
+		return nivelActual;
 	}
 
 	public void mover(int d) {
@@ -71,15 +77,15 @@ public class Juego implements Serializable{
 			e.accept(vis);
 			if(!vis.getGameStatus()) { 
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila()-1, miGrilla.getCriatura().getCabeza().getCoordColu()));
-			    if (vis.getVisitoComestible()) {
-			    	if(vis.getVisitoPowerUp()) {
-				    	 miGrilla.getCriatura().setColor(vis.getColor());
-				     }
-			    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
-			    	miJugador.aumentarPuntaje(vis.getPuntaje());
-			    	proximaCeldaEntidad = miGrilla.setProximoComestible();
-			    	comestiblesConsumidos++;
-			     }
+				if (vis.getVisitoComestible()) {
+					if(vis.getVisitoPowerUp()) {
+						miGrilla.getCriatura().setColor(vis.getColor());
+					}
+					miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
+					miJugador.aumentarPuntaje(vis.getPuntaje());
+					proximaCeldaEntidad = miGrilla.setProximoComestible();
+					comestiblesConsumidos++;
+				}
 			}
 			else 
 				gameOver();
@@ -88,15 +94,15 @@ public class Juego implements Serializable{
 			e.accept(vis);
 			if(!vis.getGameStatus()) {
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila()+1, miGrilla.getCriatura().getCabeza().getCoordColu()));
-				 if (vis.getVisitoComestible()) {
-					 if(vis.getVisitoPowerUp()) {
-				    	 miGrilla.getCriatura().setColor(vis.getColor());
-				     }
-				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
-				    	miJugador.aumentarPuntaje(vis.getPuntaje());
-				    	proximaCeldaEntidad = miGrilla.setProximoComestible();
-				    	comestiblesConsumidos++;
-				     }	
+				if (vis.getVisitoComestible()) {
+					if(vis.getVisitoPowerUp()) {
+						miGrilla.getCriatura().setColor(vis.getColor());
+					}
+					miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
+					miJugador.aumentarPuntaje(vis.getPuntaje());
+					proximaCeldaEntidad = miGrilla.setProximoComestible();
+					comestiblesConsumidos++;
+				}	
 			}
 			else 
 				gameOver();
@@ -106,15 +112,15 @@ public class Juego implements Serializable{
 			e.accept(vis);
 			if(!vis.getGameStatus()) {
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila(), miGrilla.getCriatura().getCabeza().getCoordColu()+1));
-				 if (vis.getVisitoComestible()) {
-					     if(vis.getVisitoPowerUp()) {
-					    	 miGrilla.getCriatura().setColor(vis.getColor());
-					     }
-				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
-				    	miJugador.aumentarPuntaje(vis.getPuntaje());
-				    	proximaCeldaEntidad = miGrilla.setProximoComestible();
-				    	comestiblesConsumidos++;
-				     }
+				if (vis.getVisitoComestible()) {
+					if(vis.getVisitoPowerUp()) {
+						miGrilla.getCriatura().setColor(vis.getColor());
+					}
+					miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
+					miJugador.aumentarPuntaje(vis.getPuntaje());
+					proximaCeldaEntidad = miGrilla.setProximoComestible();
+					comestiblesConsumidos++;
+				}
 			}
 			else 
 				gameOver();
@@ -123,22 +129,22 @@ public class Juego implements Serializable{
 			e.accept(vis);
 			if(!vis.getGameStatus()) {
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila(), miGrilla.getCriatura().getCabeza().getCoordColu()-1));
-				 if (vis.getVisitoComestible()) {
-					 if(vis.getVisitoPowerUp()) {
-				    	 miGrilla.getCriatura().setColor(vis.getColor());
-				     }
-				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
-				    	miJugador.aumentarPuntaje(vis.getPuntaje());
-				    	proximaCeldaEntidad = miGrilla.setProximoComestible();
-				    	comestiblesConsumidos++;
-				    	
-				     }
+				if (vis.getVisitoComestible()) {
+					if(vis.getVisitoPowerUp()) {
+						miGrilla.getCriatura().setColor(vis.getColor());
+					}
+					miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
+					miJugador.aumentarPuntaje(vis.getPuntaje());
+					proximaCeldaEntidad = miGrilla.setProximoComestible();
+					comestiblesConsumidos++;
+
+				}
 			}
 			else 
 				gameOver();
 		}
 	}
-	
+
 	public int getComestiblesConsumidos() {
 		return comestiblesConsumidos;
 	}
@@ -158,16 +164,19 @@ public class Juego implements Serializable{
 		} catch (Exception e) {e.printStackTrace();
 		}
 		gameOver = true;
-		
+
 
 	}
 
 	public void aumentarNivel() {
-		nivelActual++;
-		this.miGrilla = new Grilla(cantFilas, cantColumnas,"Nivel" + nivelActual + ".txt");
-		proximaCeldaEntidad = miGrilla.setProximoComestible();
-		System.out.println("Nivel" + nivelActual + ".txt");
-		
+		if( nivelActual < 5 ) {
+			nivelActual++;
+
+			this.miGrilla = new Grilla(cantFilas, cantColumnas,"Nivel" + nivelActual + ".txt");
+			proximaCeldaEntidad = miGrilla.setProximoComestible();
+			System.out.println("Nivel" + nivelActual + ".txt");
+		}
+
 	}
 	public boolean getGameStatus() {
 		return gameOver;
@@ -179,7 +188,7 @@ public class Juego implements Serializable{
 	}
 
 	public void crearNuevoNivel() {
-		
+
 	}
 
 	public void setEnMovimiento(boolean enMovimiento) {
@@ -187,27 +196,27 @@ public class Juego implements Serializable{
 	}
 
 	public void addJugador(Jugador j) {
-	rankingOrdenado.add(j);
-    }
-	
+		rankingOrdenado.add(j);
+	}
+
 	public void guardar() throws Exception {
 		FileOutputStream file = new FileOutputStream(Juego.archivoRanking);
-	    ObjectOutputStream out = new ObjectOutputStream(file);
-	    out.writeObject(rankingOrdenado);
-	    out.close();
-	    file.close();
+		ObjectOutputStream out = new ObjectOutputStream(file);
+		out.writeObject(rankingOrdenado);
+		out.close();
+		file.close();
 	}
-	
+
 	public PriorityQueue<Jugador> leer() throws Exception {
-	    FileInputStream file = new FileInputStream(Juego.archivoRanking);
-	    ObjectInputStream in = new ObjectInputStream(file);
-	    @SuppressWarnings("unchecked")
-	    PriorityQueue<Jugador> top = (PriorityQueue<Jugador>) in.readObject();
-	    in.close();
-	    file.close();
-	    return top;
+		FileInputStream file = new FileInputStream(Juego.archivoRanking);
+		ObjectInputStream in = new ObjectInputStream(file);
+		@SuppressWarnings("unchecked")
+		PriorityQueue<Jugador> top = (PriorityQueue<Jugador>) in.readObject();
+		in.close();
+		file.close();
+		return top;
 	}
-	
+
 	public String stringTopJugadores(PriorityQueue<Jugador> r) {
 		String retorno = "";
 		int contador = 0;
@@ -221,7 +230,7 @@ public class Juego implements Serializable{
 		}
 		return retorno;
 	}
-	
+
 
 }
 
