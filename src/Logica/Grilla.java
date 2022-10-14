@@ -22,21 +22,23 @@ public class Grilla{
 	private int direccion;
 	private LinkedList<Celda> entidadesComestibles;
 	protected boolean comio;
+	protected String nivelActual;
 	
 	/**
 	 * Constructor Grilla, crea una grilla de [filas][columnas] de tamaño
 	 * @param filas: cantidad de filas
 	 * @param columnas: cantidad de columnas
 	 */
-	public Grilla (int filas,int columnas) {
+	public Grilla (int filas,int columnas,String nivel) {
 		this.comio = false;
 		this.cantColumnas = 20;
 		this.cantFilas = 20;
 		entidadesComestibles= new LinkedList<Celda>();
-		System.out.println(entidadesComestibles.size());
+
 		tablero = new Celda [filas][columnas];
 		mapaCeldasNumeros = new int[filas][columnas];
 		celdasGraficas = new CeldaGrafica[18];
+		nivelActual = nivel;
 		for (int i = 0; i < cantFilas; i++) {
 			for(int j = 0; j < cantColumnas; j++) {
 				tablero[i][j] = new Celda(i,j);
@@ -185,18 +187,22 @@ public class Grilla{
 
 
 			prox = entidadesComestibles.remove(randomComestible);
-
 			tablero[prox.getCoordFila()][prox.getCoordColu()] = prox;
 		}
-		System.out.println(entidadesComestibles.size());
 		return prox;
 	}
+
+	public int getCantidadComidasRestantes() {
+		System.out.println(entidadesComestibles.size());
+		return entidadesComestibles.size();
+	}
+
 
 	public void cargarMapa() {
 
 		try {
 
-			InputStream is = Grilla.class.getClassLoader().getResourceAsStream("Nivel1.txt");
+			InputStream is = Grilla.class.getClassLoader().getResourceAsStream(nivelActual);
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
 			int columna = 0;
@@ -221,8 +227,6 @@ public class Grilla{
 					}
 					break;
 					case 2 : {
-						//							tablero[fila][columna].setEntidad(new AlimentoPizza(fila,columna));
-						//							tablero[fila][columna].setHabitable(false);
 						Celda c = new Celda(fila,columna);
 						c.setEntidad(new AlimentoPizza(fila,columna));
 						entidadesComestibles.add(c);
@@ -307,7 +311,7 @@ public class Grilla{
 
 	}
 
-
+	
 	public CeldaGrafica[] getCeldasGraficas() {
 		return celdasGraficas;
 	}

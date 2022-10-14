@@ -25,10 +25,12 @@ public class Criatura extends Entidad{
 		return cola;
 	}
 	
-	public void aumentarCola(int i, int j,int cant) {
-		Celda aumenta=new Celda(i,j);
-		celdas.add(aumenta);
-		cola=aumenta;
+	public void aumentarCola(int f, int c,int cant) {
+		for(int i=0; i<cant; i++) {
+			Celda aumenta=new Celda(f,c);
+			celdas.add(aumenta);
+			cola=aumenta;
+		}
 	}
 	
 	public int getTamanio() {
@@ -63,14 +65,6 @@ public class Criatura extends Entidad{
 		celdas.addFirst(proxCel);
 	
 	}
-//	 public void move(Cell nextCell) {
-//	        Cell tail = snake.removeLast();
-//	        tail.setCelltype("Empty");
-//	        this.head = nextCell;
-//	        nextCell.setCelltype("Snake");
-//	        snake.addFirst(nextCell);
-//
-//	    }
 	
 	public LinkedList<Celda> getLista(){
 		return celdas;

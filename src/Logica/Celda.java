@@ -1,7 +1,5 @@
 package Logica;
 
-import java.io.Serializable;
-
 public class Celda{
 	private Integer coordFila;
 	private Integer coordColu;

@@ -7,12 +7,14 @@ public class VisitorHandler implements Visitor{
 	private boolean visitoComestible=false;
 	private boolean visitoPowerUp=false;
 	private int color;
+	private int tamanio;
 
 	
 	@Override
 	public void visit(Alimento alimento) {
 		visitoComestible=true;
 		puntaje += alimento.getPuntaje();
+		setTamanio(alimento.getTamanio());
 		System.out.println("visit alimentoooooooooooooo");
 		
 	}
@@ -30,6 +32,7 @@ public class VisitorHandler implements Visitor{
 		setVisitoPowerUp(true);
 		setColor(powerUp.getPower());
 		puntaje+=powerUp.getPuntaje();
+		setTamanio(powerUp.getTamanio());
 		System.out.println("visitr de power UUUUUUUUUUPPPPP");
 	}
 	
@@ -101,6 +104,14 @@ public class VisitorHandler implements Visitor{
 
 	public void setColor(int color) {
 		this.color = color;
+	}
+
+	public int getTamanio() {
+		return tamanio;
+	}
+
+	public void setTamanio(int tamanio) {
+		this.tamanio = tamanio;
 	}
 
 

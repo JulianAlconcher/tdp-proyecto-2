@@ -19,17 +19,20 @@ public class Juego implements Serializable{
 	private PriorityQueue<Jugador> rankingOrdenado;
 	private static String archivoRanking = "ranking.tdp";
 	protected Celda proximaCeldaEntidad;
+	protected int nivelActual;
+	protected int comestiblesConsumidos;
 
 
 	public Juego() {
 
 		this.cantColumnas = 20;
 		this.cantFilas = 20;
-		this.miGrilla = new Grilla(cantFilas, cantColumnas);
+		this.miGrilla = new Grilla(cantFilas, cantColumnas,"Nivel1.txt");
 		proximaCeldaEntidad = miGrilla.setProximoComestible();
+		nivelActual = 1;
+		comestiblesConsumidos = 0;
 		miJugador = new Jugador(" ");
 		nuevoRanking();
-		
 		
 	}
 
@@ -72,9 +75,10 @@ public class Juego implements Serializable{
 			    	if(vis.getVisitoPowerUp()) {
 				    	 miGrilla.getCriatura().setColor(vis.getColor());
 				     }
-			    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
+			    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
 			    	miJugador.aumentarPuntaje(vis.getPuntaje());
 			    	proximaCeldaEntidad = miGrilla.setProximoComestible();
+			    	comestiblesConsumidos++;
 			     }
 			}
 			else 
@@ -88,9 +92,10 @@ public class Juego implements Serializable{
 					 if(vis.getVisitoPowerUp()) {
 				    	 miGrilla.getCriatura().setColor(vis.getColor());
 				     }
-				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
+				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	proximaCeldaEntidad = miGrilla.setProximoComestible();
+				    	comestiblesConsumidos++;
 				     }	
 			}
 			else 
@@ -105,9 +110,10 @@ public class Juego implements Serializable{
 					     if(vis.getVisitoPowerUp()) {
 					    	 miGrilla.getCriatura().setColor(vis.getColor());
 					     }
-				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
+				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	proximaCeldaEntidad = miGrilla.setProximoComestible();
+				    	comestiblesConsumidos++;
 				     }
 			}
 			else 
@@ -121,9 +127,10 @@ public class Juego implements Serializable{
 					 if(vis.getVisitoPowerUp()) {
 				    	 miGrilla.getCriatura().setColor(vis.getColor());
 				     }
-				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
+				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), vis.getTamanio());
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	proximaCeldaEntidad = miGrilla.setProximoComestible();
+				    	comestiblesConsumidos++;
 				    	
 				     }
 			}
@@ -132,6 +139,14 @@ public class Juego implements Serializable{
 		}
 	}
 	
+	public int getComestiblesConsumidos() {
+		return comestiblesConsumidos;
+	}
+
+	public void setComestiblesConsumidos(int comestiblesConsumidos) {
+		this.comestiblesConsumidos = comestiblesConsumidos;
+	}
+
 	public Celda getProximaEntidad() {
 		return proximaCeldaEntidad;
 	}
@@ -147,6 +162,12 @@ public class Juego implements Serializable{
 
 	}
 
+	public void aumentarNivel() {
+		int nivel = nivelActual+1;
+		this.miGrilla = new Grilla(cantFilas, cantColumnas,"Nivel" + nivel + ".txt");
+		proximaCeldaEntidad = miGrilla.setProximoComestible();
+		
+	}
 	public boolean getGameStatus() {
 		return gameOver;
 	}
@@ -156,6 +177,9 @@ public class Juego implements Serializable{
 		return enMovimiento;
 	}
 
+	public void crearNuevoNivel() {
+		
+	}
 
 	public void setEnMovimiento(boolean enMovimiento) {
 		this.enMovimiento = enMovimiento;

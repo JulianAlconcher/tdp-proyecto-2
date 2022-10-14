@@ -6,8 +6,9 @@ public class AlimentoCoca extends Alimento {
 	public AlimentoCoca(int f,int c) {
 		this.col=c;
 		this.fila=f;
-		this.puntaje=70;
+		this.puntaje=45;
 		this.grafico=5;
+		tamanio = 3;
 	}
 	
 	

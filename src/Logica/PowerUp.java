@@ -2,17 +2,15 @@ package Logica;
 
 public abstract class PowerUp extends Entidad{
 
-     int fila;
-     int col;
-     int power;
-     int puntaje;
+     protected int fila;
+     protected int col;
+     protected int power;
+     protected int puntaje;
+     protected final int tamanio=3;
 	
-//	public PowerUp(int f, int c) {
-//		fila=f;
-//		col=c;
-//		grafico=3;
-//		// TODO Auto-generated constructor stub
-//	}
+	public int getTamanio() {
+		return tamanio;
+	}
 
 	public int getPower() {
 		return power;

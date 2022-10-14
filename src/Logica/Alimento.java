@@ -6,11 +6,20 @@ public abstract class Alimento extends Entidad {
 	protected int fila;
 	protected int col;
 	protected int puntaje;
+	protected int tamanio;
 	
 //		public Alimento() {
 //		fila=f;
 //		col=c;
 //	}
+
+		public int getTamanio() {
+			return tamanio;
+		}
+
+		public void setTamanio(int tamanio) {
+			this.tamanio = tamanio;
+		}
 
 		public abstract void visit(Criatura criatura);
 

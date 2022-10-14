@@ -1,7 +1,6 @@
 package GUI;
 
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
@@ -12,7 +11,6 @@ import javax.swing.border.EmptyBorder;
 import Logica.Celda;
 import Logica.CeldaGrafica;
 import Logica.Juego;
-import Logica.Jugador;
 import Logica.Reloj;
 
 import javax.swing.JLabel;
@@ -22,10 +20,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
-
 import java.awt.event.ActionListener;
-import java.util.PriorityQueue;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -241,7 +236,6 @@ public class GUI extends JFrame implements Runnable{
 
 				matrizGrafica[i][j] = miJuego.getGrilla().getCelda(i, j).getCeldaGrafica();
 				ImageIcon imagen = new ImageIcon();
-				int numeroCelda = miJuego.getGrilla().getNumeroMapa(i, j);
 				celdasG = miJuego.getGrilla().getCeldasGraficas();
 				imagen = celdasG[miJuego.getGrilla().getCelda(i,j).getEntidad().getGrafico()].getGrafico();
 				matrizGrafica[i][j].setIcon(imagen);
@@ -312,15 +306,16 @@ public class GUI extends JFrame implements Runnable{
 	
 	}
 
-	/**
-	private void inciarHiloTimer() {
-		if (iniciaHilo==true) {
-		System.out.println("Hola");
-		Reloj miReloj= new Reloj(label);
-		miReloj.start();
-		}
-} */
-
+	public void pintarNuevoNivel() {
+		miJuego.aumentarNivel();
+		panelJuego = new JPanel();
+		panelJuego.setBounds(8, 10, 551, 551);
+		contentPane.add(panelJuego);
+		panelJuego.setBackground(Color.GRAY);
+		panelJuego.setLayout(new GridLayout(miJuego.getCantFilas(), miJuego.getCantColu(), 0, 0));
+		matrizGrafica = new CeldaGrafica[20][20];
+		pintarMatrizG();
+	}
 
 	@SuppressWarnings("static-access")
 	public void run() {
@@ -336,6 +331,8 @@ public class GUI extends JFrame implements Runnable{
 				int f = miJuego.getProximaEntidad().getCoordFila();
 				int c = miJuego.getProximaEntidad().getCoordColu();
 				aparicionEntidad(f, c,miJuego.getProximaEntidad().getEntidad().getGrafico());
+				if(miJuego.getGrilla().getCantidadComidasRestantes()==0)
+					pintarNuevoNivel();
 			}
 			
 			puntajeActual=miJuego.getJugador().getPuntaje();

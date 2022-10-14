@@ -6,8 +6,9 @@ public class AlimentoPapas extends Alimento {
 	public AlimentoPapas(int f,int c) {
 		this.col=c;
 		this.fila=f;
-		this.puntaje=10;
+		this.puntaje=30;
 		this.grafico=4;
+		tamanio = 5;
 	}
 	
 	@Override
