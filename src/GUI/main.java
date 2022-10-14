@@ -8,6 +8,7 @@ public class main {
 		
 		miSplashScreen.initialize();
 		
+		
 		GUI miGUI= new GUI();
 		
 		miGUI.setVisible(true);

@@ -37,6 +37,7 @@ public class GUI extends JFrame implements Runnable{
 	private JPanel contentPane;
 	private JPanel panelJuego;
 	private Juego miJuego;
+	private final int velocidad = 150;
 	public static JLabel label;
 	public static int segundos=0,minutos=0;
 	Thread hiloJuego;
@@ -87,12 +88,8 @@ public class GUI extends JFrame implements Runnable{
 		JButton btnNewButton = new JButton("JUGAR");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String name = JOptionPane.showInputDialog("Ingrese su nombre por favor");
-				JOptionPane.showMessageDialog(null, "Hello " + name);
+				iniciarJuego();
 				btnNewButton.setFocusable(false);
-				miJuego.getJugador().setNombre(name);
-				
-				ready = true;
 			}
 		});
 		btnNewButton.setBounds(569, 492, 251, 69);
@@ -104,9 +101,10 @@ public class GUI extends JFrame implements Runnable{
 		btnTopJugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String name = miJuego.getTop().stringTopJugadores(miJuego.getTop().leer());
-					JOptionPane.showMessageDialog(null, name);
-					System.out.println(name);
+					String message = miJuego.stringTopJugadores(miJuego.leer());
+					System.out.println(miJuego.leer().size());
+					JOptionPane.showMessageDialog(null, message);
+					System.out.println("TOP JUGADORES: " + message);
 				} catch (Exception e1) {e1.printStackTrace();
 				}
 				
@@ -309,7 +307,6 @@ public class GUI extends JFrame implements Runnable{
 		lblImagenTitulo.setIcon(icon);
 		
 		
-		
 		miReloj.start();
 	}
 
@@ -334,10 +331,14 @@ public class GUI extends JFrame implements Runnable{
 			pintarSnake();
 			puntajeActual=miJuego.getJugador().getPuntaje();
 			lblPuntaje.setText("PUNTAJE= "+ puntajeActual);
-			try {hiloJuego.sleep(150);} catch (InterruptedException e) {e.printStackTrace();}	
+			try {hiloJuego.sleep(velocidad);} catch (InterruptedException e) {e.printStackTrace();}	
 
 			if(miJuego.getGameStatus()) {
-				miJuego.gameOver();
+//				miJuego.gameOver();
+				try {
+					miJuego.guardar();
+				} catch (Exception e) {e.printStackTrace();
+				}
 				btnReiniciar.setVisible(true);
 				corriendo=false;
 				iniciaHilo=false;
@@ -366,6 +367,15 @@ public class GUI extends JFrame implements Runnable{
 			miJuego.mover(-2);
 		}
 	}
+	
+	public void iniciarJuego() {
+		String name = JOptionPane.showInputDialog("Ingrese su nombre por favor");
+		JOptionPane.showMessageDialog(null, "Hello " + name);
+		miJuego.getJugador().setNombre(name);
+		miJuego.addJugador(miJuego.getJugador());
+		
+		ready = true;
+		}
 }
 
 

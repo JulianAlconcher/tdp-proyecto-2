@@ -1,7 +1,15 @@
 package Logica;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Juego {
+@SuppressWarnings("serial")
+public class Juego implements Serializable{
 
 	private Grilla miGrilla;
 	private int cantFilas;
@@ -9,7 +17,8 @@ public class Juego {
 	private Jugador miJugador;
 	private boolean gameOver = false;
 	private boolean enMovimiento = false;
-	private TopJugadores miTop;
+	private List<Jugador> ranking;
+	private static String archivoRanking = "ranking.tdp";
 
 
 	public Juego() {
@@ -19,8 +28,8 @@ public class Juego {
 		this.miGrilla = new Grilla(cantFilas, cantColumnas);
 		miGrilla.cargarMapa();
 		miGrilla.setProximoComestible();
-		miTop = new TopJugadores();
 		miJugador = new Jugador(" ");
+		ranking = new ArrayList<Jugador>();
 		
 	}
 
@@ -108,12 +117,13 @@ public class Juego {
 	}
 
 	public void gameOver() {
-		gameOver = true;
 		try {
-			miTop.guardar();
+			this.guardar();
+			System.out.println("Guardando...");
 		} catch (Exception e) {e.printStackTrace();
 		}
-		System.out.println("GUARDANDO...");
+		gameOver = true;
+		
 
 	}
 
@@ -131,10 +141,36 @@ public class Juego {
 		this.enMovimiento = enMovimiento;
 	}
 
-	public TopJugadores getTop() {
-		return miTop;
+	public void addJugador(Jugador j) {
+		ranking.add(j);
 	}
 	
+	public void guardar() throws Exception {
+		FileOutputStream file = new FileOutputStream(Juego.archivoRanking);
+	    ObjectOutputStream out = new ObjectOutputStream(file);
+	    out.writeObject(ranking);
+	    out.close();
+	    file.close();
+	}
+	
+	public ArrayList<Jugador> leer() throws Exception {
+	    FileInputStream file = new FileInputStream(Juego.archivoRanking);
+	    ObjectInputStream in = new ObjectInputStream(file);
+	    @SuppressWarnings("unchecked")
+	    ArrayList<Jugador> top = (ArrayList<Jugador>) in.readObject();
+	    in.close();
+	    file.close();
+	    return top;
+	}
+	
+	public String stringTopJugadores(ArrayList<Jugador> r) {
+		String retorno = "";
+		for(Jugador j: r) {
+			retorno = (retorno + "Nombre: " + j.getNombre() + " " + "Puntaje: " +  j.getPuntaje());
+			retorno = retorno +"\n" ;
+		}
+		return retorno;
+	}
 
 }
 
