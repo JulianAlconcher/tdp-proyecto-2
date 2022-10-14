@@ -1,6 +1,8 @@
 package Logica;
 
-public class Celda {
+import java.io.Serializable;
+
+public class Celda{
 	private Integer coordFila;
 	private Integer coordColu;
 	private Entidad entidad;

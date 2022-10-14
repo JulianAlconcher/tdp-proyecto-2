@@ -5,8 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.PriorityQueue;
 
 @SuppressWarnings("serial")
 public class Juego implements Serializable{
@@ -17,7 +16,7 @@ public class Juego implements Serializable{
 	private Jugador miJugador;
 	private boolean gameOver = false;
 	private boolean enMovimiento = false;
-	private List<Jugador> ranking;
+	private PriorityQueue<Jugador> rankingOrdenado;
 	private static String archivoRanking = "ranking.tdp";
 
 
@@ -36,9 +35,9 @@ public class Juego implements Serializable{
 	public void nuevoRanking(){
 		
 		try {
-			ranking=this.leer();
+			rankingOrdenado=this.leer();
 		} catch (Exception e) {
-        ranking= new ArrayList<Jugador>();
+			rankingOrdenado= new PriorityQueue<Jugador>();
 		}
 	}
 	
@@ -150,34 +149,41 @@ public class Juego implements Serializable{
 	}
 
 	public void addJugador(Jugador j) {
-	ranking.add(j);
+	rankingOrdenado.add(j);
     }
+	
 	public void guardar() throws Exception {
 		FileOutputStream file = new FileOutputStream(Juego.archivoRanking);
 	    ObjectOutputStream out = new ObjectOutputStream(file);
-	    out.writeObject(ranking);
+	    out.writeObject(rankingOrdenado);
 	    out.close();
 	    file.close();
 	}
 	
-	public ArrayList<Jugador> leer() throws Exception {
+	public PriorityQueue<Jugador> leer() throws Exception {
 	    FileInputStream file = new FileInputStream(Juego.archivoRanking);
 	    ObjectInputStream in = new ObjectInputStream(file);
 	    @SuppressWarnings("unchecked")
-	    ArrayList<Jugador> top = (ArrayList<Jugador>) in.readObject();
+	    PriorityQueue<Jugador> top = (PriorityQueue<Jugador>) in.readObject();
 	    in.close();
 	    file.close();
 	    return top;
 	}
 	
-	public String stringTopJugadores(ArrayList<Jugador> r) {
+	public String stringTopJugadores(PriorityQueue<Jugador> r) {
 		String retorno = "";
-		for(Jugador j: r) {
-			retorno = (retorno + "Nombre: " + j.getNombre() + " " + "Puntaje: " +  j.getPuntaje());
+		int contador = 0;
+		while(!r.isEmpty()) {
+			contador++;
+			Jugador aux = r.remove();
+			retorno = (retorno + "Nombre: " + aux.getNombre() + " " + "Puntaje: " +  aux.getPuntaje());
 			retorno = retorno +"\n" ;
+			if(contador==5)
+				break;
 		}
 		return retorno;
 	}
+	
 
 }
 

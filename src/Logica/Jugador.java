@@ -25,7 +25,7 @@ public class Jugador implements Comparable<Jugador>,Serializable{
 		this.nombre = nombre;
 	}
 
-	public int getPuntaje() {
+	public Integer getPuntaje() {
 		return puntaje;
 	}
 
@@ -35,6 +35,7 @@ public class Jugador implements Comparable<Jugador>,Serializable{
 
 	@Override
 	public int compareTo(Jugador o) {
-		return puntaje.compareTo(o.getPuntaje());
+		return o.getPuntaje().compareTo(puntaje);
 	}
+
 }

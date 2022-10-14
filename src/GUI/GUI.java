@@ -334,11 +334,7 @@ public class GUI extends JFrame implements Runnable{
 			try {hiloJuego.sleep(velocidad);} catch (InterruptedException e) {e.printStackTrace();}	
 
 			if(miJuego.getGameStatus()) {
-//				miJuego.gameOver();
-				try {
-					miJuego.guardar();
-				} catch (Exception e) {e.printStackTrace();
-				}
+				miJuego.gameOver();
 				btnReiniciar.setVisible(true);
 				corriendo=false;
 				iniciaHilo=false;
@@ -370,10 +366,9 @@ public class GUI extends JFrame implements Runnable{
 	
 	public void iniciarJuego() {
 		String name = JOptionPane.showInputDialog("Ingrese su nombre por favor");
-		JOptionPane.showMessageDialog(null, "Hello " + name);
+		JOptionPane.showMessageDialog(null, "Hola " + name);
 		miJuego.getJugador().setNombre(name);
 		miJuego.addJugador(miJuego.getJugador());
-		
 		ready = true;
 		}
 }
