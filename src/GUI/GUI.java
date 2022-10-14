@@ -122,15 +122,6 @@ public class GUI extends JFrame implements Runnable{
 		this.setFocusable(true);
 
 		
-
-
-//		JLabel lblTitulo = new JLabel("SNAKE");
-//		lblTitulo.setVerticalAlignment(SwingConstants.TOP);
-//		lblTitulo.setFont(new Font("Verdana", Font.BOLD, 20));
-//		lblTitulo.setForeground(Color.WHITE);
-//		lblTitulo.setBounds(653, 10, 109, 51);
-//		contentPane.add(lblTitulo);
-
 		JLabel lblTiempo = new JLabel("TIEMPO:");
 		lblTiempo.setForeground(Color.WHITE);
 		lblTiempo.setFont(new Font("Verdana", Font.BOLD, 20));
@@ -143,35 +134,6 @@ public class GUI extends JFrame implements Runnable{
 		label.setBounds(700, 219, 109, 27);
 		contentPane.add(label);
 
-//		JButton btnIniciar = new JButton("INICIAR");
-//		btnIniciar.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				if (e.getSource()==btnIniciar) {
-//					if (corriendo==false) {
-//						iniciaHilo=true;
-//						corriendo=true;
-//						iniciarHiloJuego();
-//					}
-//
-//				}
-//			}
-//		}
-//				);
-//		btnIniciar.setBounds(581, 273, 85, 21);
-//		contentPane.add(btnIniciar);
-//
-//		JButton btnDetener = new JButton("DETENER");
-//		btnDetener.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				if (e.getSource()==btnDetener) {
-//					corriendo=false;
-//					iniciaHilo=false;
-//				}
-//			}
-//		});
-//		btnDetener.setBounds(689, 273, 85, 21);
-//		contentPane.add(btnDetener);
-
 		lblPerdiste = new JLabel("¡PERDISTE!");
 		lblPerdiste.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPerdiste.setForeground(Color.WHITE);
@@ -182,39 +144,7 @@ public class GUI extends JFrame implements Runnable{
 
 		iniciarHiloJuego();
 	}
-	
-	private void reiniciarJuego() {
-		lblPuntaje.setVisible(false);
-		puntajeActual = 0;
-		despintarSnake();
-		panelJuego = new JPanel();
-		panelJuego.setBounds(8, 10, 551, 551);
-		contentPane.add(panelJuego);
-		panelJuego.setBackground(Color.GRAY);
-		panelJuego.setLayout(new GridLayout(miJuego.getCantFilas(), miJuego.getCantColu(), 0, 0));
 		
-		lblPuntaje = new JLabel("PUNTAJE= "+ puntajeActual);
-		lblPuntaje.setForeground(Color.WHITE);
-		lblPuntaje.setFont(new Font("Verdana", Font.BOLD, 20));
-		lblPuntaje.setBounds(569, 58, 205, 21);
-		contentPane.add(lblPuntaje);
-		
-		miJuego = new Juego();
-		matrizGrafica = new CeldaGrafica[20][20];
-		pintarMatrizG();
-		
-		
-		keyH = new KeyHandler();
-		this.addKeyListener(keyH);
-		this.setFocusable(true);
-	
-		lblPerdiste.setVisible(false);
-		iniciarHiloJuego();
-		
-		
-	}
-
-	
 	/**
 	 * Inicializa el mapa
 	 */
@@ -249,16 +179,6 @@ public class GUI extends JFrame implements Runnable{
 
 			if(miJuego.isEnMovimiento())
 				despintarBloque(miJuego.getGrilla().getCriatura().getCola().getCoordFila(),miJuego.getGrilla().getCriatura().getCola().getCoordColu());
-		}
-	}
-	
-	private void despintarSnake() {
-		for( Celda c : miJuego.getGrilla().getCriatura().getLista()) {
-			int fila = c.getCoordFila();
-			int colu = c.getCoordColu();
-			celdasG = miJuego.getGrilla().getCeldasGraficas();
-			matrizGrafica[miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila()][miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu()].setIcon(celdasG[0].getGrafico());
-			matrizGrafica[fila][colu].setIcon(celdasG[0].getGrafico());
 		}
 	}
 
@@ -319,30 +239,27 @@ public class GUI extends JFrame implements Runnable{
 				int f = miJuego.getProximaEntidad().getCoordFila();
 				int c = miJuego.getProximaEntidad().getCoordColu();
 				aparicionEntidad(f, c,miJuego.getProximaEntidad().getEntidad().getGrafico());
-				if(miJuego.getGrilla().getCantidadComidasRestantes()==0)
+				if(miJuego.getGrilla().getCantidadComidasRestantes()==0) {
 					pintarNuevoNivel();
-				else
-					if(miJuego.getNivelActual() > 5 && miJuego.getGrilla().getCantidadComidasRestantes() == 0) {
-						String message = "¡Felicitaciones! Has ganado.";
 					
-						JOptionPane.showMessageDialog(null, message);
-					
-					}
+				}
+			}
+			if(miJuego.getNivelActual() == 5 && miJuego.getGrilla().getCantidadComidasRestantes() == 0) {
+					panelJuego.setVisible(false);
+					corriendo = false;
+					iniciaHilo = false;
+					hiloJuego = null;
+					String message = "¡Felicitaciones! Has ganado.";
+					JOptionPane.showMessageDialog(null, message);
+					System.exit(0);
 			}
 			
 			puntajeActual=miJuego.getJugador().getPuntaje();
 			lblPuntaje.setText("PUNTAJE= "+ puntajeActual);
 			try {hiloJuego.sleep(velocidad);} catch (InterruptedException e) {e.printStackTrace();}	
 
-			if(miJuego.getGameStatus()) {
-				miJuego.gameOver();
-		
-				corriendo=false;
-				iniciaHilo=false;
-				lblPerdiste.setVisible(true);
-				hiloJuego = null;
-
-			}
+			if(miJuego.getGameStatus()) 
+				GameOverVisual();			
 		}
 	}
 	public void update() {
@@ -374,6 +291,13 @@ public class GUI extends JFrame implements Runnable{
 		Reloj miReloj= new Reloj(label);
 		miReloj.start();
 		}
+	
+	public void GameOverVisual() {
+		corriendo=false;
+		iniciaHilo=false;
+		lblPerdiste.setVisible(true);
+		hiloJuego = null;
+	}
 }
 
 
