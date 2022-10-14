@@ -3,9 +3,9 @@ package Logica;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class Jugador implements Comparable<Jugador>,Serializable {
+public class Jugador implements Comparable<Jugador>,Serializable{
 
-	private int puntaje;
+	private Integer puntaje;
 	private String nombre;
 	
 	public Jugador(String n) {
@@ -35,7 +35,6 @@ public class Jugador implements Comparable<Jugador>,Serializable {
 
 	@Override
 	public int compareTo(Jugador o) {
-		Integer puntajeLocal = puntaje;
-		return puntajeLocal.compareTo(o.getPuntaje());
+		return puntaje.compareTo(o.getPuntaje());
 	}
 }

@@ -29,10 +29,18 @@ public class Juego implements Serializable{
 		miGrilla.cargarMapa();
 		miGrilla.setProximoComestible();
 		miJugador = new Jugador(" ");
-		ranking = new ArrayList<Jugador>();
+		nuevoRanking();
 		
 	}
 
+	public void nuevoRanking(){
+		
+		try {
+			ranking=this.leer();
+		} catch (Exception e) {
+        ranking= new ArrayList<Jugador>();
+		}
+	}
 	
 	public int getCantFilas() {
 		return this.cantFilas;
@@ -142,9 +150,8 @@ public class Juego implements Serializable{
 	}
 
 	public void addJugador(Jugador j) {
-		ranking.add(j);
-	}
-	
+	ranking.add(j);
+    }
 	public void guardar() throws Exception {
 		FileOutputStream file = new FileOutputStream(Juego.archivoRanking);
 	    ObjectOutputStream out = new ObjectOutputStream(file);
