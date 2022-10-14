@@ -18,6 +18,7 @@ public class Juego implements Serializable{
 	private boolean enMovimiento = false;
 	private PriorityQueue<Jugador> rankingOrdenado;
 	private static String archivoRanking = "ranking.tdp";
+	protected Celda proximaCeldaEntidad;
 
 
 	public Juego() {
@@ -25,10 +26,10 @@ public class Juego implements Serializable{
 		this.cantColumnas = 20;
 		this.cantFilas = 20;
 		this.miGrilla = new Grilla(cantFilas, cantColumnas);
-		miGrilla.cargarMapa();
-		//miGrilla.setProximoComestible();
+		proximaCeldaEntidad = miGrilla.setProximoComestible();
 		miJugador = new Jugador(" ");
 		nuevoRanking();
+		
 		
 	}
 
@@ -73,7 +74,7 @@ public class Juego implements Serializable{
 				     }
 			    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 			    	miJugador.aumentarPuntaje(vis.getPuntaje());
-			    //	miGrilla.setProximoComestible();
+			    	proximaCeldaEntidad = miGrilla.setProximoComestible();
 			     }
 			}
 			else 
@@ -89,7 +90,7 @@ public class Juego implements Serializable{
 				     }
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
-				    //	miGrilla.setProximoComestible();
+				    	proximaCeldaEntidad = miGrilla.setProximoComestible();
 				     }	
 			}
 			else 
@@ -106,7 +107,7 @@ public class Juego implements Serializable{
 					     }
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
-				    //	miGrilla.setProximoComestible();
+				    	proximaCeldaEntidad = miGrilla.setProximoComestible();
 				     }
 			}
 			else 
@@ -122,13 +123,17 @@ public class Juego implements Serializable{
 				     }
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
-				    //	miGrilla.setProximoComestible();
+				    	proximaCeldaEntidad = miGrilla.setProximoComestible();
 				    	
 				     }
 			}
 			else 
 				gameOver();
 		}
+	}
+	
+	public Celda getProximaEntidad() {
+		return proximaCeldaEntidad;
 	}
 
 	public void gameOver() {

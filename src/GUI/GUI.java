@@ -196,9 +196,6 @@ public class GUI extends JFrame implements Runnable{
 		contentPane.add(lblPerdiste);
 		lblPerdiste.setVisible(false);
 
-
-
-
 		iniciarHiloJuego();
 	}
 	
@@ -289,6 +286,12 @@ public class GUI extends JFrame implements Runnable{
 	}
 
 
+	public void aparicionEntidad(int f, int c, int imagen) {
+		celdasG = miJuego.getGrilla().getCeldasGraficas();
+
+		matrizGrafica[f][c].setIcon(celdasG[imagen].getGrafico());
+	}
+	
 	public void iniciarHiloJuego() {
 		
 		contentPane.add(panelJuego);
@@ -328,6 +331,13 @@ public class GUI extends JFrame implements Runnable{
 				update();
 			
 			pintarSnake();
+			
+			if(miJuego.getGrilla().getComio()) {
+				int f = miJuego.getProximaEntidad().getCoordFila();
+				int c = miJuego.getProximaEntidad().getCoordColu();
+				aparicionEntidad(f, c,miJuego.getProximaEntidad().getEntidad().getGrafico());
+			}
+			
 			puntajeActual=miJuego.getJugador().getPuntaje();
 			lblPuntaje.setText("PUNTAJE= "+ puntajeActual);
 			try {hiloJuego.sleep(velocidad);} catch (InterruptedException e) {e.printStackTrace();}	

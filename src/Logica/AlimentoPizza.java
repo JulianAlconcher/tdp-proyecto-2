@@ -3,10 +3,12 @@ package Logica;
 public class AlimentoPizza extends Alimento {
 
 	
+	
 	public AlimentoPizza(int f,int c) {
 		this.col=c;
 		this.fila=f;
 		this.puntaje=10;
+		this.grafico = 2;
 	}
 	
 
