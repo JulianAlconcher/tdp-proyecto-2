@@ -1,20 +1,21 @@
 package Logica;
 
-public class AlimentoPizza extends Alimento {
+public class AlimentoHamburguesa extends Alimento {
 
 	
-	public AlimentoPizza(int f,int c) {
+	public AlimentoHamburguesa(int f,int c) {
 		this.col=c;
 		this.fila=f;
-		this.puntaje=10;
+		this.puntaje=99;
+		this.grafico=3;
 	}
-	
 
 	@Override
 	public void visit(Criatura criatura) {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 	@Override
 	public void visit(PowerUp powerUp) {
@@ -40,5 +41,4 @@ public class AlimentoPizza extends Alimento {
 		
 	}
 
-	
 }

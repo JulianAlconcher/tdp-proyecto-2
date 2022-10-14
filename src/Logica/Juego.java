@@ -26,7 +26,7 @@ public class Juego implements Serializable{
 		this.cantFilas = 20;
 		this.miGrilla = new Grilla(cantFilas, cantColumnas);
 		miGrilla.cargarMapa();
-		miGrilla.setProximoComestible();
+		//miGrilla.setProximoComestible();
 		miJugador = new Jugador(" ");
 		nuevoRanking();
 		
@@ -73,7 +73,7 @@ public class Juego implements Serializable{
 				     }
 			    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 			    	miJugador.aumentarPuntaje(vis.getPuntaje());
-			    	miGrilla.setProximoComestible();
+			    //	miGrilla.setProximoComestible();
 			     }
 			}
 			else 
@@ -89,7 +89,7 @@ public class Juego implements Serializable{
 				     }
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
-				    	miGrilla.setProximoComestible();
+				    //	miGrilla.setProximoComestible();
 				     }	
 			}
 			else 
@@ -106,7 +106,7 @@ public class Juego implements Serializable{
 					     }
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
-				    	miGrilla.setProximoComestible();
+				    //	miGrilla.setProximoComestible();
 				     }
 			}
 			else 
@@ -122,7 +122,7 @@ public class Juego implements Serializable{
 				     }
 				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
-				    	miGrilla.setProximoComestible();
+				    //	miGrilla.setProximoComestible();
 				    	
 				     }
 			}

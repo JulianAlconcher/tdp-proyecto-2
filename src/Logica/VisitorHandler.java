@@ -29,7 +29,7 @@ public class VisitorHandler implements Visitor{
 		visitoComestible=true;
 		setVisitoPowerUp(true);
 		setColor(powerUp.getPower());
-		puntaje+=80;
+		puntaje+=powerUp.getPuntaje();
 		System.out.println("visitr de power UUUUUUUUUUPPPPP");
 	}
 	

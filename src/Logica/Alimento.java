@@ -18,7 +18,9 @@ public abstract class Alimento extends Entidad {
 			v.visit(this);
 		}
 		
-		public abstract int getPuntaje() ;
+		public int getPuntaje() {
+			return this.puntaje;
+		}
 
 		public abstract void visit(PowerUp powerUp) ;
 

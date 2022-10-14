@@ -298,7 +298,7 @@ public class GUI extends JFrame implements Runnable{
 		pintarSnake();
 		hiloJuego = new Thread (this);
 		hiloJuego.start();
-		Reloj miReloj= new Reloj(label);
+
 		
 		JLabel lblImagenTitulo = new JLabel("");
 		lblImagenTitulo.setBounds(569, 10, 251, 113);
@@ -306,8 +306,7 @@ public class GUI extends JFrame implements Runnable{
 		ImageIcon icon= new ImageIcon(this.getClass().getResource("/imagenes/titulo.png"));
 		lblImagenTitulo.setIcon(icon);
 		
-		
-		miReloj.start();
+	
 	}
 
 	/**
@@ -370,6 +369,8 @@ public class GUI extends JFrame implements Runnable{
 		miJuego.getJugador().setNombre(name);
 		miJuego.addJugador(miJuego.getJugador());
 		ready = true;
+		Reloj miReloj= new Reloj(label);
+		miReloj.start();
 		}
 }
 

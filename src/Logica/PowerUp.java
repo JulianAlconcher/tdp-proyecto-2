@@ -42,6 +42,9 @@ public abstract class PowerUp extends Entidad{
 		
 	}
 
+	public int getPuntaje() {
+		return this.puntaje;
+	}
 	@Override
 	public void visit(Pared pared) {
 		// TODO Auto-generated method stub

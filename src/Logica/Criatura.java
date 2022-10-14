@@ -18,7 +18,7 @@ public class Criatura extends Entidad{
 		celdas.add(new Celda(i+1,j));
 		celdas.add(new Celda(i+2,j));	
 		cola = celdas.getLast();
-		color=4;
+		color=10;
 	}
 
 	public Celda getCola() {
