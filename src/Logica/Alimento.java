@@ -7,10 +7,10 @@ public abstract class Alimento extends Entidad {
 	protected int col;
 	protected int puntaje;
 	
-		public Alimento() {
+//		public Alimento() {
 //		fila=f;
 //		col=c;
-	}
+//	}
 
 		public abstract void visit(Criatura criatura);
 

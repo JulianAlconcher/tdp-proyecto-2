@@ -67,9 +67,11 @@ public class Juego implements Serializable{
 			e.accept(vis);
 			if(!vis.getGameStatus()) { 
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila()-1, miGrilla.getCriatura().getCabeza().getCoordColu()));
-			    if (vis.getVisitoComida()) {
-			    	miJugador.aumentarPuntaje(vis.getPuntaje());
-			    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+			    if (vis.getVisitoComestible()) {
+			    	if(vis.getVisitoPowerUp()) {
+				    	 miGrilla.getCriatura().setColor(vis.getColor());
+				     }
+			    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 			    	miJugador.aumentarPuntaje(vis.getPuntaje());
 			    	miGrilla.setProximoComestible();
 			     }
@@ -81,9 +83,11 @@ public class Juego implements Serializable{
 			e.accept(vis);
 			if(!vis.getGameStatus()) {
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila()+1, miGrilla.getCriatura().getCabeza().getCoordColu()));
-				 if (vis.getVisitoComida()) {
-					 miJugador.aumentarPuntaje(vis.getPuntaje());
-				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+				 if (vis.getVisitoComestible()) {
+					 if(vis.getVisitoPowerUp()) {
+				    	 miGrilla.getCriatura().setColor(vis.getColor());
+				     }
+				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.setProximoComestible();
 				     }	
@@ -96,9 +100,11 @@ public class Juego implements Serializable{
 			e.accept(vis);
 			if(!vis.getGameStatus()) {
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila(), miGrilla.getCriatura().getCabeza().getCoordColu()+1));
-				 if (vis.getVisitoComida()) {
-					 miJugador.aumentarPuntaje(vis.getPuntaje());
-				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+				 if (vis.getVisitoComestible()) {
+					     if(vis.getVisitoPowerUp()) {
+					    	 miGrilla.getCriatura().setColor(vis.getColor());
+					     }
+				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.setProximoComestible();
 				     }
@@ -110,9 +116,11 @@ public class Juego implements Serializable{
 			e.accept(vis);
 			if(!vis.getGameStatus()) {
 				miGrilla.getCriatura().avanzar(miGrilla.getCelda(miGrilla.getCriatura().getCabeza().getCoordFila(), miGrilla.getCriatura().getCabeza().getCoordColu()-1));
-				 if (vis.getVisitoComida()) {
-					 miJugador.aumentarPuntaje(vis.getPuntaje());
-				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 1);
+				 if (vis.getVisitoComestible()) {
+					 if(vis.getVisitoPowerUp()) {
+				    	 miGrilla.getCriatura().setColor(vis.getColor());
+				     }
+				    	miGrilla.getCriatura().aumentarCola(miGrilla.getCriatura().getCola().getCoordFila(),miGrilla.getCriatura().getCola().getCoordColu(), 2);
 				    	miJugador.aumentarPuntaje(vis.getPuntaje());
 				    	miGrilla.setProximoComestible();
 				    	

@@ -34,7 +34,7 @@ public class Grilla{
 		System.out.println(entidadesComestibles.size());
 		tablero = new Celda [filas][columnas];
 		mapaCeldasNumeros = new int[filas][columnas];
-		celdasGraficas = new CeldaGrafica[5];
+		celdasGraficas = new CeldaGrafica[8];
 		for (int i = 0; i < cantFilas; i++) {
 			for(int j = 0; j < cantColumnas; j++) {
 				tablero[i][j] = new Celda(i,j);
@@ -106,12 +106,24 @@ public class Grilla{
 		celdasGraficas[2].setGrafico(graficoAlimento);
 
 		celdasGraficas[3] = new CeldaGrafica();
-		ImageIcon graficoPowerUp = new ImageIcon(this.getClass().getResource("/imagenes/powerUp.png"));
+		ImageIcon graficoPowerUp = new ImageIcon(this.getClass().getResource("/imagenes/powerUpVeneno.png"));
 		celdasGraficas[3].setGrafico(graficoPowerUp);
 
 		celdasGraficas[4] = new CeldaGrafica();
 		ImageIcon graficoSnake = new ImageIcon(this.getClass().getResource("/imagenes/SnakeColorChange4.png"));
 		celdasGraficas[4].setGrafico(graficoSnake);
+		
+		celdasGraficas[5] = new CeldaGrafica();
+		ImageIcon graficoSnakeCabeza1 = new ImageIcon(this.getClass().getResource("/imagenes/SnakeHead1.png"));
+		celdasGraficas[5].setGrafico(graficoSnakeCabeza1);
+		
+		celdasGraficas[6] = new CeldaGrafica();
+		ImageIcon graficoSnake2 = new ImageIcon(this.getClass().getResource("/imagenes/SnakeColorChange2.png"));
+		celdasGraficas[6].setGrafico(graficoSnake2);
+		
+		celdasGraficas[7] = new CeldaGrafica();
+		ImageIcon graficoSnakeCabeza2 = new ImageIcon(this.getClass().getResource("/imagenes/SnakeHead2.png"));
+		celdasGraficas[7].setGrafico(graficoSnakeCabeza2);
 
 
 
@@ -165,7 +177,7 @@ public class Grilla{
 						}
 						break;
 						case 3 : {
-							tablero[fila][columna].setEntidad(new PowerUp(fila,columna));
+							tablero[fila][columna].setEntidad(new PowerUpVeneno(fila,columna));
 							tablero[fila][columna].setHabitable(false);
 			
 						}

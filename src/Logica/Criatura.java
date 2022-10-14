@@ -7,6 +7,7 @@ public class Criatura extends Entidad{
 	private Celda cabeza;
 	private int direccion;
 	private Celda cola;
+	private int color;
 	
 	
 
@@ -17,6 +18,7 @@ public class Criatura extends Entidad{
 		celdas.add(new Celda(i+1,j));
 		celdas.add(new Celda(i+2,j));	
 		cola = celdas.getLast();
+		color=4;
 	}
 
 	public Celda getCola() {
@@ -108,5 +110,13 @@ public class Criatura extends Entidad{
 	public void visit(Fondo fondo) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int getColor() {
+		return color;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
 	}
 }

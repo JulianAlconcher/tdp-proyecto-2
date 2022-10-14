@@ -265,8 +265,8 @@ public class GUI extends JFrame implements Runnable{
 			int colu = c.getCoordColu();
 			celdasG = miJuego.getGrilla().getCeldasGraficas();
 			matrizGrafica[miJuego.getGrilla().getCriatura().getLista().getLast().getCoordFila()][miJuego.getGrilla().getCriatura().getLista().getLast().getCoordColu()].setIcon(celdasG[0].getGrafico());
-			matrizGrafica[miJuego.getGrilla().getCriatura().getCabeza().getCoordFila()][miJuego.getGrilla().getCriatura().getCabeza().getCoordColu()].setIcon(new ImageIcon(this.getClass().getResource("/imagenes/SnakeHead1.png")));
-			matrizGrafica[fila][colu].setIcon(celdasG[4].getGrafico());
+			matrizGrafica[miJuego.getGrilla().getCriatura().getCabeza().getCoordFila()][miJuego.getGrilla().getCriatura().getCabeza().getCoordColu()].setIcon((celdasG[miJuego.getGrilla().getCriatura().getColor()+1].getGrafico()));                              
+			matrizGrafica[fila][colu].setIcon(celdasG[miJuego.getGrilla().getCriatura().getColor()].getGrafico());
 
 			if(miJuego.isEnMovimiento())
 				despintarBloque(miJuego.getGrilla().getCriatura().getCola().getCoordFila(),miJuego.getGrilla().getCriatura().getCola().getCoordColu());

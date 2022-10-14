@@ -4,11 +4,14 @@ public class VisitorHandler implements Visitor{
 
 	private boolean gameOver=false;
 	private int puntaje = 0;
-	private boolean visitoComida=false;
+	private boolean visitoComestible=false;
+	private boolean visitoPowerUp=false;
+	private int color;
+
 	
 	@Override
 	public void visit(Alimento alimento) {
-		visitoComida=true;
+		visitoComestible=true;
 		puntaje += alimento.getPuntaje();
 		System.out.println("visit alimentoooooooooooooo");
 		
@@ -23,7 +26,9 @@ public class VisitorHandler implements Visitor{
 	
 	@Override
 	public void visit(PowerUp powerUp) {
-		visitoComida=true;
+		visitoComestible=true;
+		setVisitoPowerUp(true);
+		setColor(powerUp.getPower());
 		puntaje+=80;
 		System.out.println("visitr de power UUUUUUUUUUPPPPP");
 	}
@@ -60,12 +65,13 @@ public class VisitorHandler implements Visitor{
 		this.gameOver = gameStatus;
 	}
 
-	public boolean getVisitoComida() {
-		return visitoComida;
+	
+	public boolean getVisitoComestible() {
+		return visitoComestible;
 	}
 	
-	public void setVisitoComida(boolean visito) {
-		this.visitoComida=visito;
+	public void setVisitoComestible(boolean visito) {
+		this.visitoComestible=visito;
 	}
 	
 	@Override
@@ -78,6 +84,23 @@ public class VisitorHandler implements Visitor{
 	public void visit(Fondo fondo) {
 		// TODO Auto-generated method stub
 		System.out.println("visist fondo");
+	}
+
+	public boolean getVisitoPowerUp() {
+		return visitoPowerUp;
+	}
+
+	public void setVisitoPowerUp(boolean visitoPowerUp) {
+		this.visitoPowerUp = visitoPowerUp;
+	}
+	
+
+	public int getColor() {
+		return color;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
 	}
 
 
