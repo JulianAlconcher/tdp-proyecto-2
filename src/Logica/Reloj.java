@@ -5,8 +5,8 @@ import javax.swing.JLabel;
 import GUI.GUI;
 public class Reloj extends Thread {
 
-	JLabel eti;
-	
+	private JLabel eti;
+	protected int x;
 	
 	public Reloj(JLabel label) {
 		this.eti=label;
@@ -28,6 +28,7 @@ public class Reloj extends Thread {
 
 	private void ejecutarHiloCronometro(int x) {
 		GUI.segundos++;
+		
 		
 		if(GUI.segundos>59) {
 			GUI.segundos=0;

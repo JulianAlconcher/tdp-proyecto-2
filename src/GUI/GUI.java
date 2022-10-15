@@ -126,7 +126,7 @@ public class GUI extends JFrame implements Runnable{
 		label.setBounds(700, 219, 109, 27);
 		contentPane.add(label);
 
-		lblPerdiste = new JLabel("¡PERDISTE!");
+		lblPerdiste = new JLabel("ï¿½PERDISTE!");
 		lblPerdiste.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPerdiste.setForeground(Color.WHITE);
 		lblPerdiste.setFont(new Font("Tahoma", Font.BOLD, 19));
@@ -159,7 +159,7 @@ public class GUI extends JFrame implements Runnable{
 
 
 	public void pintarSnake() {
-
+		
 		for( Celda c : miJuego.getGrilla().getCriatura().getLista()) {
 			int fila = c.getCoordFila();
 			int colu = c.getCoordColu();
@@ -208,7 +208,7 @@ public class GUI extends JFrame implements Runnable{
 		lblNivel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNivel.setBounds(569, 272, 251, 58);
 		contentPane.add(lblNivel);
-
+		
 
 	}
 
@@ -232,6 +232,15 @@ public class GUI extends JFrame implements Runnable{
 				update();
 
 			pintarSnake();
+			
+			if(miJuego.getNivelActual() == 5 && miJuego.getGrilla().getCantidadComidasRestantes() == 0) {
+				panelJuego.setVisible(false);
+				hiloJuego = null;
+				iniciaHilo=false;
+				String message = "Â¡Felicitaciones! Has ganado.";
+				JOptionPane.showMessageDialog(null, message);
+				System.exit(0);
+			}
 
 			if(miJuego.getGrilla().getComio()) {
 				int f = miJuego.getProximaEntidad().getCoordFila();
@@ -242,17 +251,15 @@ public class GUI extends JFrame implements Runnable{
 					lblNivel.setText("Nivel: " + miJuego.getNivelActual());
 				}
 			}
-			if(miJuego.getNivelActual() == 5 && miJuego.getGrilla().getCantidadComidasRestantes() == 0) {
-				panelJuego.setVisible(false);
-				iniciaHilo=false;
-				String message = "¡Felicitaciones! Has ganado.";
-				JOptionPane.showMessageDialog(null, message);
-				System.exit(0);
-			}
+
 
 			puntajeActual=miJuego.getJugador().getPuntaje();
-			lblPuntaje.setText("PUNTAJE: "+ puntajeActual);
-			try {hiloJuego.sleep(velocidad);} catch (InterruptedException e) {e.printStackTrace();}	
+			
+			lblPuntaje.setText("PUNTAJE: "+ puntajeActual );
+
+			try {
+				hiloJuego.sleep(velocidad);
+			} catch (InterruptedException e) {e.printStackTrace();}	
 
 			if(miJuego.getGameStatus()) {
 				GameOverVisual();
@@ -260,6 +267,7 @@ public class GUI extends JFrame implements Runnable{
 
 			}
 		}
+		
 	}
 	public void update() {
 
@@ -289,6 +297,8 @@ public class GUI extends JFrame implements Runnable{
 		ready = true;
 		miReloj= new Reloj(label);
 		miReloj.start();
+	
+		
 	}
 
 	public void GameOverVisual() {
